@@ -48,30 +48,30 @@
         </property>
     </bean>
 
-    <!-- 配置hibernateTemplate
-    <bean id="hibernateTemplate" class="org.springframework.orm.hibernate4.HibernateTemplate">
-       <property name="sessionFactory" ref="sessionFactory"/>
-       <property name="checkWriteOperations" value="false"></property>
-    </bean>-->
+    <!--&lt;!&ndash; 配置hibernateTemplate&ndash;&gt;-->
+    <!--<bean id="hibernateTemplate" class="org.springframework.orm.hibernate4.HibernateTemplate">-->
+       <!--<property name="sessionFactory" ref="sessionFactory"/>-->
+       <!--<property name="checkWriteOperations" value="false"></property>-->
+    <!--</bean>-->
 
     <!-- 事务管理器-->
     <bean id="transactionManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
         <property name="sessionFactory" ref="sessionFactory"></property>
     </bean>
-    <!-- 使用annotation定义事务
-    <tx:annotation-driven transaction-manager="transactionManager" />-->
+    <!-- 使用annotation定义事务-->
+    <tx:annotation-driven transaction-manager="transactionManager" />
 
-    <!--  声明式容器事务管理 ,transaction-manager指定事务管理器为transactionManager
-    <tx:advice id="transactionAdvice" transaction-manager="transactionManager">
-        <tx:attributes>
-            <tx:method name="get*" propagation="REQUIRED" read-only="true"/>
-            <tx:method name="delete*" propagation="REQUIRED" read-only="true"/>
-              <tx:method name="*" propagation="REQUIRED"/>
-        </tx:attributes>
-    </tx:advice>-->
-    <!--<aop:config>
-         只对业务逻辑层实施事务
-        <aop:pointcut expression="execution(* com.whut.work.*.service..*.*(..))" id="businessService"/>
-        <aop:advisor advice-ref="transactionAdvice" pointcut-ref="businessService"/>
-    </aop:config>-->
+    <!--&lt;!&ndash;  声明式容器事务管理 ,transaction-manager指定事务管理器为transactionManager&ndash;&gt;-->
+    <!--<tx:advice id="transactionAdvice" transaction-manager="transactionManager">-->
+        <!--<tx:attributes>-->
+            <!--<tx:method name="get*" propagation="REQUIRED" read-only="true"/>-->
+            <!--<tx:method name="delete*" propagation="REQUIRED" read-only="true"/>-->
+              <!--<tx:method name="*" propagation="REQUIRED"/>-->
+        <!--</tx:attributes>-->
+    <!--</tx:advice>-->
+    <!--<aop:config>-->
+         <!--&lt;!&ndash;只对业务逻辑层实施事务&ndash;&gt;-->
+        <!--<aop:pointcut expression="execution(* com.financing.service.*(..))" id="businessService"/>-->
+        <!--<aop:advisor advice-ref="transactionAdvice" pointcut-ref="businessService"/>-->
+    <!--</aop:config>-->
 </beans>
