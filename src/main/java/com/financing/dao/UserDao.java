@@ -14,4 +14,5 @@ public interface UserDao {
     User queryById(String id) throws Exception;
     List<User> queryAll() throws Exception;
     User queryByMobile(String mobile)throws Exception;
+    User queryByName(String username)throws Exception;
 }

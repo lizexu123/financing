@@ -45,8 +45,9 @@ public class UserDaoImpl implements UserDao{
         Session session = sessionFactory.openSession();
         Transaction tx = session.getTransaction();
         tx.begin();
-        User user = (User) session.load(User.class,id);
-        session.delete(user);
+        Query query = session.createQuery("update User set status = -1 where id=?");
+        query.setString(0,id);
+        query.executeUpdate();
         tx.commit();
     }
 
@@ -78,6 +79,18 @@ public class UserDaoImpl implements UserDao{
         tx.begin();
         Query query = session.createQuery("from User where mobile=?");
         query.setString(0,mobile);
+        User user = (User)query.uniqueResult();
+        tx.commit();
+        return user;
+    }
+
+    @Override
+    public User queryByName(String username) throws Exception {
+        Session session = sessionFactory.openSession();
+        Transaction tx = session.getTransaction();
+        tx.begin();
+        Query query = session.createQuery("from User where username=?");
+        query.setString(0,username);
         User user = (User)query.uniqueResult();
         tx.commit();
         return user;

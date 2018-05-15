@@ -9,7 +9,8 @@ import java.util.List;
  */
 
 public interface UserService {
-    User getUser(String account);
+    User getUser(String mobile);
+    User getUserByUsername(String username);
     Boolean addUser(User user);
     User updateUser(User user);
     Boolean deleteUser(String id);

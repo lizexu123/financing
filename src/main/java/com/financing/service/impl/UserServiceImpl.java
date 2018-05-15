@@ -17,16 +17,21 @@ public class UserServiceImpl implements UserService{
     private UserDao userDao;
 
     @Override
-    public User getUser(String account) {
+    public User getUser(String mobile) {
         try {
-            User user =userDao.queryByMobile(account);
-            if (user==null){
-                user = userDao.queryById(account);
-            }
+            User user =userDao.queryByMobile(mobile);
             return user;
         } catch (Exception e) {
             e.printStackTrace();
-            return null;
+            throw new RuntimeException();
+        }
+    }
+    public User getUserByUsername(String username){
+        try {
+            return userDao.queryByName(username);
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new RuntimeException();
         }
     }
 
@@ -48,7 +53,7 @@ public class UserServiceImpl implements UserService{
             return  userDao.queryById(user.getId());
         } catch (Exception e) {
             e.printStackTrace();
-            return null;
+            throw new RuntimeException();
         }
 
     }
@@ -70,7 +75,7 @@ public class UserServiceImpl implements UserService{
             return userDao.queryAll();
         } catch (Exception e) {
             e.printStackTrace();
-            return null;
+            throw new RuntimeException();
         }
     }
 

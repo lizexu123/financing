@@ -39,6 +39,9 @@ public class UserTest {
         }
     }
 
+    /**
+     * 测试注册时用户账号是否已存在
+     */
     @Test
     public void testIsExistUser(){
         User user = new User();
@@ -49,4 +52,6 @@ public class UserTest {
         user =userService.getUser(mobile);
         System.out.println(user.toString());
     }
+
+
 }

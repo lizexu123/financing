@@ -56,7 +56,15 @@ public class User {
     private String intro;
 
     @Column
+    private String realName;
+
+    @Column
+    private String ic;
+
+    @Column
     private Byte status;
+
+
 
     public String getId() {
         return id;
@@ -130,12 +138,12 @@ public class User {
         this.balance = balance;
     }
 
-    public String getDescribe() {
+    public String getIntro() {
         return intro;
     }
 
-    public void setDescribe(String describe) {
-        this.intro = describe;
+    public void setIntro(String intro) {
+        this.intro = intro;
     }
 
     public Byte getStatus() {
@@ -144,6 +152,22 @@ public class User {
 
     public void setStatus(Byte status) {
         this.status = status;
+    }
+
+    public String getIc() {
+        return ic;
+    }
+
+    public void setIc(String ic) {
+        this.ic = ic;
+    }
+
+    public String getRealName() {
+        return realName;
+    }
+
+    public void setRealName(String realName) {
+        this.realName = realName;
     }
 
     @Override
@@ -158,7 +182,9 @@ public class User {
                 ", gender='" + gender + '\'' +
                 ", zone='" + zone + '\'' +
                 ", balance=" + balance +
-                ", describe='" + intro + '\'' +
+                ", intro='" + intro + '\'' +
+                ", realName='" + realName + '\'' +
+                ", ic='" + ic + '\'' +
                 ", status=" + status +
                 '}';
     }
