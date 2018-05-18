@@ -1,0 +1,381 @@
+* {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+    -webkit-font-smoothing: antialiased;
+}
+
+html, body, div, span, p, a, small, ol, form {
+    border: 0;
+    font-family: inherit;
+    font-size: 100%;
+    font-weight: inherit;
+    margin: 0;
+    outline: 0;
+    padding: 0;
+    vertical-align: baseline;
+}
+
+footer, header, menu, nav{
+    display: block;
+}
+
+html, body {
+    font-family: Arial;
+    font-size: 12px;
+    color: #8c806e;
+}
+
+a, input {
+    outline: none;
+}
+
+a {
+    color: #F06;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+p {
+    font-size: 13px;
+    margin: 5px 0px 15px 0px;
+}
+
+.clear {
+    clear: both;
+    height: 0px;
+    overflow: hidden;
+}
+
+/* <<< Design Holder >>> */
+.DesignHolder {
+    position: relative;
+    display: block;
+    width: 100%;
+    min-height: 100%;
+}
+
+/* <<< Layout Frame >>> */
+.LayoutFrame {
+    margin: 0 auto;
+    width: 100%;
+    display: block;
+}
+
+/* <<< Body >>> */
+body {
+    background: #fff;
+}
+
+/* <<< Header >>> */
+header {
+    width: 100%;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    height: 105px;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 9;
+}
+
+header .Center {
+    max-width: 93%;
+    margin: auto;
+}
+
+header .site-logo {
+    padding: 30px 0px 0px 0px;
+    width: 220px;
+    float: left;
+    transition: all 0.3s;
+}
+
+header .site-logo h1 {
+    margin: 0px;
+}
+
+header .site-logo h1 a {
+    font-size: 36px;
+    color: #fff;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 800;
+    text-decoration: none;
+    text-transform: uppercase;
+    text-shadow: rgb(3, 3, 3) 0px 2px 5px;
+    transition: all 0.7s ease;
+}
+
+header .site-logo h1 a span {
+    color: #ff9000;
+}
+
+header.smaller {
+    padding: 0px 0px 0px 0px;
+    height: 60px;
+    transition: all 0.3s;
+    background: rgba(0, 0, 0, 0.75);
+}
+
+header.smaller .site-logo {
+    padding: 13px 0px 0px 0px;
+}
+
+header.smaller .site-logo h1 {
+    line-height: 30px;
+}
+
+header.smaller .site-logo h1 a {
+    font-size: 30px;
+}
+
+/* <<< Navigation >>> */
+.Navigation {
+    width: 100%;
+}
+
+.Navigation ul {
+    list-style: none;
+    float: left;
+    margin: 0px 30px;
+}
+
+.Navigation li {
+    float: left;
+    padding: 0px;
+    margin: 0px;
+    height: 105px;
+    position: relative;
+}
+
+.Navigation li a {
+    padding: 42px 41px 36px 41px;
+    font-size: 18px;
+    color: #fff;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 400;
+    text-decoration: none;
+    display: block;
+}
+
+.Navigation li span {
+    border-bottom: solid 5px #ff9000;
+    background: rgba(56, 87, 122, 1);
+    width: 100%;
+    height: 100%;
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -10;
+    opacity: 0;
+}
+
+.Navigation li:hover span, .Navigation li.active span {
+    opacity: 1;
+}
+
+header.smaller .Navigation li a {
+    padding: 16px 41px;
+}
+
+header.smaller .Navigation li {
+    height: 60px;
+}
+
+
+/* <<< Container >>> */
+#Container {
+    overflow: hidden;
+    width: 100%;
+}
+
+/* <<< About Section >>> */
+.About_sec {
+    padding: 300px 0px 88px 0px;
+    width: 100%;
+    overflow: hidden;
+    height: 1000px;
+}
+
+.About_sec .Center {
+    max-width: 920px;
+    margin: auto;
+    overflow: hidden;
+    text-align: center;
+}
+
+.showMember .AboutObject{
+    font-size: 46px;
+    color: #ff9408;
+    font-family: 'Oswald', sans-serif;
+    font-weight: 600;
+    letter-spacing: 2.5px;
+}
+
+.showMember {
+    padding: 112px 0px 108px 0px;
+    width: 100%;
+    overflow: hidden;
+    background: #ececec;
+}
+
+.showMember .Center {
+    width: 100%;
+    margin: auto;
+    overflow: hidden;
+    text-align: center;
+}
+
+.showMember .Center ul li{
+    margin: 30px 0px;
+    width: 100%;
+}
+
+.showMember h2 {
+    font-size: 57px;
+    color: #000;
+    font-family: 'Oswald', sans-serif;
+    font-weight: 400;
+    margin: 0px;
+    text-transform: uppercase;
+    line-height: 60px;
+}
+
+.showMember .members {
+    padding: 15px 0px 0px 0px;
+    width: 100%;
+    overflow: hidden;
+    text-align: initial;
+}
+
+.showMember .members ul {
+    width: border-box;
+    list-style: none;
+    margin: 0px;
+    width: 100%;
+}
+
+.showMember .members li {
+    float: none;
+    padding: 0px;
+    margin: 0px 0px 11px 0px;
+    height: 103px;
+    /*     line-height: 60px; */
+    background: #fff;
+    text-align: center;
+}
+
+.showMember .members li .Basic {
+    width: 80px;
+    float: left;
+    display: table;
+    height: 103px;
+    background: #ff9408;
+    transition: all ease 0.3s;
+}
+
+.showMember .members li .Basic h5 {
+    display: table-cell;
+    vertical-align: middle;
+    font-size: 17px;
+    color: #2d2d2d;
+    font-family: 'Oswald', sans-serif;
+    text-transform: uppercase;
+    margin: 0px;
+    transform: rotate(270deg);
+    clear: none;
+    text-align: center;
+}
+
+.showMember .members li .Dollar {
+    padding: 22px 0px 21px 0px;
+    width: 480px;
+    float: left;
+    background: #2d2d2d;
+    /*                 transition: all ease 0.3s; */
+}
+
+.showMember .members li .Dollar h2 {
+    font-size: 34px;
+    color: #ff9408;
+    font-family: 'Oswald', sans-serif;
+    font-weight: 400;
+    letter-spacing: 1px;
+}
+
+.showMember .members li .Band {
+    padding: 22px 0px 21px 0px;
+    width: 230px;
+    float: left;
+}
+
+.showMember .members li .Band h2 {
+    font-size: 30px;
+    font-family: 'Oswald', sans-serif;
+    font-weight: 400;
+    letter-spacing: 1px;
+    color: gray;
+}
+
+.showMember .members li .Order {
+    width: 130px;
+    float: left;
+    display: table;
+    height: 103px;
+}
+
+.showMember .members li .Order h5 {
+    font-size: 17px;
+    color: #fff;
+    font-family: 'Oswald', sans-serif;
+    font-weight: 400;
+    text-decoration: none;
+    display: table-cell;
+    vertical-align: middle;
+    text-transform: uppercase;
+    background: #2d2d2d;
+}
+
+.showMember .members li:hover .Basic {
+    padding: 0px;
+    background: #2d2d2d;
+}
+
+.showMember .members li:hover .Basic h5 {
+    color: #fff;
+}
+
+.showMember .members li:hover .Band {
+    padding: 0px;
+    background: #2d2d2d right 16px no-repeat;
+    height: 103px;
+}
+
+.showMember .members li:hover .Band h2 {
+    padding: 22px 0px 21px 0px;
+    color: #fff;
+}
+
+.showMember .members li:hover .Dollar {
+    background: #ff9408;
+    color: #fff;
+}
+
+.showMember .members li:hover .Dollar h2 {
+    color: #fff;
+}
+
+.showMember .members li:hover .Order h5 {
+    background: #ff9408;
+    color: #fff;
+    transition: all 0.3s ease;
+}
+.footer-link {
+    font-size: 20px;
+    color: black;
+    text-align:center;
+    width:100%;
+    line-height: 10px;
+}
