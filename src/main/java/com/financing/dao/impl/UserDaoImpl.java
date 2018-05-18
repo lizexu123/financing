@@ -32,7 +32,7 @@ public class UserDaoImpl implements UserDao{
     }
 
     @Override
-    public void update(User user) throws Exception {
+    public void update(User user) throws Exception{
         Session session = sessionFactory.openSession();
         Transaction tx = session.getTransaction();
         tx.begin();
@@ -89,7 +89,7 @@ public class UserDaoImpl implements UserDao{
         Session session = sessionFactory.openSession();
         Transaction tx = session.getTransaction();
         tx.begin();
-        Query query = session.createQuery("from User where username=?");
+        Query query = session.createQuery("from User where username =?");
         query.setString(0,username);
         User user = (User)query.uniqueResult();
         tx.commit();

@@ -2,6 +2,7 @@ package com.financing.controller;
 
 import com.financing.entity.User;
 import com.financing.service.UserService;
+import com.financing.utils.FileUploadUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -10,8 +11,6 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import java.io.File;
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -127,10 +126,7 @@ public class UserController {
 
         Map<String,Object> result = new HashMap<String, Object>();
         User user = (User) request.getSession().getAttribute("user");
-
-        String avatar = uploadAvatar(avatarUpload,user.getId(),session);
-
-
+        String avatar = FileUploadUtil.uploadFile(avatarUpload,session);
         user.setAvatar(avatar);
         user.setUsername(request.getParameter("username"));
         user.setEmail(request.getParameter("email"));
@@ -150,36 +146,6 @@ public class UserController {
             result.put("msg","modify success");
             result.put("data",user);
             return result;
-        }
-    }
-
-    /**
-     * 用户上传头像 通过修改个人信息调用
-     * @param avatarUpload
-     * @param id
-     * @param session
-     * @return
-     * @author Penny
-     */
-    public String uploadAvatar(MultipartFile avatarUpload, String id, HttpSession session){
-        try {
-            String avatar = "";
-            if (avatarUpload!=null&&!avatarUpload.isEmpty()){
-                String fileRealPath = session.getServletContext().getRealPath("/res/image_upload");
-                String fileName = "avatar_"+id+".jpg";
-                File fileFolder = new File(fileRealPath);
-                if (!fileFolder.exists()){
-                    fileFolder.mkdirs();
-                }
-                System.out.println(fileRealPath+"/"+fileName);
-                File file = new File(fileFolder,fileName);
-                avatarUpload.transferTo(file);
-                avatar = "/image_upload/"+fileName;
-            }
-            return avatar;
-        } catch (IOException e) {
-            e.printStackTrace();
-            throw new RuntimeException();
         }
     }
 

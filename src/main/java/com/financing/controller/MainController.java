@@ -37,6 +37,14 @@ public class MainController {
         return "login";
     }
 
+    /**
+     * 个人中心页
+     * @return
+     */
+    @RequestMapping(value = "/personCenter")
+    public String personCenter(){
+        return "person_center";
+    }
 
 
 }
