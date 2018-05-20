@@ -1,7 +1,9 @@
 package com.financing.service.impl;
 
 import com.financing.dao.ProjectDao;
+import com.financing.entity.Category;
 import com.financing.entity.Project;
+import com.financing.entity.User;
 import com.financing.service.ProjectService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,7 +21,12 @@ public class ProjectServiceImpl implements ProjectService {
 
     @Override
     public Project getProject(String id) {
-        return null;
+        try {
+            return projectDao.queryById(id);
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new RuntimeException();
+        }
     }
 
     @Override
@@ -34,13 +41,24 @@ public class ProjectServiceImpl implements ProjectService {
     }
 
     @Override
-    public Project updateProject(Project project) {
-        return null;
+    public Boolean updateProject(Project project) {
+        try {
+            projectDao.update(project);
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
     }
 
     @Override
     public List<Project> getProjectList() {
-        return null;
+        try {
+            return projectDao.queryAll();
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new RuntimeException();
+        }
     }
 
     @Override
@@ -62,4 +80,55 @@ public class ProjectServiceImpl implements ProjectService {
             throw new RuntimeException();
         }
     }
+
+    @Override
+    public int getProjectCount() {
+        return projectDao.queryProjectCount();
+    }
+
+    @Override
+    public int getProjectFinished() {
+        return projectDao.queryProjectFinished();
+    }
+
+    @Override
+    public int getSupportCount() {
+        return projectDao.querySupportCount();
+    }
+
+    @Override
+    public List<Project> getNewProjectTop() {
+        return projectDao.queryNewProjectTop();
+    }
+
+    @Override
+    public List<Project> getHotProjectTop() {
+        return projectDao.queryHotProjectTop();
+    }
+
+    @Override
+    public List<Project> getProjectTopByCID(int cid) {
+        Category category = new Category();
+        category.setId(cid);
+        return projectDao.queryProjectTopByCID(category);
+    }
+
+    @Override
+    public List<Project> getProjectByCID(int cid) {
+        Category category = new Category();
+        category.setId(cid);
+        return projectDao.queryProjectByCID(category);
+    }
+
+    @Override
+    public List<Project> getProjectByKey(String keyword) {
+        return projectDao.queryProjectByKey(keyword);
+    }
+
+    @Override
+    public List<Project> getProjectByUser(User user) {
+        return projectDao.queryByUser(user);
+    }
+
+
 }

@@ -1,7 +1,10 @@
 package com.financing.controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 /**
  * @author Penny
@@ -38,6 +41,53 @@ public class MainController {
     }
 
     /**
+     * 最新发布
+     * @return
+     */
+    @RequestMapping(value = "/browse/new")
+    public String newProject(){
+        return "forward:/doShowNewProject";
+    }
+
+    /**
+     * 最多支持
+     * @return
+     */
+    @RequestMapping(value = "/browse/hot")
+    public String hotProject(){
+        return "forward:/doShowHotProject";
+    }
+
+    /**
+     * 全部项目
+     * @return
+     */
+    @RequestMapping(value = "/browse/all")
+    public String allProject(){
+        return "forward:/doProjectAll";
+    }
+
+    /**
+     * 分类项目展示
+     * @param cid
+     * @return
+     */
+    @RequestMapping(value = "/browse/sort-{cid}",method = RequestMethod.GET)
+    public String ProjectByCID(@PathVariable("cid") String cid){
+        return "forward:/doProjectByCID-"+"{"+cid+"}";
+    }
+
+    /**
+     * 根据关键字查询项目
+     * @param keyword
+     * @return
+     */
+    @RequestMapping(value ="/browse/search-{keyword}")
+    public String ProjectByKey(@PathVariable("keyword") String keyword){
+        return "forward:/doProjectByKey-{keyword}";
+    }
+
+    /**
      * 个人中心页
      * @return
      */
@@ -46,5 +96,13 @@ public class MainController {
         return "person_center";
     }
 
+    /**
+     * 发布项目页
+     * @return
+     */
+    @RequestMapping(value = "/projectCreate")
+    public String projectCreate(){
+        return "project_create";
+    }
 
 }

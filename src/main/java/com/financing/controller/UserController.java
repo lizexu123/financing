@@ -29,6 +29,26 @@ public class UserController {
 
 
     /**
+     * test
+     * @return
+     */
+    @RequestMapping(value = "/doTest")
+    @ResponseBody
+    public Map<String,Object> test(){
+        Map<String,Object> result = new HashMap<String, Object>();
+        User user = new User();
+        user.setUsername("Penny");
+        user.setPassword("123456");
+        user.setEmail("1183346011@qq.com");
+        result.put("flag",SUCCESS_CODE);
+        result.put("msg","test");
+        result.put("data",user);
+
+        return result;
+    }
+
+
+    /**
      * 用户登录操作
      * @param request
      * @param response
@@ -92,9 +112,11 @@ public class UserController {
                 result.put("data","");
                 return result;
             }else{
+                user = userService.getUser(mobile);
+                request.getSession().setAttribute("user",user);
                 result.put("flag",SUCCESS_CODE);
-                result.put("msg","register success! go login");
-                result.put("data","");
+                result.put("msg","register success!");
+                result.put("data",user);
                 return result;
             }
         }

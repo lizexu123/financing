@@ -28,7 +28,7 @@ public class CategoryController {
      * 显示全部分类列表
      * @return
      */
-    @RequestMapping(value = "/doShowCategory",method = RequestMethod.POST)
+    @RequestMapping(value = "/doShowCategory",method = RequestMethod.GET)
     @ResponseBody
     public Map<String,Object> doShowCategory(){
         Map<String,Object> result = new HashMap<>();

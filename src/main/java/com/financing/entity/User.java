@@ -9,6 +9,7 @@ import javax.persistence.Table;
 import java.math.BigDecimal;
 
 /**
+ * 用户
  * @author Penny
  *
  */
