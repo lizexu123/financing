@@ -100,9 +100,65 @@ public class MainController {
      * 发布项目页
      * @return
      */
-    @RequestMapping(value = "/projectCreate")
+    @RequestMapping(value = "/personCenter/projectCreate")
     public String projectCreate(){
         return "project_create";
     }
 
+    /**
+     * 用户项目管理页
+     *
+     * @return
+     */
+    @RequestMapping(value = "/personCenter/personProject")
+    public String personProject(){
+        return "person_project";
+    }
+
+    /**
+     * 用户项目管理页：项目信息
+     *
+     * @return
+     */
+    @RequestMapping(value = "/personCenter/personProject/info-{pid}")
+    public String personProjectInfo(@PathVariable("pid") String pid){
+        return "forward:/doProjectInfo-{"+pid+"}";
+    }
+
+    /**
+     * 用户收货地址页
+     * @return
+     */
+    @RequestMapping(value = "/personCenter/personAddress")
+    public String personAddress(){
+        return "person_address";
+    }
+
+    /**
+     * 用户订单
+     * @return
+     */
+    @RequestMapping(value = "/personCenter/personOrder")
+    public String personOrder(){
+        return "person_order";
+    }
+
+    /**
+     * 用户收藏
+     * @return
+     */
+    @RequestMapping(value = "/personCenter/personInterest")
+    public String personInterest(){
+        return "person_interest";
+    }
+
+    /**
+     * 项目详情页
+     * @param pid
+     * @return
+     */
+    @RequestMapping(value = "/browse/detail-{pid}")
+    public String projectDetail(@PathVariable("pid") String pid){
+        return "forward:/doProjectDetail-{"+pid+"}";
+    }
 }

@@ -2,6 +2,7 @@ package com.financing.dao.impl;
 
 import com.financing.dao.AddressDao;
 import com.financing.entity.Address;
+import com.financing.entity.User;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -52,7 +53,26 @@ public class AddressDaoImpl implements AddressDao {
 
     @Override
     public List<Address> queryAll() {
-        return null;
+        Session session = sessionFactory.openSession();
+        Transaction tx = session.getTransaction();
+        tx.begin();
+        Query query = session.createQuery("from Address ");
+        List<Address> addresses = query.list();
+        tx.commit();
+
+        return addresses;
+    }
+
+    @Override
+    public List<Address> queryByUser(User user) {
+        Session session = sessionFactory.openSession();
+        Transaction tx = session.getTransaction();
+        tx.begin();
+        Query query = session.createQuery("from Address where user = ?");
+        List<Address> addresses = query.list();
+        tx.commit();
+
+        return addresses;
     }
 
     @Override

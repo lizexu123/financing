@@ -303,14 +303,13 @@ public class ProjectController {
     }
 
     /**
-     * 查看项目详情
+     * 用户查看所发布的项目信息
      * @param session
      * @param pid
      * @return
      */
-    @RequestMapping(value = "/doProjectDetail-{pid}")
-    @ResponseBody
-    public Map<String,Object> doProjectDetail(HttpSession session, @PathVariable("pid") String pid){
+    @RequestMapping(value = "/doProjectInfo-{pid}")
+    public String doProjectInfo(HttpSession session, @PathVariable("pid") String pid,ModelMap map){
         User user = (User) session.getAttribute("user");
         Project project = projectService.getProject(pid);
 
@@ -318,6 +317,29 @@ public class ProjectController {
         result.put("flag",SUCCESS_CODE);
         result.put("msg","project detail");
         result.put("data",project);
-        return result;
+        map.addAllAttributes(result);
+
+        return "person_projectInfo";
     }
+
+
+    /**
+     * 项目详情页
+     *
+     * @param pid
+     * @param map
+     * @return
+     */
+    @RequestMapping(value = "/doProjectDetail-{pid}")
+    public String doProjectDetail(@PathVariable("pid") String pid,ModelMap map){
+        Project project = projectService.getProject(pid);
+        Map<String,Object> result = new HashMap<String,Object>();
+        result.put("flag",SUCCESS_CODE);
+        result.put("msg","project detail");
+        result.put("data",project);
+        map.addAllAttributes(result);
+
+        return "person_projectDetail";
+    }
+
 }
