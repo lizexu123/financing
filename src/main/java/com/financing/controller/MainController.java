@@ -144,6 +144,15 @@ public class MainController {
     }
 
     /**
+     * 用户订单详情
+     * @param oid
+     * @return
+     */
+    @RequestMapping(value = "/personCenter/personOrder/detail-{oid}")
+    public String personOrderDetail(@PathVariable("oid") String oid){
+        return "forward:/doGetOrderDetail-{"+oid+"}";
+    }
+    /**
      * 用户收藏
      * @return
      */

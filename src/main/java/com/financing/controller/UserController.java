@@ -3,6 +3,7 @@ package com.financing.controller;
 import com.financing.entity.User;
 import com.financing.service.UserService;
 import com.financing.utils.FileUploadUtil;
+import com.financing.utils.Md5Util;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -60,6 +61,7 @@ public class UserController {
     public Map<String,Object> doLogin(HttpServletRequest request, HttpServletResponse response){
         String mobile = request.getParameter("mobile");
         String password = request.getParameter("password");
+        password = Md5Util.getMD5String(password);//md5加密
         Map<String,Object> result = new HashMap<String, Object>();
         User user =userService.getUser(mobile);
         if (user==null){
@@ -95,6 +97,7 @@ public class UserController {
     public Map<String,Object> doRegister(HttpServletRequest request,HttpServletResponse response){
         String mobile = request.getParameter("mobile");
         String password = request.getParameter("password");
+        password = Md5Util.getMD5String(password);//md5值加密
         User user = new User();
         user.setMobile(mobile);
         user.setPassword(password);
