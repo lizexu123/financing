@@ -30,13 +30,15 @@ public class FileUploadUtil {
                 String fileName = "";
                 String fileId = DateUtil.dateIDGenerator();
                 if (type.equals("image/jpeg")){
-                    fileRealPath = servletContext.getRealPath("/res/image_upload");
+//                    fileRealPath = servletContext.getRealPath("/upload/image");
+                    fileRealPath = "/financing-uploadfile/image";
                     fileName = "cover_"+fileId+".jpg";
-                    filePath = "/image_upload/"+fileName;
+                    filePath = "/upload/image/"+fileName;
                 }else if (type.equals("video/mp4")){
-                    fileRealPath = servletContext.getRealPath("/res/video_upload");
+//                    fileRealPath = servletContext.getRealPath("/res/video_upload");
+                    fileRealPath = "/financing-uploadfile/video";
                     fileName = "cover_"+fileId+".mp4";
-                    filePath = "/video_upload/"+fileName;
+                    filePath = "/upload/video/"+fileName;
                 }else {
                     return "file format error";
                 }

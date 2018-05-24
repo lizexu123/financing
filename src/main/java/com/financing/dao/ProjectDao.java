@@ -10,7 +10,7 @@ import java.util.List;
  * Created by Penny on 2018/5/16.
  */
 public interface ProjectDao {
-    void insert(Project project) throws Exception;
+    String insert(Project project) throws Exception;
     void update(Project project) throws Exception;
     Project queryById(String id) throws Exception;
     List<Project> queryAll()throws Exception;

@@ -122,7 +122,7 @@ public class MainController {
      */
     @RequestMapping(value = "/personCenter/personProject/info-{pid}")
     public String personProjectInfo(@PathVariable("pid") String pid){
-        return "forward:/doProjectInfo-{"+pid+"}";
+        return "forward:/doProjectInfo-"+pid;
     }
 
     /**
@@ -150,7 +150,7 @@ public class MainController {
      */
     @RequestMapping(value = "/personCenter/personOrder/detail-{oid}")
     public String personOrderDetail(@PathVariable("oid") String oid){
-        return "forward:/doGetOrderDetail-{"+oid+"}";
+        return "forward:/doGetOrderDetail-"+oid;
     }
     /**
      * 用户收藏
@@ -168,6 +168,6 @@ public class MainController {
      */
     @RequestMapping(value = "/browse/detail-{pid}")
     public String projectDetail(@PathVariable("pid") String pid){
-        return "forward:/doProjectDetail-{"+pid+"}";
+        return "forward:/doProjectDetail-"+pid;
     }
 }
