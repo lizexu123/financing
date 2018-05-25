@@ -87,6 +87,7 @@ public class ProjectController {
             //添加无私回报
             ProjectBack projectBack = new ProjectBack();
             projectBack.setCompensation(1);
+            projectBack.setContent("Thank you for your unselfish support!");
             project.setId(projectId);
             projectBack.setProject(project);
             projectBackService.addBack(projectBack);
@@ -344,7 +345,7 @@ public class ProjectController {
         result.put("data",project);
         map.addAllAttributes(result);
 
-        return "person_projectDetail";
+        return "project_detail";
     }
 
 }
