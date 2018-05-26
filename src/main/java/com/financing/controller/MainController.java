@@ -1,7 +1,6 @@
 package com.financing.controller;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -38,6 +37,11 @@ public class MainController {
     @RequestMapping(value = "/login")
     public String login(){
         return "login";
+    }
+
+    @RequestMapping(value = "/register")
+    public String register() {
+        return "register";
     }
 
     /**
@@ -94,6 +98,14 @@ public class MainController {
     @RequestMapping(value = "/personCenter")
     public String personCenter(){
         return "person_center";
+    }
+
+    /**
+     * 个人资料页
+     */
+    @RequestMapping(value = "/personInfo")
+    public String personData() {
+        return "person_info";
     }
 
 

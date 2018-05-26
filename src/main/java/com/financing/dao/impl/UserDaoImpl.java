@@ -77,6 +77,7 @@ public class UserDaoImpl implements UserDao{
         Session session = sessionFactory.openSession();
         Transaction tx = session.getTransaction();
         tx.begin();
+        System.out.println("mobile = " + mobile);
         Query query = session.createQuery("from User where mobile=?");
         query.setString(0,mobile);
         User user = (User)query.uniqueResult();

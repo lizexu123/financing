@@ -1,0 +1,6 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="financing">
+    <output-path>D:/IdeaProject1/financing</output-path>
+    <root id="archive" name="financing.jar" />
+  </artifact>
+</component>

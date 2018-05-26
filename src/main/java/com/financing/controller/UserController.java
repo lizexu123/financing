@@ -6,7 +6,10 @@ import com.financing.utils.FileUploadUtil;
 import com.financing.utils.Md5Util;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
@@ -61,6 +64,8 @@ public class UserController {
     public Map<String,Object> doLogin(HttpServletRequest request, HttpServletResponse response){
         String mobile = request.getParameter("mobile");
         String password = request.getParameter("password");
+        System.out.println("password = " + password);
+        System.out.println("mobile = " + mobile);
         password = Md5Util.getMD5String(password);//md5加密
         Map<String,Object> result = new HashMap<String, Object>();
         User user =userService.getUser(mobile);
@@ -145,7 +150,7 @@ public class UserController {
      * @return
      * @author Penny
      */
-    @RequestMapping(value = "/doModifyUserInfo",method = RequestMethod.POST)
+    @RequestMapping(value = "/doModifyUserInfo")
     @ResponseBody
     public Map<String,Object> doModifyUserInfo(@RequestParam MultipartFile avatarUpload,HttpServletRequest request,HttpSession session){
 

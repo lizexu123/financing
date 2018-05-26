@@ -5,7 +5,7 @@
     -webkit-font-smoothing: antialiased;
 }
 
-html, body, div, span, p, a, small, ol, form {
+body {
     border: 0;
     font-family: inherit;
     font-size: 100%;
@@ -14,33 +14,6 @@ html, body, div, span, p, a, small, ol, form {
     outline: 0;
     padding: 0;
     vertical-align: baseline;
-}
-
-footer, header, menu, nav{
-    display: block;
-}
-
-html, body {
-    font-family: Arial;
-    font-size: 12px;
-    color: #8c806e;
-}
-
-a, input {
-    outline: none;
-}
-
-a {
-    color: #F06;
-}
-
-a:hover {
-    text-decoration: none;
-}
-
-p {
-    font-size: 13px;
-    margin: 5px 0px 15px 0px;
 }
 
 .clear {
@@ -184,29 +157,28 @@ header.smaller .Navigation li {
     height: 60px;
 }
 
-
 /* <<< Container >>> */
-#Container {
+.Container {
     overflow: hidden;
     width: 100%;
 }
 
 /* <<< About Section >>> */
-.About_sec {
+.aboutProject {
     padding: 300px 0px 88px 0px;
     width: 100%;
     overflow: hidden;
     height: 1000px;
 }
 
-.About_sec .Center {
+.aboutProject .Center {
     max-width: 920px;
     margin: auto;
     overflow: hidden;
     text-align: center;
 }
 
-.showMember .AboutObject{
+.showMember .AboutObject {
     font-size: 46px;
     color: #ff9408;
     font-family: 'Oswald', sans-serif;
@@ -228,7 +200,7 @@ header.smaller .Navigation li {
     text-align: center;
 }
 
-.showMember .Center ul li{
+.showMember .Center ul li {
     margin: 30px 0px;
     width: 100%;
 }
@@ -267,7 +239,7 @@ header.smaller .Navigation li {
     text-align: center;
 }
 
-.showMember .members li .Basic {
+.showMember .members li .numOMember {
     width: 80px;
     float: left;
     display: table;
@@ -276,7 +248,7 @@ header.smaller .Navigation li {
     transition: all ease 0.3s;
 }
 
-.showMember .members li .Basic h5 {
+.showMember .members li .numOMember h5 {
     display: table-cell;
     vertical-align: middle;
     font-size: 17px;
@@ -289,15 +261,15 @@ header.smaller .Navigation li {
     text-align: center;
 }
 
-.showMember .members li .Dollar {
+.showMember .members li .nameOMember {
     padding: 22px 0px 21px 0px;
-    width: 480px;
+    width: 470px;
     float: left;
     background: #2d2d2d;
     /*                 transition: all ease 0.3s; */
 }
 
-.showMember .members li .Dollar h2 {
+.showMember .members li .nameOMember h2 {
     font-size: 34px;
     color: #ff9408;
     font-family: 'Oswald', sans-serif;
@@ -305,28 +277,28 @@ header.smaller .Navigation li {
     letter-spacing: 1px;
 }
 
-.showMember .members li .Band {
+.showMember .members li .amountOMember {
     padding: 22px 0px 21px 0px;
-    width: 230px;
+    width: 240px;
     float: left;
 }
 
-.showMember .members li .Band h2 {
-    font-size: 30px;
+.showMember .members li .amountOMember h2 {
+    font-size: 15px;
     font-family: 'Oswald', sans-serif;
     font-weight: 400;
     letter-spacing: 1px;
     color: gray;
 }
 
-.showMember .members li .Order {
+.showMember .members li .bigNumOMember {
     width: 130px;
     float: left;
     display: table;
     height: 103px;
 }
 
-.showMember .members li .Order h5 {
+.showMember .members li .bigNumOMember h5 {
     font-size: 17px;
     color: #fff;
     font-family: 'Oswald', sans-serif;
@@ -338,44 +310,59 @@ header.smaller .Navigation li {
     background: #2d2d2d;
 }
 
-.showMember .members li:hover .Basic {
+.showMember .members li:hover .numOMember {
     padding: 0px;
     background: #2d2d2d;
 }
 
-.showMember .members li:hover .Basic h5 {
+.showMember .members li:hover .numOMember h5 {
     color: #fff;
 }
 
-.showMember .members li:hover .Band {
+.showMember .members li:hover .amountOMember {
     padding: 0px;
     background: #2d2d2d right 16px no-repeat;
     height: 103px;
 }
 
-.showMember .members li:hover .Band h2 {
+.showMember .members li:hover .amountOMember h2 {
     padding: 22px 0px 21px 0px;
     color: #fff;
 }
 
-.showMember .members li:hover .Dollar {
+.showMember .members li:hover .nameOMember {
     background: #ff9408;
     color: #fff;
 }
 
-.showMember .members li:hover .Dollar h2 {
+.showMember .members li:hover .nameOMember h2 {
     color: #fff;
 }
 
-.showMember .members li:hover .Order h5 {
+.showMember .members li:hover .bigNumOMember h5 {
     background: #ff9408;
     color: #fff;
     transition: all 0.3s ease;
 }
+
+/*-- 第一张背景图 --*/
+.firstBackground {
+    background: url(../image/HomePage2.jpg) no-repeat center 0px fixed;
+    background-size: cover;
+    padding: 5em 0;
+}
+
+/*-- 第二张背景图 --*/
+.secondBackground {
+    background: url(../image/HomePage1.jpg) no-repeat 0px 0px fixed;
+    background-size: cover;
+}
+
 .footer-link {
+    text-align: center;
+}
+
+.footer-link p {
     font-size: 20px;
-    color: black;
-    text-align:center;
-    width:100%;
-    line-height: 10px;
+    color: white;
 }

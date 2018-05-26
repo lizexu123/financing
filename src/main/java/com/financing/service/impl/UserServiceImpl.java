@@ -19,6 +19,7 @@ public class UserServiceImpl implements UserService{
     @Override
     public User getUser(String mobile) {
         try {
+            System.out.println("mobile = " + mobile);
             User user =userDao.queryByMobile(mobile);
             return user;
         } catch (Exception e) {
