@@ -10,7 +10,7 @@ import java.util.List;
  */
 public interface ProjectService {
     Project getProject(String id);
-    Boolean addProject(Project project);
+    String addProject(Project project);
     Boolean updateProject(Project project);
     List<Project> getProjectList();
     List<Project> getNewProjectList();

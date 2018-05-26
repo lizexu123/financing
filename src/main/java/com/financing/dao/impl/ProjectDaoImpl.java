@@ -23,14 +23,14 @@ public class ProjectDaoImpl implements ProjectDao {
     private SessionFactory sessionFactory;
 
     @Override
-    public void insert(Project project) throws Exception {
+    public String insert(Project project) throws Exception {
         Session session = sessionFactory.openSession();
         Transaction tx = session.getTransaction();
         tx.begin();
-        session.save(project);
+        String id = (String) session.save(project);
         tx.commit();
         System.out.println("success "+project);
-
+        return id;
     }
 
     @Override

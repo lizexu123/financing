@@ -6,7 +6,9 @@ import org.hibernate.annotations.Parameter;
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * 项目信息
@@ -78,16 +80,6 @@ public class Project {
     @Column
     private Byte status;
 
-    @OneToMany(targetEntity = ProjectBack.class,fetch = FetchType.EAGER,cascade = CascadeType.ALL)
-    private List<ProjectBack> backs;
-
-    public List<ProjectBack> getBacks() {
-        return backs;
-    }
-
-    public void setBacks(List<ProjectBack> backs) {
-        this.backs = backs;
-    }
 
     public String getId() {
         return id;

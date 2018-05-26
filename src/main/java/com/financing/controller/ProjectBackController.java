@@ -3,6 +3,7 @@ package com.financing.controller;
 import com.financing.entity.Project;
 import com.financing.entity.ProjectBack;
 import com.financing.service.ProjectBackService;
+import com.financing.service.ProjectService;
 import com.financing.utils.DateUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -24,6 +25,9 @@ public class ProjectBackController {
     @Autowired
     ProjectBackService projectBackService;
 
+    @Autowired
+    ProjectService projectService;
+
 
     private static final int SUCCESS_CODE = 1;
     private static final int FAIL_CODE = 0;
@@ -44,8 +48,7 @@ public class ProjectBackController {
         int allow = Integer.parseInt(request.getParameter("allow"));
         Date backDate = DateUtil.StringToDate(request.getParameter("back_date"));
 
-        Project project = new Project();
-        project.setId(projectId);
+        Project project = projectService.getProject(projectId);
 
 
         ProjectBack back = new ProjectBack();

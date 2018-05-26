@@ -74,7 +74,7 @@ public class MainController {
      */
     @RequestMapping(value = "/browse/sort-{cid}",method = RequestMethod.GET)
     public String ProjectByCID(@PathVariable("cid") String cid){
-        return "forward:/doProjectByCID-"+"{"+cid+"}";
+        return "forward:/doProjectByCID-"+cid;
     }
 
     /**
@@ -84,7 +84,7 @@ public class MainController {
      */
     @RequestMapping(value ="/browse/search-{keyword}")
     public String ProjectByKey(@PathVariable("keyword") String keyword){
-        return "forward:/doProjectByKey-{keyword}";
+        return "forward:/doProjectByKey-"+keyword;
     }
 
     /**
@@ -95,6 +95,20 @@ public class MainController {
     public String personCenter(){
         return "person_center";
     }
+
+
+    /**
+     * 个人中心-个人资料页
+     * @return
+     */
+
+    @RequestMapping(value = "/personCenter/personInfo")
+    public String personInfo(){
+        return "person_info";
+    }
+
+
+
 
     /**
      * 发布项目页
@@ -122,7 +136,7 @@ public class MainController {
      */
     @RequestMapping(value = "/personCenter/personProject/info-{pid}")
     public String personProjectInfo(@PathVariable("pid") String pid){
-        return "forward:/doProjectInfo-{"+pid+"}";
+        return "forward:/doProjectInfo-"+pid;
     }
 
     /**
@@ -150,7 +164,7 @@ public class MainController {
      */
     @RequestMapping(value = "/personCenter/personOrder/detail-{oid}")
     public String personOrderDetail(@PathVariable("oid") String oid){
-        return "forward:/doGetOrderDetail-{"+oid+"}";
+        return "forward:/doGetOrderDetail-"+oid;
     }
     /**
      * 用户收藏
@@ -168,6 +182,6 @@ public class MainController {
      */
     @RequestMapping(value = "/browse/detail-{pid}")
     public String projectDetail(@PathVariable("pid") String pid){
-        return "forward:/doProjectDetail-{"+pid+"}";
+        return "forward:/doProjectDetail-"+pid;
     }
 }

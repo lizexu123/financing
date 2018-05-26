@@ -4,6 +4,7 @@ import com.financing.entity.Category;
 import com.financing.entity.Project;
 import com.financing.entity.ProjectBack;
 import com.financing.entity.User;
+import com.financing.service.ProjectBackService;
 import com.financing.service.ProjectService;
 import com.financing.utils.DateUtil;
 import com.financing.utils.FileUploadUtil;
@@ -26,6 +27,9 @@ public class ProjectController {
 
     @Autowired
     private ProjectService projectService;
+
+    @Autowired
+    private ProjectBackService projectBackService;
 
     private static final int SUCCESS_CODE = 1;
     private static final int FAIL_CODE = 0;
@@ -63,12 +67,6 @@ public class ProjectController {
         Category category = new Category();
         category.setId(categoryId);
 
-        //添加无私回报
-        ProjectBack projectBack = new ProjectBack();
-        projectBack.setCompensation(1);
-
-        List<ProjectBack> backs = new ArrayList<>();
-        backs.add(projectBack);
         project.setTitle(title);
         project.setUser(user);
         project.setCategory(category);
@@ -82,10 +80,18 @@ public class ProjectController {
         project.setContactName(contactName);
         project.setHotline(hotline);
         project.setContactPhone(contactPhone);
-        project.setBacks(backs);
         project.setStatus((byte) 0);
 
-        if (projectService.addProject(project)){
+        String projectId = projectService.addProject(project);
+        if ( projectId!=null){
+            //添加无私回报
+            ProjectBack projectBack = new ProjectBack();
+            projectBack.setCompensation(1);
+            projectBack.setContent("Thank you for your unselfish support!");
+            project.setId(projectId);
+            projectBack.setProject(project);
+            projectBackService.addBack(projectBack);
+
             result.put("flag",SUCCESS_CODE);
             result.put("msg","create success");
             result.put("data","");
@@ -339,7 +345,7 @@ public class ProjectController {
         result.put("data",project);
         map.addAllAttributes(result);
 
-        return "person_projectDetail";
+        return "project_detail";
     }
 
 }

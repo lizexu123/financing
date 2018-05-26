@@ -30,10 +30,9 @@ public class ProjectServiceImpl implements ProjectService {
     }
 
     @Override
-    public Boolean addProject(Project project) {
+    public String addProject(Project project) {
         try {
-            projectDao.insert(project);
-            return true;
+            return projectDao.insert(project);
         } catch (Exception e) {
             e.printStackTrace();
             return null;
