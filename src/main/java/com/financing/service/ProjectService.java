@@ -16,9 +16,9 @@ public interface ProjectService {
     List<Project> getProjectList();
     List<Project> getNewProjectList();
     List<Project> getHotProjectList();
-    int getProjectCount();//项目总数
-    int getProjectFinished();//已完成目标项目总数
-    int getSupportCount();//参与支持总数
+    long getProjectCount();//项目总数
+    long getProjectFinished();//已完成目标项目总数
+    long getSupportCount();//参与支持总数
     List<Project> getNewProjectTop();
     List<Project> getHotProjectTop();
     List<Project> getProjectTopByCID(int cid);

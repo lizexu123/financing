@@ -18,9 +18,9 @@ public interface ProjectDao {
     List<Project> queryNewProject()throws Exception;
     List<Project> queryHotProject()throws Exception;
     void delete(String id) throws Exception;
-    int queryProjectCount();//项目总数
-    int queryProjectFinished();//已完成目标项目总数
-    int querySupportCount();//参与支持总数
+    long queryProjectCount();//项目总数
+    long queryProjectFinished();//已完成目标项目总数
+    long querySupportCount();//参与支持总数
     List<Project> queryNewProjectTop();
     List<Project> queryHotProjectTop();
     List<Project> queryProjectTopByCID(Category category);

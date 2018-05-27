@@ -82,17 +82,17 @@ public class ProjectServiceImpl implements ProjectService {
     }
 
     @Override
-    public int getProjectCount() {
+    public long getProjectCount() {
         return projectDao.queryProjectCount();
     }
 
     @Override
-    public int getProjectFinished() {
+    public long getProjectFinished() {
         return projectDao.queryProjectFinished();
     }
 
     @Override
-    public int getSupportCount() {
+    public long getSupportCount() {
         return projectDao.querySupportCount();
     }
 

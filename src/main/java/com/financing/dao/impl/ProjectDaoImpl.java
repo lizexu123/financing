@@ -94,34 +94,34 @@ public class ProjectDaoImpl implements ProjectDao {
     }
 
     @Override
-    public int queryProjectCount() {
+    public long queryProjectCount() {
         Session session = sessionFactory.openSession();
         Transaction tx = session.getTransaction();
         tx.begin();
         Query query = session.createQuery("select count(*) from Project");
-        int count = (int) query.uniqueResult();
+        long count = (long) query.uniqueResult();
         tx.commit();
         return count;
     }
 
     @Override
-    public int queryProjectFinished() {
+    public long queryProjectFinished() {
         Session session = sessionFactory.openSession();
         Transaction tx = session.getTransaction();
         tx.begin();
         Query query = session.createQuery("select count(*) from Project where status = 1 or status = 3");
-        int count = (int) query.uniqueResult();
+        long count = (long) query.uniqueResult();
         tx.commit();
         return count;
     }
 
     @Override
-    public int querySupportCount() {
+    public long querySupportCount() {
         Session session = sessionFactory.openSession();
         Transaction tx = session.getTransaction();
         tx.begin();
         Query query = session.createQuery("select sum (supportCount) from Project");
-        int count = (int) query.uniqueResult();
+        long count = (long) query.uniqueResult();
         tx.commit();
         return count;
     }

@@ -144,7 +144,7 @@ public class ProjectController {
     @RequestMapping(value = "/doProjectCount",method = RequestMethod.GET)
     @ResponseBody
     public Map<String,Object> doProjectCount(){
-        int count = projectService.getProjectCount();
+        long count = projectService.getProjectCount();
 
         Map<String,Object> result = new HashMap<String,Object>();
         result.put("flag",SUCCESS_CODE);
@@ -162,7 +162,7 @@ public class ProjectController {
     @RequestMapping(value = "/doProjectFinished",method = RequestMethod.GET)
     @ResponseBody
     public Map<String,Object> doProjectFinished(){
-        int count = projectService.getProjectFinished();
+        long count = projectService.getProjectFinished();
 
         Map<String,Object> result = new HashMap<String,Object>();
         result.put("flag",SUCCESS_CODE);
@@ -179,7 +179,7 @@ public class ProjectController {
     @RequestMapping(value = "/doSupportCount",method = RequestMethod.GET)
     @ResponseBody
     public Map<String,Object> doSupportCount(){
-        int count = projectService.getSupportCount();
+        long count = projectService.getSupportCount();
 
         Map<String,Object> result = new HashMap<String,Object>();
         result.put("flag",SUCCESS_CODE);
