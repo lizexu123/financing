@@ -42,7 +42,7 @@
                     <div class="row form-section">
                         <div class="col-md-7 col-sm-7 col-xs-7">
                             <input name="mobile" type="text" class="form-control" id="username"
-                                   placeholder="Username or PhoneNumber" required/>
+                                   placeholder="PhoneNumber" required/>
                             <br><br>
                             <input name="password" type="password" class="form-control" id="password"
                                    placeholder="Password" required/>

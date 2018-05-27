@@ -164,6 +164,9 @@ public class UserController {
         user.setZone(request.getParameter("zone"));
         user.setIntro(request.getParameter("intro"));
 
+        System.out.println("user = " + user.getUsername());
+        System.out.println("user1 = " + userService.getUserByUsername(user.getUsername()));
+
         if(userService.getUserByUsername(user.getUsername())!=null){
             result.put("flag",FAIL_CODE);
             result.put("msg","this username existed");
@@ -174,7 +177,8 @@ public class UserController {
             session.setAttribute("user",user);
             result.put("flag",SUCCESS_CODE);
             result.put("msg","modify success");
-            result.put("data",user);
+            result.put("data", null);
+            System.out.println("ok");
             return result;
         }
     }
@@ -193,13 +197,18 @@ public class UserController {
     public Map<String,Object> doCertificate(String realName,String ic,HttpSession session){
         Map<String,Object> result = new HashMap<String, Object>();
         User user = (User) session.getAttribute("user");
+        System.out.println("user = " + user);
+        System.out.println("realName = " + realName);
         user.setRealName(realName);
         user.setIc(ic);
         user.setStatus((byte) 1);
+
+        System.out.println("ic = " + ic);
         user = userService.updateUser(user);
+
         result.put("flag",SUCCESS_CODE);
         result.put("msg","certificate success");
-        result.put("data",user);
+        result.put("data", null);
 
         return result;
 

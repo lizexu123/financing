@@ -14,13 +14,22 @@
     <!-- 引入各种CSS样式表 -->
     <link rel="stylesheet" href="${cp}css/bstp.css">
     <link rel="stylesheet" href="${cp}css/font-awesome.css">
-    <link rel="stylesheet" href="${cp}css/personCenter.css">    <!-- 修改自Bootstrap官方Demon，你可以按自己的喜好制定CSS样式 -->
+    <link rel="stylesheet" href="${cp}css/personCenter.css">
     <link rel="stylesheet" href="${cp}css/font-change.css">    <!-- 将默认字体从宋体换成微软雅黑（个人比较喜欢微软雅黑，移动端和桌面端显示效果比较接近） -->
 
     <script type="text/javascript" src="${cp}js/jquery-1.11.0.min.js"></script>
     <script type="text/javascript" src="${cp}js/bstp.min.js"></script>
-
+    <script type="text/javascript" src="${cp}js/user.js"></script>
+    <script src="${cp}/js/layer.js" type="text/javascript"></script>
     <title>- 个人中心 -</title>
+    <style type="text/css">
+        #Logout {
+            position: relative;
+            left: 1000px;
+            top: 15px;
+            color: gray;
+        }
+    </style>
 </head>
 
 <body>
@@ -34,16 +43,10 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="index.jsp">XXXX.com</a>
+            <a class="navbar-brand" href="http://localhost:8080/index">首页</a>
         </div>
-
         <div id="navbar" class="navbar-collapse collapse">
-            <ul class="nav navbar-nav navbar-right">
-                <li><a href="###" onclick="showAtRight('userList.jsp')"><i class="fa fa-users"></i> 用户列表</a></li>
-                <li><a href="###" onclick="showAtRight('productList.jsp')"><i class="fa fa-list-alt"></i> 产品列表</a></li>
-                <li><a href="###" onclick="showAtRight('recordList.jsp')"><i class="fa fa-list"></i> 订单列表</a></li>
-            </ul>
-
+            <a id="Logout" href="${cp}/doLogout">注销登录</a>
         </div>
     </div>
 </nav>
@@ -96,7 +99,7 @@
 <!-- 右侧内容展示==================================================   -->
 <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
     <h1 class="page-header"><i class="fa fa-cog fa-spin"></i>&nbsp;控制台
-        <small>&nbsp;&nbsp;&nbsp;欢迎使用XXX后台管理系统</small>
+        <small>&nbsp;&nbsp;&nbsp;欢迎来到个人中心</small>
     </h1>
 
     <!-- 载入左侧菜单指向的jsp（或html等）页面内容 -->
