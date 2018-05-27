@@ -188,6 +188,15 @@ public class MainController {
     }
 
     /**
+     * 用户评论
+     * @return
+     */
+    @RequestMapping(value = "/personCenter/personComment")
+    public String personComment(){
+        return "person_comment";
+    }
+
+    /**
      * 项目详情页
      * @param pid
      * @return

@@ -33,4 +33,14 @@ public class ProjectBackServiceImpl implements ProjectBackService {
     public void updateBack(ProjectBack projectBack) {
         projectBackDao.update(projectBack);
     }
+
+    @Override
+    public ProjectBack getBack(int id) {
+        return projectBackDao.queryById(id);
+    }
+
+    @Override
+    public void updateActual(ProjectBack projectBack) {
+        projectBackDao.updateActual(projectBack);
+    }
 }

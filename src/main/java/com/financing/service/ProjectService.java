@@ -3,6 +3,7 @@ package com.financing.service;
 import com.financing.entity.Project;
 import com.financing.entity.User;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 /**
@@ -24,4 +25,5 @@ public interface ProjectService {
     List<Project> getProjectByCID(int cid);
     List<Project> getProjectByKey(String keyword);//根据关键字查询项目
     List<Project> getProjectByUser(User user);//查询用户发布的项目列表
+    void updateSupport(Project project, BigDecimal amount);//更新项目支持数及实际融资数
 }

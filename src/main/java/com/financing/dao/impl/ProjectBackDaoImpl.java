@@ -51,4 +51,25 @@ public class ProjectBackDaoImpl implements ProjectBackDao {
         tx.commit();
         System.out.println(projectBack.toString());
     }
+
+    @Override
+    public ProjectBack queryById(int id) {
+        Session session = sessionFactory.openSession();
+        Transaction tx = session.getTransaction();
+        tx.begin();
+        ProjectBack projectBack = (ProjectBack) session.load(ProjectBack.class,id);
+        tx.commit();
+        return projectBack;
+    }
+
+    @Override
+    public void updateActual(ProjectBack projectBack) {
+        Session session = sessionFactory.openSession();
+        Transaction tx = session.getTransaction();
+        tx.begin();
+        Query query = session.createQuery("update ProjectBack set actual = actual + 1 where id = ?");
+        query.setInteger(0,projectBack.getId());
+        query.executeUpdate();
+        tx.commit();
+    }
 }

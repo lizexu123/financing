@@ -2,6 +2,8 @@ package com.financing.controller;
 
 import com.financing.entity.*;
 import com.financing.service.OrderService;
+import com.financing.service.ProjectBackService;
+import com.financing.service.ProjectService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -31,6 +33,11 @@ public class OrderController {
     @Autowired
     private OrderService orderService;
 
+    @Autowired
+    private ProjectService projectService;
+
+    @Autowired
+    private ProjectBackService projectBackService;
 
     /**
      * 添加订单
@@ -62,6 +69,8 @@ public class OrderController {
         order.setUser(user);
 
         orderService.addOrder(order);
+        projectBackService.updateActual(back);//回报实际参与人数加一
+        projectService.updateSupport(project,amount);//项目支持数加一,更新实际融资数
         Map<String,Object> result = new HashMap<String,Object>();
         result.put("flag",SUCCESS_CODE);
         result.put("msg","success");

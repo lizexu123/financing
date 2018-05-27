@@ -38,7 +38,7 @@ public class ProjectBackController {
      * @param request
      * @return
      */
-    @RequestMapping(value = "/doAddBack",method = RequestMethod.GET)
+    @RequestMapping(value = "/doAddBack",method = RequestMethod.POST)
     @ResponseBody
     public Map<String,Object> doAddBack(HttpServletRequest request){
         String projectId  = request.getParameter("project");
@@ -52,7 +52,7 @@ public class ProjectBackController {
 
 
         ProjectBack back = new ProjectBack();
-        back.setCompensation(1);
+        back.setCompensation(0);
         back.setProject(project);
         back.setAllow(allow);
         back.setAmount(amount);

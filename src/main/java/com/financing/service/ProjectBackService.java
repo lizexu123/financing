@@ -12,4 +12,6 @@ public interface ProjectBackService {
     void addBack(ProjectBack projectBack);
     List<ProjectBack> getBackList(Project project);
     void updateBack(ProjectBack projectBack);
+    ProjectBack getBack(int id);
+    void updateActual(ProjectBack projectBack);
 }

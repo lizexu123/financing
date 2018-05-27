@@ -164,8 +164,8 @@ public class UserController {
         user.setZone(request.getParameter("zone"));
         user.setIntro(request.getParameter("intro"));
 
-        System.out.println("user = " + user.getUsername());
-        System.out.println("user1 = " + userService.getUserByUsername(user.getUsername()));
+//        System.out.println("user = " + user.getUsername());
+//        System.out.println("user1 = " + userService.getUserByUsername(user.getUsername()));
 
         if(userService.getUserByUsername(user.getUsername())!=null){
             result.put("flag",FAIL_CODE);

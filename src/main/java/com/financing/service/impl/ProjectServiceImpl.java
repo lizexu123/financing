@@ -8,6 +8,7 @@ import com.financing.service.ProjectService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 /**
@@ -127,6 +128,11 @@ public class ProjectServiceImpl implements ProjectService {
     @Override
     public List<Project> getProjectByUser(User user) {
         return projectDao.queryByUser(user);
+    }
+
+    @Override
+    public void updateSupport(Project project, BigDecimal amount) {
+        projectDao.updateSupport(project,amount);
     }
 
 

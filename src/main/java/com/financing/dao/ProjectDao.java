@@ -4,6 +4,7 @@ import com.financing.entity.Category;
 import com.financing.entity.Project;
 import com.financing.entity.User;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 /**
@@ -26,4 +27,5 @@ public interface ProjectDao {
     List<Project> queryProjectByCID(Category category);
     List<Project> queryProjectByKey(String keyword);//根据关键字查询项目
     List<Project> queryByUser(User user);
+    void updateSupport(Project project, BigDecimal amount);
 }

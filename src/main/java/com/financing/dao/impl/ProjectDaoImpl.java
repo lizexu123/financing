@@ -11,6 +11,7 @@ import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 /**
@@ -201,6 +202,18 @@ public class ProjectDaoImpl implements ProjectDao {
         List<Project> projects = query.list();
         tx.commit();
         return projects;
+    }
+
+    @Override
+    public void updateSupport(Project project, BigDecimal amount) {
+        Session session = sessionFactory.openSession();
+        Transaction tx = session.getTransaction();
+        tx.begin();
+        Query query = session.createQuery("update Project set supportCount = supportCount +1,actualAmount = actualAmount +? where id =?");
+        query.setBigDecimal(0,amount);
+        query.setString(1,project.getId());
+        query.executeUpdate();
+        tx.commit();
     }
 
 }
