@@ -158,7 +158,7 @@ public class ProjectDaoImpl implements ProjectDao {
         Session session = sessionFactory.openSession();
         Transaction tx = session.getTransaction();
         tx.begin();
-        Query query = session.createQuery("from Project where status = 0 or status = 1 and category = ? order by supportCount desc");
+        Query query = session.createQuery("from Project where status IN (0,1) and category = ? order by supportCount desc");
         query.setEntity(0,category);
         query.setFirstResult(0);
         query.setMaxResults(5);
