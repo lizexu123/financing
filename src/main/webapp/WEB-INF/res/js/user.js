@@ -70,7 +70,7 @@ function modify() {
     $.ajax({
         type: 'POST',
         async: false,
-        url: 'doModifyUserInfo',
+        url: '/financing/doModifyUserInfo',
         dataType: 'json',
         contentType: false,
         processData: false,
@@ -94,7 +94,7 @@ function JudgeUserName() {
         type: "Post",
         async: false,
         //数据的传送页面：要启动界面的地址/界面的后台的方法
-        url: "doCertificate",
+        url: "/financing/doCertificate",
         // contentType:false,
         data: {
             "realName": realName,

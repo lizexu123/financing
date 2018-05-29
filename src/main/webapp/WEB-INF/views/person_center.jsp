@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:set var="ctp" value="${pageContext.request.contextPath}"/>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="zh-CN">
@@ -20,7 +22,8 @@
     <script type="text/javascript" src="${cp}js/jquery-1.11.0.min.js"></script>
     <script type="text/javascript" src="${cp}js/bstp.min.js"></script>
     <script type="text/javascript" src="${cp}js/user.js"></script>
-    <script src="${cp}/js/layer.js" type="text/javascript"></script>
+    <script type="text/javascript" src="${cp}js/projectCreate.js"></script>
+    <script src="${cp}js/layer.js" type="text/javascript"></script>
     <title>- 个人中心 -</title>
     <style type="text/css">
         #Logout {
@@ -57,28 +60,30 @@
         <div class="col-sm-3 col-md-2 sidebar">
             <ul class="nav nav-sidebar">
                 <!-- 一级菜单 -->
-                <li class="active"><a href="#userMeun" onclick="showAtRight('personInfo')"
+                <li class="active"><a href="#userMeun" onclick="showAtRight('personCenter/personInfo')"
                                       class="nav-header menu-first collapsed" data-toggle="collapse">
                     <i class="fa fa-user"></i>&nbsp;个人资料 <span class="sr-only">(current)</span></a>
                 </li>
                 <!-- 二级菜单 -->
                 <!-- 注意一级菜单中<a>标签内的href="#……"里面的内容要与二级菜单中<ul>标签内的id="……"里面的内容一致 -->
                 <%--<ul id="userMeun" class="nav nav-list collapse menu-second">--%>
-                <%--<li><a href="###" onclick="showAtRight('userList.jsp')"><i class="fa fa-users"></i> 用户列表</a></li>--%>
+                <%--<li><a href="###" onclick="showAtRight('person_project.jsp')"><i class="fa fa-users"></i> 用户列表</a></li>--%>
                 <%--</ul>--%>
 
-                <li><a href="#productMeun" class="nav-header menu-first collapsed" data-toggle="collapse">
+                <li><a href="#productMeun" class="nav-header menu-first collapsed"
+                       data-toggle="collapse" onclick="showAtRight('personCenter/personProject')">
                     <i class="fa fa-globe"></i>&nbsp;用户项目管理 <span class="sr-only">(current)</span></a>
                 </li>
                 <%--<ul id="productMeun" class="nav nav-list collapse menu-second">--%>
-                <%--<li><a href="###" onclick="showAtRight('productList.jsp')"><i class="fa fa-list-alt"></i> 产品列表</a></li>--%>
+                <%--<li><a href="###" onclick="showAtRight('project_create.jsp')"><i class="fa fa-list-alt"></i> 产品列表</a></li>--%>
                 <%--</ul>--%>
                 <%----%>
-                <li><a href="#recordMeun" class="nav-header menu-first collapsed" data-toggle="collapse">
+                <li><a href="#recordMeun"  onclick="showAtRight('personCenter/projectCreate')"
+                       class="nav-header menu-first collapsed" data-toggle="collapse" >
                     <i class="fa fa-file-text"></i>&nbsp; 发布项目页 <span class="sr-only">(current)</span></a>
                 </li>
                 <%--<ul id="recordMeun" class="nav nav-list collapse menu-second">--%>
-                <%--<li><a href="###" onclick="showAtRight('recordList.jsp')" ><i class="fa fa-list"></i> 订单列表</a></li>--%>
+                <%--<li><a href="###" onclick="showAtRight('person_order.jsp')" ><i class="fa fa-list"></i> 订单列表</a></li>--%>
                 <%--</ul>--%>
                 <%----%>
                 <li><a href="#recordMeun" class="nav-header menu-first collapsed" data-toggle="collapse">
