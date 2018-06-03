@@ -91,7 +91,7 @@ public class MainController {
         return "forward:/doProjectByKey-"+keyword;
     }
 
-    /**
+       /**
      * 个人中心页
      * @return
      */
@@ -99,14 +99,16 @@ public class MainController {
     public String personCenter(){
         return "person_center";
     }
-
     /**
-     * 个人资料页
+     * 个人中心页
+     * @return
      */
-    @RequestMapping(value = "/personInfo")
-    public String personData() {
-        return "person_info";
+    @RequestMapping(value = "/personCenter1")
+    public String personCenter1(){
+        return "person_center1";
     }
+
+
 
 
     /**
@@ -161,7 +163,7 @@ public class MainController {
     }
 
     /**
-     * 用户订单
+     * 订单页
      * @return
      */
     @RequestMapping(value = "/personCenter/personOrder")
@@ -188,7 +190,7 @@ public class MainController {
     }
 
     /**
-     * 用户评论
+     * 用户评论`
      * @return
      */
     @RequestMapping(value = "/personCenter/personComment")

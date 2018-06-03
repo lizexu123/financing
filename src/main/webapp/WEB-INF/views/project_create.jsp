@@ -21,11 +21,7 @@
             src="${ctp}/ueditor/lang/zh-cn/zh-cn.js"></script>
 
 
-    <style type="text/css">
-        div {
-            width: 100%;
-        }
-    </style>
+
 
 </head>
 <body>
@@ -42,7 +38,7 @@
     <div class="row">
         <div class="col-sm-1 col-md-1"></div>
         <div class="col-sm-5 col-md-5 detail-x">
-            <form action="doCreateProject" id="formCreate">
+            <form action="/doCreateProject" id="formCreate">
                 <table class="table table-striped">
                 <tr>
                     <th>项目标题</th>
@@ -53,10 +49,12 @@
                     <td><input type="text" name="user_id" id="inputUserId" class="form-control"
                                value="${sessionScope.user.id}"></td>
                 </tr>
-                <tr>
-                    <th>项目种类id</th>
-                    <td><input type="text" name="category" id="inputCatagoryId" class="form-control"></td>
-                </tr>
+                    <tr>
+                        <th>项目种类id</th>
+                        <td><input type="text" name="category_id" id="inputCatagoryId" class="form-control"></td>
+                    </tr>
+
+
                 <tr>
                     <th>目标金额</th>
                     <td><input type="money" name="goal_amount" id="inputGoalAmount" class="form-control"></td>
@@ -79,8 +77,8 @@
                 </tr>
                 <tr>
                     <th>联系人姓名</th>
-                    <td><input type="text" name="contact_phone" id="inputContaceName"
-                               class="form-control" value="${sessionScope.user.username}"></td>
+                    <td><input type="text" name="contact_name" id="inputContaceName"
+                               class="form-control" value="${sessionScope.user.realName}"></td>
                 </tr>
                 <tr>
                     <th>咨询电话</th>
@@ -94,18 +92,26 @@
                 </tr>
                     <tr>
                         <th>封面</th>
-                        <td><input type="file" name="cover" id="inputCover"
+                        <td><input type="file" name="coverUpload" id="inputCover"
                                    class="form-control" ></td>
                     </tr>
 
             </table>
 
                 <div id="ueditor" name="detail"  type="text/plain">
+                    <%--<iframe src="ueditor/index.html"--%>
+                            <%--name="ifd"--%>
+
+                            <%--onload="this.height=ifd.document.body.scrollHeight"--%>
+
+                            <%--width="100%" scrolling="no"--%>
+
+                            <%--frameborder="0"/>--%>
 
                 </div>
                 <div class="col-sm-2 col-md-2 col-lg-2"></div>
                 <button class="btn btn-danger btn-lg col-sm-4 col-md-4 col-lg-4"
-                           type="button"  onclick="fabu()">确定发布
+                       id="nextPage"    type="button"  onclick="fabu()">确定发布
                     </button>
             </form>
         </div>
@@ -146,6 +152,8 @@
 
 </body>
 <script type="text/javascript">
+    UEDITOR_CONFIG.UEDITOR_HOME_URL = '/financing/ueditor/';
+    var ue = UE.getEditor('ueditor', ue_param);
 
     var ue_param = {//工具栏配置项
         toolbars : [ [ 'cleardoc', 'selectall', '|', 'undo', 'redo', '|',
@@ -164,6 +172,6 @@
         wordCount : false,
 
     }
-    var ue = UE.getEditor('ueditor', ue_param);
+
 </script>
 </html>

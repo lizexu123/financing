@@ -47,15 +47,20 @@ public class ProjectController {
         Project project = new Project();
 
         String title = request.getParameter("title");
-        int categoryId = Integer.parseInt(request.getParameter("category"));
+        int categoryId = Integer.parseInt(request.getParameter("category_id"));
+
+        System.out.println("user = " + user);
+        System.out.println("title = " + title);
         String cover = FileUploadUtil.uploadFile(coverUpload,session);
         if (cover.equals("file format error")){
             result.put("flag",FAIL_CODE);
             result.put("msg",cover);
             result.put("data","");
+            System.out.println("categoryID = " + categoryId);
             return result;
+
         }
-        BigDecimal goalAmount = BigDecimal.valueOf(Double.valueOf(request.getParameter("goal_amount"))) ;
+        BigDecimal goalAmount = BigDecimal.valueOf(Double.valueOf(request.getParameter("goal_amount")));
         Date endTime = DateUtil.StringToDate(request.getParameter("end_time"));
         String team = request.getParameter("team");
         String purpose = request.getParameter("purpose");
@@ -82,7 +87,11 @@ public class ProjectController {
         project.setContactPhone(contactPhone);
         project.setStatus((byte) 0);
 
+        System.out.println("project = " + project);
+        System.out.println("projectC = " + project.getCategory().toString());
+
         String projectId = projectService.addProject(project);
+        System.out.println("projectId = " + projectId);
         if ( projectId!=null){
             //添加无私回报
             ProjectBack projectBack = new ProjectBack();
@@ -145,12 +154,12 @@ public class ProjectController {
     @ResponseBody
     public Map<String,Object> doProjectCount(){
         long count = projectService.getProjectCount();
-
+        System.out.println("count = " + count);
         Map<String,Object> result = new HashMap<String,Object>();
         result.put("flag",SUCCESS_CODE);
         result.put("msg","success");
         result.put("data",count);
-
+        System.out.println("result = " + result);
         return result;
     }
 
@@ -163,7 +172,7 @@ public class ProjectController {
     @ResponseBody
     public Map<String,Object> doProjectFinished(){
         long count = projectService.getProjectFinished();
-
+        System.out.println("count = " + count);
         Map<String,Object> result = new HashMap<String,Object>();
         result.put("flag",SUCCESS_CODE);
         result.put("msg","success");
@@ -295,7 +304,7 @@ public class ProjectController {
      * @param session
      * @return
      */
-    @RequestMapping(value = "/doProjectByUser")
+    @RequestMapping(value = "doProjectByUser",method = RequestMethod.GET)
     @ResponseBody
     public Map<String,Object> doProjectByUser(HttpSession session){
         User user = (User) session.getAttribute("user");
@@ -305,6 +314,7 @@ public class ProjectController {
         result.put("flag",SUCCESS_CODE);
         result.put("msg","user's projects");
         result.put("data",projects);
+        System.out.println("result = " + result);
         return result;
     }
 
@@ -324,7 +334,6 @@ public class ProjectController {
         result.put("msg","project detail");
         result.put("data",project);
         map.addAllAttributes(result);
-
         return "person_projectInfo";
     }
 

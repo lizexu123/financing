@@ -56,7 +56,7 @@ public class AddressController {
         Map<String,Object> result = new HashMap<String,Object>();
         result.put("flag",SUCCESS_CODE);
         result.put("msg","success");
-        result.put("data","");
+        result.put("data",null);
         return result;
     }
 
@@ -75,7 +75,6 @@ public class AddressController {
         result.put("msg","success");
         result.put("data",addresses);
         return result;
-
     }
 
 }

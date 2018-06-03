@@ -88,7 +88,11 @@ function fabu() {
         data: formData,
         success: (function (result) {
             if (result.flag == 1) {
-                layer.msg("发布成功");
+                // document.getElementById('nextPage').addEventListener("click",showAtRight('personCenter/personProject'));
+                // top.location.href = "/personCenter/personProject";
+                showAtRight('personCenter/personProject');
+                    $('ul.nav > li').removeClass('active');
+                    $('#pm').addClass('active');
             } else {
                 layer.msg("发布失败");
             }

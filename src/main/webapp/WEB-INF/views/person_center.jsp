@@ -23,6 +23,7 @@
     <script type="text/javascript" src="${cp}js/bstp.min.js"></script>
     <script type="text/javascript" src="${cp}js/user.js"></script>
     <script type="text/javascript" src="${cp}js/projectCreate.js"></script>
+    <script type="text/javascript" src="${cp}js/personAddress.js"></script>
     <script src="${cp}js/layer.js" type="text/javascript"></script>
     <title>- 个人中心 -</title>
     <style type="text/css">
@@ -49,7 +50,7 @@
             <a class="navbar-brand" href="http://localhost:8080/index">首页</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
-            <a id="Logout" href="${cp}/doLogout">注销登录</a>
+            <a id="Logout" href="doLogout">注销登录</a>
         </div>
     </div>
 </nav>
@@ -62,7 +63,7 @@
                 <!-- 一级菜单 -->
                 <li class="active"><a href="#userMeun" onclick="showAtRight('personCenter/personInfo')"
                                       class="nav-header menu-first collapsed" data-toggle="collapse">
-                    <i class="fa fa-user"></i>&nbsp;个人资料 <span class="sr-only">(current)</span></a>
+                    &nbsp;个人资料 <span class="sr-only">(current)</span></a>
                 </li>
                 <!-- 二级菜单 -->
                 <!-- 注意一级菜单中<a>标签内的href="#……"里面的内容要与二级菜单中<ul>标签内的id="……"里面的内容一致 -->
@@ -70,9 +71,9 @@
                 <%--<li><a href="###" onclick="showAtRight('person_project.jsp')"><i class="fa fa-users"></i> 用户列表</a></li>--%>
                 <%--</ul>--%>
 
-                <li><a href="#productMeun" class="nav-header menu-first collapsed"
+                <li id="pm"><a href="#productMeun" class="nav-header menu-first collapsed"
                        data-toggle="collapse" onclick="showAtRight('personCenter/personProject')">
-                    <i class="fa fa-globe"></i>&nbsp;用户项目管理 <span class="sr-only">(current)</span></a>
+                    &nbsp;用户项目管理 <span class="sr-only">(current)</span></a>
                 </li>
                 <%--<ul id="productMeun" class="nav nav-list collapse menu-second">--%>
                 <%--<li><a href="###" onclick="showAtRight('project_create.jsp')"><i class="fa fa-list-alt"></i> 产品列表</a></li>--%>
@@ -80,20 +81,26 @@
                 <%----%>
                 <li><a href="#recordMeun"  onclick="showAtRight('personCenter/projectCreate')"
                        class="nav-header menu-first collapsed" data-toggle="collapse" >
-                    <i class="fa fa-file-text"></i>&nbsp; 发布项目页 <span class="sr-only">(current)</span></a>
+                    &nbsp; 发布项目页 <span class="sr-only">(current)</span></a>
                 </li>
                 <%--<ul id="recordMeun" class="nav nav-list collapse menu-second">--%>
-                <%--<li><a href="###" onclick="showAtRight('person_order.jsp')" ><i class="fa fa-list"></i> 订单列表</a></li>--%>
+                <%--<li><a href="###" onclick="showAtRight('person_address.jsp')" ><i class="fa fa-list"></i> 订单列表</a></li>--%>
                 <%--</ul>--%>
                 <%----%>
-                <li><a href="#recordMeun" class="nav-header menu-first collapsed" data-toggle="collapse">
-                    <i class="fa fa-file-text"></i>&nbsp;用户订单页 <span class="sr-only">(current)</span></a>
+                <li><a href="#recordMeun" onclick="showAtRight('personCenter/personOrder')"
+                       class="nav-header menu-first collapsed" data-toggle="collapse">
+                    &nbsp;用户订单页 <span class="sr-only">(current)</span></a>
+                </li>
+                <li><a href="#recordMeun"
+                       class="nav-header menu-first collapsed" data-toggle="collapse">
+                    &nbsp;用户订单详情页 <span class="sr-only">(current)</span></a>
                 </li>
                 <li><a href="#recordMeun" class="nav-header menu-first collapsed" data-toggle="collapse">
-                    <i class="fa fa-file-text"></i>&nbsp;用户订单详情页 <span class="sr-only">(current)</span></a>
+                    &nbsp;用户收藏页 <span class="sr-only">(current)</span></a>
                 </li>
-                <li><a href="#recordMeun" class="nav-header menu-first collapsed" data-toggle="collapse">
-                    <i class="fa fa-file-text"></i>&nbsp;用户收藏页 <span class="sr-only">(current)</span></a>
+                <li><a href="#recordMeun"  onclick="showAtRight('personCenter/personAddress')"
+                       class="nav-header menu-first collapsed" data-toggle="collapse">
+                    &nbsp;用户收货地址 <span class="sr-only">(current)</span></a>
                 </li>
             </ul>
 
@@ -128,6 +135,7 @@
     $(document).ready(function () {
         $('ul.nav > li').click(function (e) {
             //e.preventDefault();	加上这句则导航的<a>标签会失效
+
             $('ul.nav > li').removeClass('active');
             $(this).addClass('active');
         });
