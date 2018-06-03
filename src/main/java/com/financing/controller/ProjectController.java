@@ -47,7 +47,10 @@ public class ProjectController {
         Project project = new Project();
 
         String title = request.getParameter("title");
-        int categoryId = Integer.parseInt(request.getParameter("category"));
+        int categoryId = Integer.parseInt(request.getParameter("category_id"));
+
+        System.out.println("user = " + user);
+        System.out.println("title = " + title);
         String cover = FileUploadUtil.uploadFile(coverUpload,session);
         if (cover.equals("file format error")){
             result.put("flag",FAIL_CODE);
@@ -304,7 +307,7 @@ public class ProjectController {
      * @param session
      * @return
      */
-    @RequestMapping(value = "/doProjectByUser")
+    @RequestMapping(value = "doProjectByUser",method = RequestMethod.GET)
     @ResponseBody
     public Map<String,Object> doProjectByUser(HttpSession session){
         User user = (User) session.getAttribute("user");

@@ -17,7 +17,8 @@
 <link href="${ctp}/css/style.css" rel="stylesheet">
 <script src="${ctp}/js/jquery-1.11.0.min.js" type="text/javascript"></script>
 <script src="${ctp}/js/layer.js" type="text/javascript"></script>
-<script src="${ctp}/js.user.js" type="text/javascript"></script>
+<script src="${cp}/js/user.js" type="text/javascript"></script>
+
 <body>
 <div class="container-fluid">
     <h1 class="title center">修改个人信息</h1>
@@ -109,6 +110,8 @@
             <br/>
         </div>
     </form>
+
+
 </div>
 <!--尾部-->
 
