@@ -35,7 +35,7 @@ public class ProjectController {
     private static final int FAIL_CODE = 0;
 
     /**
-     * 用户发布项目
+     * 用户发布项目,货币汇率转换
      * @return
      * @author Penny
      */
@@ -55,7 +55,16 @@ public class ProjectController {
             result.put("data","");
             return result;
         }
-        BigDecimal goalAmount = BigDecimal.valueOf(Double.valueOf(request.getParameter("goal_amount"))) ;
+        String exchange = projectService.currencyExchange("CNY","USD");
+        if (exchange.equals("fail")){
+            result.put("flag",FAIL_CODE);
+            result.put("msg",exchange);
+            return result;
+        }
+        double currExchange = Double.parseDouble(exchange);
+        BigDecimal goal = BigDecimal.valueOf(Double.valueOf(request.getParameter("goal_amount"))) ;
+        BigDecimal goalAmount = goal.multiply(BigDecimal.valueOf(currExchange));
+
         Date endTime = DateUtil.StringToDate(request.getParameter("end_time"));
         String team = request.getParameter("team");
         String purpose = request.getParameter("purpose");

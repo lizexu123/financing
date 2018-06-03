@@ -90,4 +90,16 @@ public class OrderDaoImpl implements OrderDao {
         tx.commit();
         return order;
     }
+
+    @Override
+    public long queryTotal() {
+
+        Session session = sessionFactory.openSession();
+        Transaction tx = session.getTransaction();
+        tx.begin();
+        Query query = session.createQuery("SELECT count(*) FROM Order");
+        long total = (long) query.uniqueResult();
+        tx.commit();
+        return total;
+    }
 }

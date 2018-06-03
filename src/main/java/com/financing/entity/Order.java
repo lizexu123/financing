@@ -1,5 +1,6 @@
 package com.financing.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Parameter;
 
@@ -12,7 +13,7 @@ import java.util.Date;
  * Created by Penny on 2018/5/20.
  */
 @Entity
-@Table(name = "Order")
+@Table(name = "`Order`")
 public class Order {
     @Id
     @GeneratedValue(generator = "IDGenerator")
@@ -69,6 +70,7 @@ public class Order {
         this.address = address;
     }
 
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     public Date getCreateTime() {
         return createTime;
     }

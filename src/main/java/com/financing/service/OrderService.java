@@ -13,4 +13,6 @@ public interface OrderService {
     List<Order> getOrderListByUser(User user);
     void cancelOrder(String id);
     Order getOrderDetail(String id);
+    long getOrderTotal();
+    List<Order> getOrderList();
 }

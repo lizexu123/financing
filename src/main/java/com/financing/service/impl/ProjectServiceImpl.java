@@ -5,11 +5,16 @@ import com.financing.entity.Category;
 import com.financing.entity.Project;
 import com.financing.entity.User;
 import com.financing.service.ProjectService;
+import com.financing.utils.WebServiceUtil;
+import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by Penny on 2018/5/17.
@@ -37,6 +42,35 @@ public class ProjectServiceImpl implements ProjectService {
         } catch (Exception e) {
             e.printStackTrace();
             return null;
+        }
+    }
+
+    @Override
+    public String currencyExchange(String from,String to) {
+        String appKey = "6523d4efdd29cec246ddaeaaffab9737";
+        String result =null;
+        String url ="http://op.juhe.cn/onebox/exchange/currency";//请求接口地址
+        Map params = new HashMap();//请求参数
+        params.put("from",from);//身份证号码
+        params.put("to",to);//返回数据格式：json或xml,默认json
+        params.put("key",appKey);//你申请的key
+
+        try {
+            result = WebServiceUtil.net(url, params, "GET");
+            JSONObject object = JSONObject.fromObject(result);
+            if(object.getInt("error_code")==0){
+                System.out.println(object.get("result"));
+                JSONArray resultArray = object.getJSONArray("result");
+                String currExchange = resultArray.getJSONObject(0).getString("result");
+
+                return currExchange;
+            }else{
+                System.out.println(object.get("error_code")+":"+object.get("reason"));
+                return "fail";
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new RuntimeException();
         }
     }
 

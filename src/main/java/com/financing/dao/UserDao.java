@@ -15,4 +15,5 @@ public interface UserDao {
     List<User> queryAll() throws Exception;
     User queryByMobile(String mobile)throws Exception;
     User queryByName(String username)throws Exception;
+    long queryTotal();//查询用户总数
 }

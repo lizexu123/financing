@@ -14,6 +14,9 @@ public interface UserService {
     Boolean addUser(User user);
     User updateUser(User user);
     Boolean deleteUser(String id);
+    Boolean moveOutBlack(String id);//将用户移出黑名单
     List<User> getUserList();
+    long getUserTotal();
+    Boolean verifyIdCard(String ic);
 
 }

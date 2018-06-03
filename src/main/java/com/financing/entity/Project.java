@@ -1,5 +1,6 @@
 package com.financing.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Parameter;
 
@@ -137,6 +138,7 @@ public class Project {
         this.actualAmount = actualAmount;
     }
 
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     public Date getPublishTime() {
         return publishTime;
     }
@@ -145,6 +147,7 @@ public class Project {
         this.publishTime = publishTime;
     }
 
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     public Date getEndTime() {
         return endTime;
     }

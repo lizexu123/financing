@@ -12,6 +12,7 @@ import java.util.List;
 public interface ProjectService {
     Project getProject(String id);
     String addProject(Project project);
+    String currencyExchange(String from,String to);
     Boolean updateProject(Project project);
     List<Project> getProjectList();
     List<Project> getNewProjectList();

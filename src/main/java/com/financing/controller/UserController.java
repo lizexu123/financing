@@ -106,7 +106,7 @@ public class UserController {
         User user = new User();
         user.setMobile(mobile);
         user.setPassword(password);
-        user.setStatus((byte) 0);
+//        user.setStatus((byte) 0);
         Map<String,Object> result = new HashMap<String, Object>();
         if (userService.getUser(mobile)!=null){
             result.put("flag",FAIL_CODE);
@@ -157,7 +157,10 @@ public class UserController {
         Map<String,Object> result = new HashMap<String, Object>();
         User user = (User) request.getSession().getAttribute("user");
         String avatar = FileUploadUtil.uploadFile(avatarUpload,session);
-        user.setAvatar(avatar);
+        if(avatar!=""){
+            //上传新头像
+            user.setAvatar(avatar);
+        }
         user.setUsername(request.getParameter("username"));
         user.setEmail(request.getParameter("email"));
         user.setGender(request.getParameter("gender"));
@@ -185,7 +188,7 @@ public class UserController {
 
 
     /**
-     * 实名认证
+     * 身份证信息验证
      * @param realName
      * @param ic
      * @param session
@@ -199,19 +202,22 @@ public class UserController {
         User user = (User) session.getAttribute("user");
         System.out.println("user = " + user);
         System.out.println("realName = " + realName);
-        user.setRealName(realName);
-        user.setIc(ic);
-        user.setStatus((byte) 1);
+        if(userService.verifyIdCard(ic)){//验证成功
+            user.setRealName(realName);
+            user.setIc(ic);
+            user.setStatus((byte) 1);
+            System.out.println("ic = " + ic);
+            user = userService.updateUser(user);
+            session.setAttribute("user",user);//更新用户会话
 
-        System.out.println("ic = " + ic);
-        user = userService.updateUser(user);
-
-        result.put("flag",SUCCESS_CODE);
-        result.put("msg","certificate success");
-        result.put("data", null);
-
-        return result;
-
+            result.put("flag",SUCCESS_CODE);
+            result.put("msg","certificate success");
+            return result;
+        }else{
+            result.put("flag",FAIL_CODE);
+            result.put("msg","certificate fail");
+            return result;
+        }
     }
 
 }

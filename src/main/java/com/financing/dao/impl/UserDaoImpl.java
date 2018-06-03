@@ -36,7 +36,7 @@ public class UserDaoImpl implements UserDao{
         Session session = sessionFactory.openSession();
         Transaction tx = session.getTransaction();
         tx.begin();
-        session.update(user);
+        session.merge(user);
         tx.commit();
     }
 
@@ -95,5 +95,16 @@ public class UserDaoImpl implements UserDao{
         User user = (User)query.uniqueResult();
         tx.commit();
         return user;
+    }
+
+    @Override
+    public long queryTotal() {
+        Session session = sessionFactory.openSession();
+        Transaction tx = session.getTransaction();
+        tx.begin();
+        Query query = session.createQuery("SELECT count(*) FROM User");
+        long total = (long) query.uniqueResult();
+        tx.commit();
+        return total;
     }
 }

@@ -16,4 +16,5 @@ public interface OrderDao {
     List<Order> queryAll();
     List<Order> queryByUser(User user);
     Order queryById(String id);
+    long queryTotal();//查询订单总数
 }

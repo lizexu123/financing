@@ -13,7 +13,7 @@ import java.math.BigDecimal;
  * @author Penny
  *
  */
-@Entity
+@Entity()
 @Table(name = "User")
 public class User {
     @Id

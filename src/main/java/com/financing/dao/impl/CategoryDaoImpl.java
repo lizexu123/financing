@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by Penny on 2018/5/16.
@@ -30,5 +31,28 @@ public class CategoryDaoImpl implements CategoryDao {
         List<Category> list = query.list();
         tx.commit();
         return list;
+    }
+
+    @Override
+    public List<Map<String, Object>> queryStatistic() {
+        Session session = sessionFactory.openSession();
+        Transaction tx = session.getTransaction();
+        tx.begin();
+        Query query = session.createQuery("SELECT c.id,c.name,COUNT(p.id) AS COUNT " +
+                "FROM Project p right join p.category c " +
+                "GROUP BY c.id");
+        List<Map<String,Object>> list = query.list();
+        tx.commit();
+        return list;
+    }
+
+    @Override
+    public void insert(Category category) {
+        Session session = sessionFactory.openSession();
+        Transaction tx = session.getTransaction();
+        tx.begin();
+        session.save(category);
+        tx.commit();
+        System.out.println(category.getName());
     }
 }

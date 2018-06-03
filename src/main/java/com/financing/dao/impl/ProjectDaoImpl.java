@@ -39,7 +39,7 @@ public class ProjectDaoImpl implements ProjectDao {
         Session session = sessionFactory.openSession();
         Transaction tx = session.getTransaction();
         tx.begin();
-        session.update(project);
+        session.merge(project);
         tx.commit();
         System.out.println(project);
     }

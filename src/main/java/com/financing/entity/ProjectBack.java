@@ -1,5 +1,7 @@
 package com.financing.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.Date;
@@ -30,7 +32,8 @@ public class ProjectBack {
     private Integer allow;
     @Column(name = "back_date")
     private Date backDate;
-
+    @Column
+    private Integer actual;
 
     public Integer getId() {
         return id;
@@ -88,11 +91,20 @@ public class ProjectBack {
         this.allow = allow;
     }
 
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     public Date getBackDate() {
         return backDate;
     }
 
     public void setBackDate(Date backDate) {
         this.backDate = backDate;
+    }
+
+    public Integer getActual() {
+        return actual;
+    }
+
+    public void setActual(Integer acutual) {
+        this.actual = acutual;
     }
 }

@@ -38,4 +38,14 @@ public class OrderServiceImpl implements OrderService {
     public Order getOrderDetail(String id) {
         return orderDao.queryById(id);
     }
+
+    @Override
+    public long getOrderTotal() {
+        return orderDao.queryTotal();
+    }
+
+    @Override
+    public List<Order> getOrderList() {
+        return orderDao.queryAll();
+    }
 }

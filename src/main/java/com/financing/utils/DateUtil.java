@@ -17,7 +17,7 @@ public class DateUtil {
      * @author Penny
      */
     public static Date StringToDate(String date) {
-        SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
+        SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         sdf.setLenient(false);
         try {
             return sdf.parse(date);
@@ -26,6 +26,17 @@ public class DateUtil {
             throw new IllegalArgumentException("Illegal Date Format");
         }
 
+    }
+
+    /**
+     * 日期转字符串
+     * @param date
+     * @return
+     */
+    public static String DateToString(Date date) {
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String dateString = formatter.format(date);
+        return dateString;
     }
 
     /**
