@@ -22,54 +22,47 @@ public class ProjectBackDaoImpl implements ProjectBackDao {
 
     @Override
     public void insert(ProjectBack projectBack) {
-        Session session = sessionFactory.openSession();
-        Transaction tx = session.getTransaction();
-        tx.begin();
+        Session session = sessionFactory.getCurrentSession();
         session.save(projectBack);
-        tx.commit();
         System.out.println(projectBack.toString());
     }
 
     @Override
     public List<ProjectBack> queryAll(Project project) {
-        Session session = sessionFactory.openSession();
-        Transaction tx = session.getTransaction();
-        tx.begin();
+        Session session = sessionFactory.getCurrentSession();
         Query query = session.createQuery("from ProjectBack where project = ?");
         query.setEntity(0,project);
         List<ProjectBack> backs = query.list();
-        tx.commit();
         return backs;
     }
 
     @Override
     public void update(ProjectBack projectBack) {
-        Session session = sessionFactory.openSession();
-        Transaction tx = session.getTransaction();
-        tx.begin();
+        Session session = sessionFactory.getCurrentSession();
         session.update(projectBack);
-        tx.commit();
         System.out.println(projectBack.toString());
     }
 
     @Override
     public ProjectBack queryById(int id) {
-        Session session = sessionFactory.openSession();
-        Transaction tx = session.getTransaction();
-        tx.begin();
+        Session session = sessionFactory.getCurrentSession();
         ProjectBack projectBack = (ProjectBack) session.load(ProjectBack.class,id);
-        tx.commit();
         return projectBack;
     }
 
     @Override
-    public void updateActual(ProjectBack projectBack) {
-        Session session = sessionFactory.openSession();
-        Transaction tx = session.getTransaction();
-        tx.begin();
-        Query query = session.createQuery("update ProjectBack set actual = actual + 1 where id = ?");
+    public void updateActual(ProjectBack projectBack,int action) {
+        Session session = sessionFactory.getCurrentSession();
+        Query query = null;
+        switch (action){
+            case 1:
+                query = session.createQuery("update ProjectBack set actual = actual + 1 where id = ?");
+                break;
+            case -1:
+                query = session.createQuery("update ProjectBack set actual = actual - 1 where id = ?");
+                break;
+        }
         query.setInteger(0,projectBack.getId());
         query.executeUpdate();
-        tx.commit();
     }
 }

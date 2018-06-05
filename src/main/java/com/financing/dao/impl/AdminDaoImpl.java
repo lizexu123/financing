@@ -2,7 +2,6 @@ package com.financing.dao.impl;
 
 import com.financing.dao.AdminDao;
 import com.financing.entity.Admin;
-import com.financing.entity.User;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -22,13 +21,13 @@ public class AdminDaoImpl implements AdminDao {
     @Override
     public Admin queryByName(String username) {
 
-        Session session = sessionFactory.openSession();
-        Transaction tx = session.getTransaction();
-        tx.begin();
+        Session session = sessionFactory.getCurrentSession();
+//        Transaction tx = session.getTransaction();
+//        tx.begin();
         Query query = session.createQuery("from Admin where username =?");
         query.setString(0,username);
         Admin admin = (Admin) query.uniqueResult();
-        tx.commit();
+//        tx.commit();
         return admin;
     }
 }

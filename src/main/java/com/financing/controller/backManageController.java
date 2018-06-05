@@ -2,6 +2,7 @@ package com.financing.controller;
 
 import com.financing.entity.*;
 import com.financing.service.*;
+import com.financing.utils.Md5Util;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -169,6 +170,20 @@ public class backManageController {
         }
     }
 
+    /**
+     * 数据分析页
+     * @param session
+     * @return
+     */
+    @RequestMapping(value = "/admin/dataAnalysis")
+    public String bmData(HttpSession session){
+        Admin admin = (Admin) session.getAttribute("admin");
+        if (admin==null){
+            return "bm_login";
+        }else{
+            return "bm_data";
+        }
+    }
 
     /**
      * 用户总数
@@ -205,6 +220,7 @@ public class backManageController {
         Map<String, Object> result = new HashMap<String, Object>();
         String mobile = request.getParameter("mobile");
         String password = request.getParameter("password");
+        password = Md5Util.getMD5String(password);
         User user = new User();
         user.setMobile(mobile);
         user.setPassword(password);
@@ -335,5 +351,53 @@ public class backManageController {
         result.put("flag",SUCCESS_CODE);
         result.put("data",orders);
         return result;
+    }
+
+    /**
+     * 项目融资统计前15条
+     * @return
+     */
+    @RequestMapping(value = "/doFinancingStatisticTop")
+    @ResponseBody
+    public Map<String,Object> doFinancingStatisticTop(){
+        Map<String, Object> result = new HashMap<String, Object>();
+        List<Project> statistic = projectService.getFinancingStatisticTop();
+        result.put("flag",SUCCESS_CODE);
+        result.put("data",statistic);
+        return result;
+    }
+
+    /**
+     * 融资项目状态统计
+     * @return
+     */
+    @RequestMapping(value = "/doProjectStatistic")
+    @ResponseBody
+    public Map<String,Object> doProjectStatistic(){
+        Map<String, Object> result = new HashMap<String, Object>();
+        List<Map<String,Object>> data =  projectService.getProjectStatistic();
+
+        result.put("flag",SUCCESS_CODE);
+        result.put("msg","success");
+        result.put("data",data);
+        return result;
+
+    }
+
+    /**
+     * 近一个月订单趋势
+     * @return
+     */
+    @RequestMapping(value = "/doOrderStatistic")
+    @ResponseBody
+    public Map<String,Object> doOrderStatistic(){
+        Map<String, Object> result = new HashMap<String, Object>();
+        List<Map<String,Object>> data =  orderService.getOrderStatistic();
+
+        result.put("flag",SUCCESS_CODE);
+        result.put("msg","success");
+        result.put("data",data);
+        return result;
+
     }
 }

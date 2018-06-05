@@ -4,6 +4,7 @@ import com.financing.entity.*;
 import com.financing.service.OrderService;
 import com.financing.service.ProjectBackService;
 import com.financing.service.ProjectService;
+import com.financing.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -39,6 +40,9 @@ public class OrderController {
     @Autowired
     private ProjectBackService projectBackService;
 
+    @Autowired
+    private UserService userService;
+
     /**
      * 添加订单
      * @param request
@@ -69,8 +73,8 @@ public class OrderController {
         order.setUser(user);
 
         orderService.addOrder(order);
-        projectBackService.updateActual(back);//回报实际参与人数加一
-        projectService.updateSupport(project,amount);//项目支持数加一,更新实际融资数
+        projectBackService.updateActual(back,1);//回报实际参与人数加一
+        projectService.updateSupport(project,amount,1);//项目支持数加一,更新实际融资数
         Map<String,Object> result = new HashMap<String,Object>();
         result.put("flag",SUCCESS_CODE);
         result.put("msg","success");
@@ -107,8 +111,16 @@ public class OrderController {
     @ResponseBody
     public Map<String,Object> doCancelOrder(HttpSession session, @PathVariable("oid") String oid){
         User user = (User) session.getAttribute("user");
-        orderService.cancelOrder(oid);
-
+        Order order = orderService.getOrderDetail(oid);
+        ProjectBack back =  order.getProjectBack();
+        Project project = order.getProject();
+        order.setStatus((byte) -1);
+        orderService.refundOrder(order);//用户取消订单，退款
+        userService.refundBalance(user,order.getAmount());
+        projectBackService.updateActual(back,-1);
+        projectService.updateSupport(project,order.getAmount(),-1);
+        user = userService.getUser(user.getMobile());
+        session.setAttribute("user",user);
         Map<String,Object> result = new HashMap<String,Object>();
         result.put("flag",SUCCESS_CODE);
         result.put("msg","success");

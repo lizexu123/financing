@@ -1,7 +1,11 @@
 package com.financing.test;
 
+import com.financing.entity.Order;
 import com.financing.entity.Project;
+import com.financing.entity.User;
+import com.financing.service.OrderService;
 import com.financing.service.ProjectService;
+import com.financing.service.UserService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +27,12 @@ public class ProjectTest {
 
     @Autowired
     private ProjectService projectService;
+
+    @Autowired
+    private OrderService orderService;
+
+    @Autowired
+    private UserService userService;
 
     @Test
     public void projectStatusTest(){
@@ -70,7 +80,38 @@ public class ProjectTest {
                 }
 
             }
+//            if (project.getStatus()==2){
+//                List<Order> orders = orderService.getOrderListByProject(project);
+//                for (Order order:orders) {
+//                    if(order.getStatus()==0){//融资失败退款，用户账户余额变更，订单状态改变
+//                        BigDecimal amount = order.getAmount();
+//                        User user = order.getUser();
+//                        userService.refundBalance(user,amount);
+//                        order.setStatus((byte) -2);
+//                        orderService.refundOrder(order);
+//                    }
+//                }
+//            }
         }
+    }
+
+    @Test
+    public void projectByUserTest(){
+        User user = new User();
+        user.setId("994622138");
+        List<Project> projects = projectService.getProjectByUser(user);
+
+        System.out.println(projects);
+    }
+
+    @Test
+    public void projectByCID(){
+        List<Project> projects = projectService.getProjectByCID(1);
+    }
+
+    @Test
+    public void orderRefund(){
+        List<Order> orders = orderService.getOrderListByPStatus((byte) 2);
     }
 
 }

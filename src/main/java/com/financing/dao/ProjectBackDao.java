@@ -13,5 +13,5 @@ public interface ProjectBackDao {
     List<ProjectBack> queryAll(Project project);
     void update(ProjectBack projectBack);
     ProjectBack queryById(int id);
-    void updateActual(ProjectBack projectBack);
+    void updateActual(ProjectBack projectBack,int action);
 }

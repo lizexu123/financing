@@ -25,34 +25,25 @@ public class InterestDaoImpl implements InterestDao {
 
     @Override
     public void insert(Interest interest) {
-        Session session = sessionFactory.openSession();
-        Transaction tx = session.getTransaction();
-        tx.begin();
+        Session session = sessionFactory.getCurrentSession();
         session.save(interest);
-        tx.commit();
         System.out.println(interest);
     }
 
     @Override
     public List<Interest> queryByUser(User user) {
-        Session session = sessionFactory.openSession();
-        Transaction tx = session.getTransaction();
-        tx.begin();
+        Session session = sessionFactory.getCurrentSession();
         Query query = session.createQuery("from Interest where user = ?");
         List<Interest> interests  = query.list();
-        tx.commit();
 
         return interests;
     }
 
     @Override
     public void delete(int id) {
-        Session session = sessionFactory.openSession();
-        Transaction tx = session.getTransaction();
-        tx.begin();
+        Session session = sessionFactory.getCurrentSession();
         Query query = session.createQuery("delete from Interest where id = ?");
         query.setInteger(0,id);
         query.executeUpdate();
-        tx.commit();
     }
 }

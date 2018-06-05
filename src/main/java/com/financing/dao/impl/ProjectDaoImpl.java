@@ -13,6 +13,7 @@ import org.springframework.stereotype.Repository;
 
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by Penny on 2018/5/16.
@@ -25,66 +26,48 @@ public class ProjectDaoImpl implements ProjectDao {
 
     @Override
     public String insert(Project project) throws Exception {
-        Session session = sessionFactory.openSession();
-        Transaction tx = session.getTransaction();
-        tx.begin();
+        Session session = sessionFactory.getCurrentSession();
         String id = (String) session.save(project);
-        tx.commit();
         System.out.println("success "+project);
         return id;
     }
 
     @Override
     public void update(Project project) throws Exception {
-        Session session = sessionFactory.openSession();
-        Transaction tx = session.getTransaction();
-        tx.begin();
+        Session session = sessionFactory.getCurrentSession();
         session.merge(project);
-        tx.commit();
         System.out.println(project);
     }
 
     @Override
     public Project queryById(String id) throws Exception {
-        Session session = sessionFactory.openSession();
-        Transaction tx = session.getTransaction();
-        tx.begin();
+        Session session = sessionFactory.getCurrentSession();
         Project project = (Project) session.load(Project.class,id);
-        tx.commit();
         return project;
 
     }
 
     @Override
     public List<Project> queryAll() throws Exception {
-        Session session = sessionFactory.openSession();
-        Transaction tx = session.getTransaction();
-        tx.begin();
+        Session session = sessionFactory.getCurrentSession();
         Query query = session.createQuery("from Project");
         List<Project> projects = query.list();
-        tx.commit();
         return projects;
     }
 
     @Override
     public List<Project> queryNewProject() throws Exception {
-        Session session = sessionFactory.openSession();
-        Transaction tx = session.getTransaction();
-        tx.begin();
+        Session session = sessionFactory.getCurrentSession();
         Query query = session.createQuery("from Project order by publishTime desc");
         List<Project> projects = query.list();
-        tx.commit();
         return projects;
     }
 
     @Override
     public List<Project> queryHotProject() throws Exception {
-        Session session = sessionFactory.openSession();
-        Transaction tx = session.getTransaction();
-        tx.begin();
+        Session session = sessionFactory.getCurrentSession();
         Query query = session.createQuery("from Project order by supportCount desc");
         List<Project> projects = query.list();
-        tx.commit();
         return projects;
     }
 
@@ -95,125 +78,121 @@ public class ProjectDaoImpl implements ProjectDao {
 
     @Override
     public long queryProjectCount() {
-        Session session = sessionFactory.openSession();
-        Transaction tx = session.getTransaction();
-        tx.begin();
+        Session session = sessionFactory.getCurrentSession();
         Query query = session.createQuery("select count(*) from Project");
         long count = (long) query.uniqueResult();
-        tx.commit();
         return count;
     }
 
     @Override
     public long queryProjectFinished() {
-        Session session = sessionFactory.openSession();
-        Transaction tx = session.getTransaction();
-        tx.begin();
+        Session session = sessionFactory.getCurrentSession();
         Query query = session.createQuery("select count(*) from Project where status = 1 or status = 3");
         long count = (long) query.uniqueResult();
-        tx.commit();
         return count;
     }
 
     @Override
     public long querySupportCount() {
-        Session session = sessionFactory.openSession();
-        Transaction tx = session.getTransaction();
-        tx.begin();
+        Session session = sessionFactory.getCurrentSession();
         Query query = session.createQuery("select sum (supportCount) from Project");
         long count = (long) query.uniqueResult();
-        tx.commit();
         return count;
     }
 
     @Override
     public List<Project> queryNewProjectTop() {
-        Session session = sessionFactory.openSession();
-        Transaction tx = session.getTransaction();
-        tx.begin();
+        Session session = sessionFactory.getCurrentSession();
         Query query = session.createQuery("from Project order by publishTime desc");
         query.setFirstResult(0);
         query.setMaxResults(5);
         List<Project> projects = query.list();
-        tx.commit();
         return projects;
     }
 
     @Override
     public List<Project> queryHotProjectTop() {
-        Session session = sessionFactory.openSession();
-        Transaction tx = session.getTransaction();
-        tx.begin();
+        Session session = sessionFactory.getCurrentSession();
         Query query = session.createQuery("from Project order by supportCount desc");
         query.setFirstResult(0);
         query.setMaxResults(5);
         List<Project> projects = query.list();
-        tx.commit();
         return projects;
     }
 
     @Override
     public List<Project> queryProjectTopByCID(Category category) {
 
-        Session session = sessionFactory.openSession();
-        Transaction tx = session.getTransaction();
-        tx.begin();
+        Session session = sessionFactory.getCurrentSession();
         Query query = session.createQuery("from Project where status IN (0,1) and category = ? order by supportCount desc");
         query.setEntity(0,category);
         query.setFirstResult(0);
         query.setMaxResults(5);
         List<Project> projects = query.list();
-        tx.commit();
         return projects;
     }
 
     @Override
     public List<Project> queryProjectByCID(Category category) {
-        Session session = sessionFactory.openSession();
-        Transaction tx = session.getTransaction();
-        tx.begin();
+        Session session = sessionFactory.getCurrentSession();
         Query query = session.createQuery("from Project where category = ?");
         query.setEntity(0,category);
         List<Project> projects = query.list();
-        tx.commit();
         return projects;
     }
 
     @Override
     public List<Project> queryProjectByKey(String keyword) {
 
-        Session session = sessionFactory.openSession();
-        Transaction tx = session.getTransaction();
-        tx.begin();
-        Query query = session.createQuery("from Project where title like %:keyword% or team like %:keyword% or purpose like %:keyword% or detail like %:keyword%");
-        query.setString("keyword",keyword);
+        Session session = sessionFactory.getCurrentSession();
+        Query query = session.createQuery("from Project where CONCAT_WS('',title,contactName,purpose,team,detail) like :param");
+        query.setString("param", "%" + keyword + "%");
         List<Project> projects = query.list();
-        tx.commit();
         return projects;
     }
 
     @Override
     public List<Project> queryByUser(User user) {
-        Session session = sessionFactory.openSession();
-        Transaction tx = session.getTransaction();
-        tx.begin();
-        Query query = session.createQuery("from Project where User = ?");
+        Session session = sessionFactory.getCurrentSession();
+        Query query = session.createQuery("from Project where user = ?");
         query.setEntity(0,user);
         List<Project> projects = query.list();
-        tx.commit();
         return projects;
     }
 
     @Override
-    public void updateSupport(Project project, BigDecimal amount) {
-        Session session = sessionFactory.openSession();
-        Transaction tx = session.getTransaction();
-        tx.begin();
-        Query query = session.createQuery("update Project set supportCount = supportCount +1,actualAmount = actualAmount +? where id =?");
+    public void updateSupport(Project project, BigDecimal amount,int action) {
+        Session session = sessionFactory.getCurrentSession();
+        Query query =null;
+        switch (action) {
+            case 1:
+                query = session.createQuery("update Project set supportCount = supportCount +1,actualAmount = actualAmount +? where id =?");
+                break;
+            case -1:
+                query = session.createQuery("update Project set supportCount = supportCount -1,actualAmount = actualAmount -? where id =?");
+
+        }
         query.setBigDecimal(0,amount);
         query.setString(1,project.getId());
         query.executeUpdate();
-        tx.commit();
+    }
+
+    @Override
+    public List<Project> queryFinancingStaticTop() {
+        Session session = sessionFactory.getCurrentSession();
+        Query query = session.createQuery("from Project where status != 2 order by supportCount");
+        query.setFirstResult(0);
+        query.setMaxResults(15);
+        List<Project> statistic = query.list();
+        return statistic;
+    }
+
+    @Override
+    public List<Map<String, Object>> queryProjectStatistic() {
+        Session session = sessionFactory.getCurrentSession();
+        Query query = session.createQuery("select status,count(id) from Project group by status");
+        List<Map<String,Object>> statistic = query.list();
+        return statistic;
     }
 
 }

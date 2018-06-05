@@ -8,10 +8,12 @@ import com.financing.service.ProjectService;
 import com.financing.utils.WebServiceUtil;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
+import org.apache.commons.collections.map.HashedMap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -47,12 +49,12 @@ public class ProjectServiceImpl implements ProjectService {
 
     @Override
     public String currencyExchange(String from,String to) {
-        String appKey = "6523d4efdd29cec246ddaeaaffab9737";
+        String appKey = "361c69c728db00dbf4e7323b43f6fb14";
         String result =null;
         String url ="http://op.juhe.cn/onebox/exchange/currency";//请求接口地址
         Map params = new HashMap();//请求参数
-        params.put("from",from);//身份证号码
-        params.put("to",to);//返回数据格式：json或xml,默认json
+        params.put("from",from);
+        params.put("to",to);
         params.put("key",appKey);//你申请的key
 
         try {
@@ -165,8 +167,21 @@ public class ProjectServiceImpl implements ProjectService {
     }
 
     @Override
-    public void updateSupport(Project project, BigDecimal amount) {
-        projectDao.updateSupport(project,amount);
+    public void updateSupport(Project project, BigDecimal amount,int action) {
+        //action = 1 融资支持数+1，已筹金额+amount
+        //action = -1 融资支持数-1，已筹金额-amount
+        projectDao.updateSupport(project,amount,action);
+    }
+
+    @Override
+    public List<Project> getFinancingStatisticTop() {
+        List<Project> statistic = projectDao.queryFinancingStaticTop();
+        return statistic;
+    }
+
+    @Override
+    public List<Map<String, Object>> getProjectStatistic() {
+        return projectDao.queryProjectStatistic();
     }
 
 

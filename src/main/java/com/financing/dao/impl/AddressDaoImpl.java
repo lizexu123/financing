@@ -23,54 +23,38 @@ public class AddressDaoImpl implements AddressDao {
 
     @Override
     public void insert(Address address) {
-        Session session = sessionFactory.openSession();
-        Transaction tx = session.getTransaction();
-        tx.begin();
+        Session session = sessionFactory.getCurrentSession();
         session.save(address);
-        tx.commit();
     }
 
     @Override
     public void update(Address address) {
-        Session session = sessionFactory.openSession();
-        Transaction tx = session.getTransaction();
-        tx.begin();
+        Session session = sessionFactory.getCurrentSession();
         session.update(address);
-        tx.commit();
 
         System.out.println(" "+address.toString());
     }
 
     @Override
     public void delete(int id) {
-        Session session = sessionFactory.openSession();
-        Transaction tx = session.getTransaction();
-        tx.begin();
+        Session session = sessionFactory.getCurrentSession();
         Query query = session.createQuery("delete from Address where id =?");
         query.setInteger(0,id);
-        tx.commit();
     }
 
     @Override
     public List<Address> queryAll() {
-        Session session = sessionFactory.openSession();
-        Transaction tx = session.getTransaction();
-        tx.begin();
+        Session session = sessionFactory.getCurrentSession();
         Query query = session.createQuery("from Address ");
         List<Address> addresses = query.list();
-        tx.commit();
-
         return addresses;
     }
 
     @Override
     public List<Address> queryByUser(User user) {
-        Session session = sessionFactory.openSession();
-        Transaction tx = session.getTransaction();
-        tx.begin();
+        Session session = sessionFactory.getCurrentSession();
         Query query = session.createQuery("from Address where user = ?");
         List<Address> addresses = query.list();
-        tx.commit();
 
         return addresses;
     }

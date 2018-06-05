@@ -24,7 +24,7 @@
     <jsp:include page="bm_header.jsp"/>
     <div id="page-wrapper">
         <div class="page-wrapper-inner">
-            <h3 style="font-size: 2em;color: #999;margin: 0 0 0.5em 1em;">User Profile </h3>
+            <h3 style="font-size: 2em;color: #292929;margin: 0 0 0.5em 1em;">User Profile </h3>
             <div class="user-profile"  style="margin-top: 30px;">
                 <div style="height: 60px">
                     <div class="user-add">
@@ -58,7 +58,7 @@
                             <th>BALANCE</th>
                             <th class="dropdown">
                                 <a href="javascript:void(0);" onclick="submenu(this)">STATUS</a>
-                                <ul class="dropdown-action">
+                                <ul class="dropdown-action" style="left: 0">
                                     <li> <a href="javascript:void(0);" onclick="getUsers()">ALL</a> </li>
                                     <li> <a href="javascript:void(0);" onclick="getUsersByStatus(1)">VERIFY</a> </li>
                                     <li> <a href="javascript:void(0);" onclick="getUsersByStatus(0)">NOT VERIFY</a> </li>

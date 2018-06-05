@@ -2,6 +2,7 @@ package com.financing.dao;
 
 import com.financing.entity.User;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 /**
@@ -16,4 +17,5 @@ public interface UserDao {
     User queryByMobile(String mobile)throws Exception;
     User queryByName(String username)throws Exception;
     long queryTotal();//查询用户总数
+    void updateBalance(BigDecimal balance,User user);//更新用户账户余额
 }

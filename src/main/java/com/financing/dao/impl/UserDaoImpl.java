@@ -9,6 +9,7 @@ import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 /**
@@ -23,88 +24,73 @@ public class UserDaoImpl implements UserDao{
 
     @Override
     public void insert(User user) throws Exception {
-        Session session = sessionFactory.openSession();
-        Transaction tx = session.getTransaction();
-        tx.begin();
+        Session session = sessionFactory.getCurrentSession();
         session.save(user);
-        tx.commit();
         System.out.println("success! "+user);
     }
 
     @Override
     public void update(User user) throws Exception{
-        Session session = sessionFactory.openSession();
-        Transaction tx = session.getTransaction();
-        tx.begin();
+        Session session = sessionFactory.getCurrentSession();
         session.merge(user);
-        tx.commit();
     }
 
     @Override
     public void delete(String id) throws Exception {
-        Session session = sessionFactory.openSession();
-        Transaction tx = session.getTransaction();
-        tx.begin();
+        Session session = sessionFactory.getCurrentSession();
         Query query = session.createQuery("update User set status = -1 where id=?");
         query.setString(0,id);
         query.executeUpdate();
-        tx.commit();
     }
 
     @Override
     public User queryById(String id) throws Exception {
-        Session session = sessionFactory.openSession();
-        Transaction tx = session.getTransaction();
-        tx.begin();
+        Session session = sessionFactory.getCurrentSession();
         User user = (User) session.load(User.class,id);
-        tx.commit();
         return user;
     }
 
     @Override
     public List<User> queryAll() throws Exception {
-        Session session = sessionFactory.openSession();
-        Transaction tx = session.getTransaction();
-        tx.begin();
+        Session session = sessionFactory.getCurrentSession();
         Query query = session.createQuery("from User");
         List<User> list = query.list();
-        tx.commit();
         return list;
     }
 
     @Override
     public User queryByMobile(String mobile) throws Exception {
-        Session session = sessionFactory.openSession();
-        Transaction tx = session.getTransaction();
-        tx.begin();
+        Session session = sessionFactory.getCurrentSession();
         System.out.println("mobile = " + mobile);
         Query query = session.createQuery("from User where mobile=?");
         query.setString(0,mobile);
         User user = (User)query.uniqueResult();
-        tx.commit();
         return user;
     }
 
     @Override
     public User queryByName(String username) throws Exception {
-        Session session = sessionFactory.openSession();
-        Transaction tx = session.getTransaction();
-        tx.begin();
+        Session session = sessionFactory.getCurrentSession();
         Query query = session.createQuery("from User where username =?");
         query.setString(0,username);
         User user = (User)query.uniqueResult();
-        tx.commit();
         return user;
     }
 
     @Override
     public long queryTotal() {
-        Session session = sessionFactory.openSession();
-        Transaction tx = session.getTransaction();
-        tx.begin();
+        Session session = sessionFactory.getCurrentSession();
         Query query = session.createQuery("SELECT count(*) FROM User");
         long total = (long) query.uniqueResult();
-        tx.commit();
         return total;
+    }
+
+    @Override
+    public void updateBalance(BigDecimal balance,User user) {
+        Session session = sessionFactory.getCurrentSession();
+        Query query = session.createQuery("update User set balance = balance+? where id=?");
+        query.setBigDecimal(0,balance);
+        query.setString(1,user.getId());
+        query.executeUpdate();
     }
 }

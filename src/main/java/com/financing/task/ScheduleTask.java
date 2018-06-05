@@ -1,7 +1,11 @@
 package com.financing.task;
 
+import com.financing.entity.Order;
 import com.financing.entity.Project;
+import com.financing.entity.User;
+import com.financing.service.OrderService;
 import com.financing.service.ProjectService;
+import com.financing.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
@@ -19,6 +23,14 @@ public class ScheduleTask {
 
     @Autowired
     private ProjectService projectService;
+
+
+    @Autowired
+    private OrderService orderService;
+
+    @Autowired
+    private UserService userService;
+
     /**
      * 项目融资状态
      */
@@ -58,6 +70,19 @@ public class ScheduleTask {
                     }
                 }
 
+            }
+            if (project.getStatus()==2){//融资失败
+                List<Order> orders = orderService.getOrderListByProject(project);
+                for (Order order:orders) {
+                    if(order.getStatus()==0){//融资失败退款，用户账户余额变更，订单状态改变
+                        BigDecimal amount = order.getAmount();
+                        User user = order.getUser();
+                        System.out.println(amount);
+                        userService.refundBalance(user,amount);
+                        order.setStatus((byte) -2);
+                        orderService.refundOrder(order);
+                    }
+                }
             }
         }
     }

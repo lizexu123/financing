@@ -145,4 +145,9 @@ public class UserServiceImpl implements UserService{
         }
     }
 
+    @Override
+    public void refundBalance(User user, BigDecimal balance) {
+        userDao.updateBalance(balance,user);
+    }
+
 }

@@ -2,6 +2,7 @@ package com.financing.service;
 
 import com.financing.entity.User;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 /**
@@ -18,5 +19,6 @@ public interface UserService {
     List<User> getUserList();
     long getUserTotal();
     Boolean verifyIdCard(String ic);
+    void refundBalance(User user, BigDecimal balance);//融资失败退款
 
 }

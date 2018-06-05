@@ -23,24 +23,18 @@ public class ProjectUpdateDaoImpl implements ProjectUpdateDao {
 
     @Override
     public void insert(ProjectUpdate projectUpdate) {
-        Session session = sessionFactory.openSession();
-        Transaction tx = session.getTransaction();
-        tx.begin();
+        Session session = sessionFactory.getCurrentSession();
         session.save(projectUpdate);
-        tx.commit();
         System.out.println("///"+projectUpdate);
     }
 
     @Override
     public List<ProjectUpdate> queryAll(Project project) {
 
-        Session session = sessionFactory.openSession();
-        Transaction tx = session.getTransaction();
-        tx.begin();
+        Session session = sessionFactory.getCurrentSession();
         Query query = session.createQuery("from ProjectUpdate where project = ?");
         query.setEntity(0,project);
         List<ProjectUpdate> updates = query.list();
-        tx.commit();
         return updates;
     }
 }

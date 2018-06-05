@@ -1,0 +1,155 @@
+* {
+    margin: auto;
+    padding: 0px;
+    box-sizing: border-box;
+}
+
+body {
+    border: 0;
+    font-family: inherit;
+    font-size: 100%;
+    font-weight: inherit;
+    margin: 0;
+    outline: 0;
+    padding: 0;
+    vertical-align: baseline;
+    overflow-x: hidden;
+}
+
+.ContainEverything {
+    border: none;
+    padding: auto;
+    vertical-align: central;
+    margin-top: 230px;
+}
+
+.search_result_model {
+    position: relative;
+    text-align: -moz-center;
+}
+
+.AllSearchResults ul li {
+    text-align: start;
+    width: 970px;
+    list-style: none;
+    border-bottom: DodgerBlue dashed 2px;
+}
+
+.AllSearchResults ul li:last-child {
+    border: none;
+    margin-bottom: 150px;
+}
+
+/*每个框*/
+.eachOne {
+    width: 900px;
+    height: 300px;
+    margin: 0 auto;
+    display: -webkit-flex;
+}
+
+.showImage {
+    width: 440px;
+    height: 280px;
+}
+
+.eachOneLeft {
+    margin-top: 10px;
+    margin-right: 5px;
+    margin-left: 5px;
+    width: 440px;
+    height: 280px;
+}
+
+.eachOneRight {
+    margin-top: 10px;
+    margin-left: 5px;
+    margin-right: 5px;
+    background-color: palegoldenrod;
+    width: 440px;
+    height: 280px;
+}
+
+.eachOne a {
+    text-decoration: none;
+    color: black;
+    font-family: fantasy;
+}
+
+.eachOne a:hover {
+    color: powderblue;
+    text-decoration: none;
+}
+
+.PJTitle {
+    font-size: 28px;
+    font-weight: 700;
+}
+
+.PJCategory {
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.PJTeam {
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.PJPurpose {
+    font-size: 21px;
+}
+
+.progress {
+    margin-top: 10px;
+    width: 400px;
+    height: 25px;
+    overflow: hidden;
+    background-color: #f5f5f5;
+    border-radius: 4.5px;
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, .1);
+}
+
+.progress-bar {
+    float: left;
+    height: 100%;
+    font-size: 12px;
+    line-height: 20px;
+    text-align: center;
+    background-color: #75C9E6;
+}
+
+.close:hover, .close:focus {
+    color: #000;
+    cursor: pointer;
+    filter: alpha(opacity=50);
+    opacity: 0.5;
+}
+
+.alert-dismissable .close, .alert-dismissible .close {
+    color: inherit;
+    cursor: pointer;
+    background: transparent;
+    border: 0;
+}
+
+.close {
+    float: right;
+    font-size: 30px;
+    color: #000;
+    opacity: 0.3;
+}
+
+.alert {
+    margin: 100px auto 340px;
+    font-size: 30px;
+    width: 1100px;
+    padding: 15px;
+    border: 1px solid transparent;
+    border-radius: 8px;
+}
+
+.alert-danger {
+    color: #a94442;
+    background-color: #f2dede;
+}
