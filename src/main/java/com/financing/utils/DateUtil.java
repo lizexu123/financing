@@ -17,7 +17,7 @@ public class DateUtil {
      * @author Penny
      */
     public static Date StringToDate(String date) {
-        SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         sdf.setLenient(false);
         try {
             return sdf.parse(date);

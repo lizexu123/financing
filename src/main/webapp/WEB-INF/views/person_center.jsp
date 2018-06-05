@@ -47,7 +47,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="http://localhost:8080/index">首页</a>
+            <a class="navbar-brand" href="index">首页</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
             <a id="Logout" href="doLogout">注销登录</a>

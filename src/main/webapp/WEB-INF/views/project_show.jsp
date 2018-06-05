@@ -39,7 +39,12 @@
                         <li>data.length
                             <div class="eachOne">
                                 <div class="eachOneLeft">
+<<<<<<< HEAD
                                     <a href="#"><img class="showImage" src="${ctp}/${project.cover}"></a>
+=======
+                                    <a href='doProjectDetail-${project.id}'><img class="showImage"
+                                                                                 src="${project.cover}"></a>
+>>>>>>> origin/master
                                         <%--图片必须用绝对路径输出--%>
                                 </div>
                                 <div class="eachOneRight">

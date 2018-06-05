@@ -362,6 +362,14 @@ body {
     font-family: 'Lato', sans-serif;
 }
 .typeOfProject ul {
+.typeOfProject {
+    padding-top: 20px;
+    background: rgba(0, 0, 0, 0.1);
+    width: max-content;
+    font-family: 'Lato', sans-serif;
+}
+
+.typeOfProject ul {
     text-align: center;
 }
 

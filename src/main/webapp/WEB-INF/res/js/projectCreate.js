@@ -10,13 +10,15 @@ function fabu() {
     project.purpose = document.getElementById("inputPurpose").value;
     project.contact_name = document.getElementById("inputContaceName").value;
     project.hotline = document.getElementById("inputhotline").value;
-    project.contact_phone = document.getElementById("inputContact")
+    project.contact_phone = document.getElementById("inputContact").value;
     if (project.title) {
 
     } else {
         layer.msg("项目标题不能为空");
         return false;
     }
+
+
     if (project.userId) {
 
     } else {
@@ -99,7 +101,6 @@ function fabu() {
         })
     })
 }
-
 
 
 
