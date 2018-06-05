@@ -71,7 +71,7 @@ public class OrderDaoImpl implements OrderDao {
         Session session = sessionFactory.openSession();
         Transaction tx = session.getTransaction();
         tx.begin();
-        Query query = session.createQuery("from Order where User = ? and status = 0");
+        Query query = session.createQuery("from Order where user = ? and status = 0");
         query.setEntity(0,user);
         List<Order> orders = query.list();
         tx.commit();

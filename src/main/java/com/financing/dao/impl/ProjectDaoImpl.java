@@ -197,7 +197,8 @@ public class ProjectDaoImpl implements ProjectDao {
         Session session = sessionFactory.openSession();
         Transaction tx = session.getTransaction();
         tx.begin();
-        Query query = session.createQuery("from Project where User = ?");
+        System.out.println("session = " + session);
+        Query query = session.createQuery("from Project where user= ?");
         query.setEntity(0,user);
         List<Project> projects = query.list();
         tx.commit();

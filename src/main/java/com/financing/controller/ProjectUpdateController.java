@@ -74,6 +74,7 @@ public class ProjectUpdateController {
         result.put("flag",SUCCESS_CODE);
         result.put("msg","add update success");
         result.put("data",updates);
+
         return result;
     }
 }

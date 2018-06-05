@@ -8,11 +8,10 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <script src="${ctp}/js/jquery-1.11.0.min.js" type="text/javascript"></script>
+    <script src="js/jquery-1.11.0.min.js" type="text/javascript"></script>
     <%--<script src="${cp}/js/bstp.min.js" type="text/javascript"></script>--%>
-    <script src="${ctp}/js/layer.js" type="text/javascript"></script>
-    <script src="${ctp}/js/projectCreate.js" type="text/javascript"></script>
-    <title>项目详情</title>
+    <script src="js/layer.js" type="text/javascript"></script>
+    <title>项目更新</title>
     <style type="text/css">
         body{
             font-family: 幼圆
@@ -36,63 +35,62 @@
         #table tr td {
             border: 2px solid #000;
         }
+
+        #gengxin1 {
+            position: relative;
+            top: 370px;
+            left: 780px;
+            cursor: pointer;
+            color: #fff;
+            background-color: #d9534f;
+            border-color: #d43f3a;
+            padding: 10px 16px;
+            width: 200px;
+        }
     </style>
 </head>
 <body>
-            <h1>项目详情</h1>
-
-            <form action="/doCreateProject" id="formCreate">
+<h1>项目信息</h1>
+<form action="/doAddUpdate" id="formCreate" type="post">
                 <table id="table">
                     <tr>
                         <th>项目id</th>
-                        <td><input type="text"  value="${data.id}" readonly/>
+                        <td><input type="text" name="project" value="${data.id}" readonly/>
                         </td>
                     </tr>
                     <tr>
-                        <th>项目标题</th>
-                        <td><input type="text"   value="${data.title}"  readonly  /></td>
+                        <th>用户id:</th>
+                        <td><input type="text" name="id" value="${sessionScope.user.id}" readonly/></td>
                     </tr>
                     <tr>
-                        <th>项目种类id</th>
-                        <td><input type="text"   value="${data.category.id}"  readonly  /></td>
+                        <th>更新内容</th>
+                        <td><input type="text" name="update_content"/></td>
                     </tr>
                     <tr>
-                        <th>目标金额</th>
-                        <td><input type="text"   value="${data.goalAmount}"  readonly  /></td>
-                    </tr>
-                    <tr>
-                        <th>发布时间</th>
-                        <td><input type="text"   value="${data.publishTime}"  readonly  /></td>
-                    </tr>
-                    <tr>
-                        <th>截止时间</th>
-                        <td><input type="text"   value="${data.endTime}"  readonly  /></td>
-                    </tr>
-                    <tr>
-                        <th>项目团队</th>
-                        <td><input type="text"   value="${data.team}"  readonly  /></td>
-                    </tr>
-                    <tr>
-                        <th>融资目的</th>
-                        <td><input type="text"   value="${data.purpose}"  readonly  /></td>
-                    </tr>
-                    <tr>
-                        <th>联系人姓名</th>
-                        <td><input type="text"   value="${data.contactName}"  readonly  /></td>
-                    </tr>
-                    <tr>
-                        <th>咨询电话</th>
-                        <td><input type="text"   value="${data.hotline}"  readonly  /></td>
-                    </tr>
-                    <tr>
-                        <th>联系人电话</th>
-                        <td><input type="text"   value="${data.contactPhone}"  readonly  /></td>
+                        <input type="button" id="gengxin1" value="立即更新" onclick="gengxin()"></input>
                     </tr>
 
                 </table>
             </form>
 </body>
 <script type="text/javascript">
+    function gengxin() {
+        $.ajax({
+            //几个参数需要注意一下
+            type: "POST",//方法类型
+            dataType: "json",//预期服务器返回的数据类型
+            url: "doAddUpdate",//url
+            data: $('#formCreate').serialize(),
+            success: function (result) {
+                console.log(result);//打印服务端返回的数据(调试用)
+                if (result.flag == 1) {
+                    window.location.href = "${ctp}/financing/doProjectDetail-${data.id}";
+                } else {
+                    layer.msg(result.msg);
+                }
+            }
+        });
+    }
 
 </script>
 </html>

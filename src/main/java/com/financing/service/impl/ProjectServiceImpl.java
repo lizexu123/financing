@@ -47,7 +47,7 @@ public class ProjectServiceImpl implements ProjectService {
 
     @Override
     public String currencyExchange(String from,String to) {
-        String appKey = "6523d4efdd29cec246ddaeaaffab9737";
+        String appKey = "361c69c728db00dbf4e7323b43f6fb14";
         String result =null;
         String url ="http://op.juhe.cn/onebox/exchange/currency";//请求接口地址
         Map params = new HashMap();//请求参数

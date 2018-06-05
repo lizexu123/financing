@@ -38,7 +38,7 @@
     <div class="row">
         <div class="col-sm-1 col-md-1"></div>
         <div class="col-sm-5 col-md-5 detail-x">
-            <form action="/doCreateProject" id="formCreate">
+            <form action="/doCreateProject" id="formCreate" enctype="multipart/form-data">
                 <table class="table table-striped">
                 <tr>
                     <th>项目标题</th>
@@ -85,6 +85,11 @@
                     <td><input type="text" name="hotline" id="inputhotline"
                                class="form-control"></td>
                 </tr>
+                    <tr>
+                        <th>status</th>
+                        <td><input type="text" name="status" id="inputStatus"
+                                   class="form-control" value="0" readonly></td>
+                    </tr>
                 <tr>
                     <th>联系人电话</th>
                     <td><input type="text" name="contact_phone" id="inputContact"
@@ -118,38 +123,7 @@
     </div>
 
 
-                <%--<div class="row">--%>
-                    <%--<div class="col-sm-1 col-md-1 col-lg-1"></div>--%>
-                    <%--<button class="btn btn-danger btn-lg col-sm-4 col-md-4 col-lg-4"--%>
-                            <%--onclick="addToShoppingCar(${productDetail.id})">添加购物车--%>
-                    <%--</button>--%>
-
-                <%--</div>--%>
-                <%--<div class="row">--%>
-                    <%--<div class="col-sm-1 col-md-1 col-lg-1"></div>--%>
-                    <%--<div class="col-sm-10 col-md-10 col-lg-10">--%>
-                        <%--<hr class="division"/>--%>
-                        <%--<table class="table evaluationTable" border="0" id="evaluation">--%>
-                        <%--</table>--%>
-                        <%--<hr/>--%>
-                        <%--<div id="inputArea"></div>--%>
-                    <%--</div>--%>
-                <%--</div>--%>
-
-
-
-
-
-
-  <%--  <script type = "text/javascript" >
-    //实例化编辑器
-    //建议使用工厂方法getEditor创建和引用编辑器实例，如果在某个闭包下引用该编辑器，直接调用UE.getEditor('editor')就能拿到相关的实例
-    var ue = UE.getEditor('editor');
-    </script>
-    <script type="text/javascript" charset="UTF-8" src="${APP_PATH}/static/ueditor/ueditor.config.js"></script>
-    <script type="text/javascript" charset="UTF-8" src="${APP_PATH}/static/ueditor/ueditor.all.min.js"></script>
-    <script type="text/javascript" charset="UTF-8" src="${APP_PATH}/static/ueditor/lang/zn-cn/zn-cn.js"></script>--%>
-
+</div>
 </body>
 <script type="text/javascript">
     UEDITOR_CONFIG.UEDITOR_HOME_URL = '/financing/ueditor/';
@@ -171,6 +145,12 @@
         saveInterval : 60 * 60 * 24,
         wordCount : false,
 
+    }
+    window.onload = function () {
+        var myDate = new Date();
+        if (project.end_time < myDate) {
+            document.getElementById("inputStatus").value = 1;
+        }
     }
 
 </script>

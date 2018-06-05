@@ -14,28 +14,31 @@ public class MainController {
 
     /**
      * 欢迎页面
+     *
      * @return 重定向到首页
      */
     @RequestMapping(value = "/")
-    public String welcome(){
+    public String welcome() {
         return "redirect:index";
     }
 
     /**
      * 首页
+     *
      * @return
      */
     @RequestMapping(value = "/index")
-    public String index(){
+    public String index() {
         return "index";
     }
 
     /**
      * 注册登录页
+     *
      * @return
      */
     @RequestMapping(value = "/login")
-    public String login(){
+    public String login() {
         return "login";
     }
 
@@ -46,59 +49,66 @@ public class MainController {
 
     /**
      * 最新发布
+     *
      * @return
      */
     @RequestMapping(value = "/browse/new")
-    public String newProject(){
+    public String newProject() {
         return "forward:/doShowNewProject";
     }
 
     /**
      * 最多支持
+     *
      * @return
      */
     @RequestMapping(value = "/browse/hot")
-    public String hotProject(){
+    public String hotProject() {
         return "forward:/doShowHotProject";
     }
 
     /**
      * 全部项目
+     *
      * @return
      */
     @RequestMapping(value = "/browse/all")
-    public String allProject(){
+    public String allProject() {
         return "forward:/doProjectAll";
     }
 
     /**
      * 分类项目展示
+     *
      * @param cid
      * @return
      */
-    @RequestMapping(value = "/browse/sort-{cid}",method = RequestMethod.GET)
-    public String ProjectByCID(@PathVariable("cid") String cid){
-        return "forward:/doProjectByCID-"+cid;
+    @RequestMapping(value = "/browse/sort-{cid}", method = RequestMethod.GET)
+    public String ProjectByCID(@PathVariable("cid") String cid) {
+        return "forward:/doProjectByCID-" + cid;
     }
 
     /**
      * 根据关键字查询项目
+     *
      * @param keyword
      * @return
      */
-    @RequestMapping(value ="/browse/search-{keyword}")
-    public String ProjectByKey(@PathVariable("keyword") String keyword){
-        return "forward:/doProjectByKey-"+keyword;
+    @RequestMapping(value = "/browse/search-{keyword}")
+    public String ProjectByKey(@PathVariable("keyword") String keyword) {
+        return "forward:/doProjectByKey-" + keyword;
     }
 
     /**
      * 个人中心页
+     *
      * @return
      */
     @RequestMapping(value = "/personCenter")
-    public String personCenter(){
+    public String personCenter() {
         return "person_center";
     }
+
     /**
      * 个人资料页
      */
@@ -110,23 +120,23 @@ public class MainController {
 
     /**
      * 个人中心-个人资料页
+     *
      * @return
      */
 
     @RequestMapping(value = "/personCenter/personInfo")
-    public String personInfo(){
+    public String personInfo() {
         return "person_info";
     }
 
 
-
-
     /**
      * 发布项目页
+     *
      * @return
      */
     @RequestMapping(value = "/personCenter/projectCreate")
-    public String projectCreate(){
+    public String projectCreate() {
         return "project_create";
     }
 
@@ -136,7 +146,7 @@ public class MainController {
      * @return
      */
     @RequestMapping(value = "/personCenter/personProject")
-    public String personProject(){
+    public String personProject() {
         return "person_project";
     }
 
@@ -146,62 +156,69 @@ public class MainController {
      * @return
      */
     @RequestMapping(value = "/personCenter/personProject/info-{pid}")
-    public String personProjectInfo(@PathVariable("pid") String pid){
-        return "forward:/doProjectInfo-"+pid;
+    public String personProjectInfo(@PathVariable("pid") String pid) {
+        return "forward:/doProjectInfo-" + pid;
     }
 
     /**
      * 用户收货地址页
+     *
      * @return
      */
     @RequestMapping(value = "/personCenter/personAddress")
-    public String personAddress(){
+    public String personAddress() {
         return "person_address";
     }
 
     /**
      * 用户订单
+     *
      * @return
      */
     @RequestMapping(value = "/personCenter/personOrder")
-    public String personOrder(){
+    public String personOrder() {
         return "person_order";
     }
 
     /**
      * 用户订单详情
+     *
      * @param oid
      * @return
      */
     @RequestMapping(value = "/personCenter/personOrder/detail-{oid}")
-    public String personOrderDetail(@PathVariable("oid") String oid){
-        return "forward:/doGetOrderDetail-"+oid;
+    public String personOrderDetail(@PathVariable("oid") String oid) {
+        return "forward:/doGetOrderDetail-" + oid;
     }
+
     /**
      * 用户收藏
+     *
      * @return
      */
     @RequestMapping(value = "/personCenter/personInterest")
-    public String personInterest(){
+    public String personInterest() {
         return "person_interest";
     }
 
     /**
      * 用户评论
+     *
      * @return
      */
     @RequestMapping(value = "/personCenter/personComment")
-    public String personComment(){
+    public String personComment() {
         return "person_comment";
     }
 
     /**
      * 项目详情页
+     *
      * @param pid
      * @return
      */
-    @RequestMapping(value = "/browse/detail-{pid}")
-    public String projectDetail(@PathVariable("pid") String pid){
-        return "forward:/doProjectDetail-"+pid;
+    @RequestMapping(value = "/ProjectDetail")
+    public String projectDetail(@PathVariable("pid") String pid) {
+        return "project_Detail";
     }
 }

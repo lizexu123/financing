@@ -13,10 +13,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.math.BigDecimal;
-import java.util.*;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * @author Penny
@@ -357,7 +361,7 @@ public class ProjectController {
         result.put("data",project);
         map.addAllAttributes(result);
 
-        return "project_detail";
+        return "project_Detail";
     }
 
 }
