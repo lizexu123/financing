@@ -1,5 +1,6 @@
 package com.financing.service;
 
+import com.financing.entity.Page;
 import com.financing.entity.Project;
 import com.financing.entity.User;
 
@@ -30,4 +31,9 @@ public interface ProjectService {
     void updateSupport(Project project, BigDecimal amount,int action);//更新项目支持数及实际融资数
     List<Project> getFinancingStatisticTop();//获取项目融资统计前15条
     List<Map<String,Object>> getProjectStatistic();
+
+
+    int getProjectAllCont();
+
+    List<Project> findByPage(Page page);
 }

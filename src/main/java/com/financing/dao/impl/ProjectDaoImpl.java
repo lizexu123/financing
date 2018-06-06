@@ -48,9 +48,19 @@ public class ProjectDaoImpl implements ProjectDao {
     }
 
     @Override
-    public List<Project> queryAll() throws Exception {
+    public List<Project> queryAll() {
         Session session = sessionFactory.getCurrentSession();
         Query query = session.createQuery("from Project");
+        List<Project> projects = query.list();
+        return projects;
+    }
+
+    @Override
+    public List<Project> queryAllByLimit(int BeginIndex, int EveryPage) {
+        Session session = sessionFactory.getCurrentSession();
+        Query query = session.createQuery("from Project");
+        query.setFirstResult(BeginIndex);
+        query.setMaxResults(EveryPage);
         List<Project> projects = query.list();
         return projects;
     }

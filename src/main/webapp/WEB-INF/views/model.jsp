@@ -3,21 +3,15 @@
 <head>
 
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <title>eachOne(展示模板)</title>
+    <title>eachOne(Top Five)</title>
     <script src="js/vue.js" type="text/javascript"></script>
 </head>
 <body>
 <div id="search_result_model">
     <div id="AllSearchResult">
-        <%--<c:choose>--%>
-        <%--<c:when test="${data==null}">还在努力筹备中</c:when>--%>
-        <%--<c:otherwise>--%>
-        <%--从第一条（index=0）记录开始取，到（index=1）结束：begin="0" end="1" step="1" --%>
-        <%--展示5条记录--%>
         <%--用于展示当前实际搜索时间--%>
-        <div>{{new Date()}}</div>
+        <%--<div>{{new Date()}}</div>--%>
         <div v-if="result && result.data && result.data.length">
-            <%--<p>共搜索到{{result.data.length}}条记录：</p>--%>
             <ul>
                 <li v-for="project in result.data">
                     <div class="eachOne">
@@ -32,42 +26,38 @@
                         </div>
                         <div class="eachOneRight">
                             <a href="#">
-                                <output class="PJTitle">项目名称：</output>
+                                <output class="PJTitle">Project Title：</output>
                                 {{project.title}}
                             </a><br>
                             <a href="#">
-                                <output class="PJCategory">类别：</output>
-                                <%--${project.category.name}--%>
+                                <output class="PJCategory">Category：</output>
                                 {{project.category.name}}
                             </a><br>
                             <a href="#">
-                                <output class="PJTeam">团队名称：</output>
-                                <%--${project.team}--%>
+                                <output class="PJTeam">Team：</output>
                                 {{project.team}}
                             </a><br>
                             <a href="#">
-                                <output class="PJPurpose">目的：</output>
-                                <%--${project.purpose}--%>
+                                <output class="PJPurpose">Purpose：</output>
                                 {{project.purpose}}
                             </a><br/>
                             <a href="#">
-                                <output class="PJGAmount">计划筹资：</output>
-                                <%--${project.goalAmount}--%>
+                                <output class="PJGAmount">Goal：</output>
                                 {{project.goalAmount}}
                             </a><br/>
                             <a href="#">
-                                <output class="PJ">项目状态：</output>
-                                <%--<c:if test="${project.status eq '0'}">正在进行，还没完成</c:if>--%>
-                                <%--<c:if test="${project.status eq '1'}">1</c:if>--%>
-                                <%--<c:if test="${project.status eq '2'}">2</c:if>--%>
-                                <%--<c:if test="${project.status eq '3'}">3</c:if>--%>
-                                <span v-if="project.status == '0'">正在进行，还没完成...</span>
-                                <span v-if="project.status == '1'">1</span>
-                                <span v-if="project.status == '2'">2</span>
-                                <span v-if="project.status == '3'">3</span>
+                                <output class="PJ">Project Status：</output>
+                                <span v-if="project.status == '0'">Unfinished Undue</span>
+                                <span v-if="project.status == '1'">Completed Undue</span>
+                                <span v-if="project.status == '2'">Unfinished Expiry</span>
+                                <span v-if="project.status == '3'">Completed Expiry</span>
                             </a><br/>
-                            <output class="PJPublishTime">发布日期：</output>
+                            <output class="PJPublishTime">Publish Time：</output>
                             {{project.publishTime}}
+                            <br>
+                            <output class="PJPublishTime">Backers：</output>
+                            <span v-if="project.support_count != null">{{project.support_count}}</span>
+                            <span v-if="!project.support_count || project.support_count.trim().length == 0">No one's support</span>
                         </div>
                     </div>
                 </li>

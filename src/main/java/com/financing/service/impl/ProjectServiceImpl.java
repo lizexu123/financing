@@ -2,6 +2,7 @@ package com.financing.service.impl;
 
 import com.financing.dao.ProjectDao;
 import com.financing.entity.Category;
+import com.financing.entity.Page;
 import com.financing.entity.Project;
 import com.financing.entity.User;
 import com.financing.service.ProjectService;
@@ -182,6 +183,16 @@ public class ProjectServiceImpl implements ProjectService {
     @Override
     public List<Map<String, Object>> getProjectStatistic() {
         return projectDao.queryProjectStatistic();
+    }
+
+    @Override
+    public int getProjectAllCont() {
+        return projectDao.queryAll().size();
+    }
+
+    @Override
+    public List<Project> findByPage(Page page) {
+        return projectDao.queryAllByLimit(page.getBeginIndex(), page.getEveryPage());
     }
 
 

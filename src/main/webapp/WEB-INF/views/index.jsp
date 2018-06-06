@@ -67,64 +67,6 @@
             });
         }
     </script>
-    <script type="text/javascript" src="${ctp}/js/responsiveslides.min.js"></script>
-    <script type="text/javascript">
-        //背景切换图
-        $(function () {
-            $("#slider").responsiveSlides({
-                auto: true,
-                nav: true,
-                speed: 500,
-                namespace: "callbacks",
-                pager: false,
-            });
-        });
-        //AboutProject输出关于本网站总体的数据
-        $(window).load(
-            function showAboutObject() {
-                $.get('doProjectCount', function (result) {
-                    document.getElementById("pjPosted").innerHTML = result.data;
-                });
-                $.get('doSupportCount', function (result) {
-                    document.getElementById("backers").innerHTML = result.data;
-                });
-                $.get('doProjectFinished', function (result) {
-                    document.getElementById("pjCompleted").innerHTML = result.data;
-                });
-            }
-        );
-        $(document).ready(function () {
-            $('ul.nav > li').click(function () {
-                $('ul.nav > li').removeClass('active');
-                $(this).addClass('active');
-            });
-        });
-        $(document).ready(function () {
-            $('ul.top > li').click(function () {
-                $('ul.top > li').removeClass('currentLi');
-                $(this).addClass('currentLi');
-            });
-        });
-    </script>
-    <script type="text/javascript">
-        $('#showNP').onloadstart(
-            showTopFiveOfNH('doNewProjectTop')
-        );
-
-        // 展示前五条最热最新记录
-        function showTopFiveOfNH(url) {
-            $.ajax({
-                type: 'GET',
-                url: url,
-                dataType: "json",
-                success: function (data) {
-                    if (updateSearchResults) {
-                        updateSearchResults(data);
-                    }
-                }
-            });
-        }
-    </script>
 </head>
 <body>
 <jsp:include page="header.jsp"/>
