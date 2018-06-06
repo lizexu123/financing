@@ -65,7 +65,7 @@
                 console.log(result.flag);
                 // var d = eval('(' + result.data+ ')');
                 var d = result.data;
-                $("#tbody").append('<th>标题</th><th>项目种类</th><th>目标金额</th><th>发布时间</th><th>截止时间</th><th>项目团队</th><th>融资目的</th><th>联系人姓名</th><th>咨询电话</th><th>联系电话</th><th>项目信息/更新</th>');
+                $("#tbody").append('<th>标题</th><th>项目种类</th><th>目标金额</th><th>发布时间</th><th>截止时间</th><th>项目团队</th><th>融资目的</th><th>联系人姓名</th><th>咨询电话</th><th>联系电话</th><th>项目更新</th>');
                 for (var i = 0; i < d.length; i++) {
                     if ($("#tbody tr").length <= d.length) {
 
@@ -81,7 +81,7 @@
                             "<td>"+d[i]["contactName"]+"</td>" +
                             "<td>"+d[i]["hotline"]+"</td>" +
                             "<td>"+d[i]["contactPhone"]+"</td>" +
-                            "<td><a href='doProjectInfo-" + d[i]["id"] + "'>项目信息项目更新</a></td>" +
+                            "<td><a href='doProjectInfo-" + d[i]["id"] + "'>项目更新</a></td>" +
                             "</tr>");
                     } else {
                         layer.msg("拿不到数据");

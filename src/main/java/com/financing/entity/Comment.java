@@ -20,7 +20,7 @@ public class Comment {
     private User fromUser;
 
     @ManyToOne(targetEntity = User.class)
-    @JoinColumn(name = "to_user_id",referencedColumnName = "id",nullable = false)
+    @JoinColumn(name = "to_user_id", referencedColumnName = "id", nullable = true)
     private User toUser;
 
     @Column
@@ -80,5 +80,17 @@ public class Comment {
 
     public void setProject(Project project) {
         this.project = project;
+    }
+
+    @Override
+    public String toString() {
+        return "Comment{" +
+                "id=" + id +
+                ", fromUser=" + fromUser +
+                ", toUser=" + toUser +
+                ", createTime=" + createTime +
+                ", content='" + content + '\'' +
+                ", project=" + project +
+                '}';
     }
 }

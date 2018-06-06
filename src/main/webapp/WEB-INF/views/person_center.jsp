@@ -95,8 +95,9 @@
                        class="nav-header menu-first collapsed" data-toggle="collapse">
                     &nbsp;用户订单详情页 <span class="sr-only">(current)</span></a>
                 </li>
-                <li><a href="#recordMeun" class="nav-header menu-first collapsed" data-toggle="collapse">
-                    &nbsp;用户收藏页 <span class="sr-only">(current)</span></a>
+                <li><a href="#recordMeun" onclick="showAtRight('personCenter/personComment')"
+                       class="nav-header menu-first collapsed" data-toggle="collapse">
+                    &nbsp;用户评论页 <span class="sr-only">(current)</span></a>
                 </li>
                 <li><a href="#recordMeun"  onclick="showAtRight('personCenter/personAddress')"
                        class="nav-header menu-first collapsed" data-toggle="collapse">

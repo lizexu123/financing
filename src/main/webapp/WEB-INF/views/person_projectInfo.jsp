@@ -38,14 +38,14 @@
 
         #gengxin1 {
             position: relative;
-            top: 370px;
-            left: 780px;
+            top: 450px;
+            left: 750px;
             cursor: pointer;
             color: #fff;
             background-color: #d9534f;
             border-color: #d43f3a;
             padding: 10px 16px;
-            width: 200px;
+            width: 400px;
         }
     </style>
 </head>
@@ -60,7 +60,7 @@
                     </tr>
                     <tr>
                         <th>用户id:</th>
-                        <td><input type="text" name="id" value="${sessionScope.user.id}" readonly/></td>
+                        <td><input type="text" value="${sessionScope.user.id}" readonly/></td>
                     </tr>
                     <tr>
                         <th>更新内容</th>

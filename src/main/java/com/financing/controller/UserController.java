@@ -170,7 +170,7 @@ public class UserController {
 //        System.out.println("user = " + user.getUsername());
 //        System.out.println("user1 = " + userService.getUserByUsername(user.getUsername()));
 
-        if(userService.getUserByUsername(user.getUsername())!=null){
+        if (userService.getUserByUsername(user.getUsername()) == null) {
             result.put("flag",FAIL_CODE);
             result.put("msg","this username existed");
             result.put("data","");

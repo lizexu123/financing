@@ -39,41 +39,41 @@
                     <label for="inputEmail" class="col-sm-2 col-md-2 control-label">手机号</label>
                     <div class="col-sm-6 col-md-6">
                         <input type="text" name="mobile" id="inputPhoneNumber" class="form-control"
-                               value="${sessionScope.user.mobile}">
+                               value="${sessionScope.user.mobile}" readonly>
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="inputUserName" class="col-sm-2 col-md-2 control-label">用户名</label>
                     <div class="col-sm-6 col-md-6">
-                        <input type="text" name="username" class="form-control" id="inputUserName" placeholder="请输入用户名">
+                        <input type="text" name="username" class="form-control" id="inputUserName"
+                               placeholder="请输入用户名" value="${sessionScope.user.username}">
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="inputPassword" class="col-sm-2 col-md-2 control-label">密码</label>
                     <div class="col-sm-6 col-md-6">
-                        <input type="password" class="form-control" id="inputPassword" name="password"
-                               value=""${sessionScope.user.password}" />
+                        <input type="password" class="form-control" id="inputPassword" name="password"/>
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="inputEmail" class="col-sm-2 col-md-2 control-label">邮箱</label>
                     <div class="col-sm-6 col-md-6">
                         <input type="email" class="form-control" id="inputEmail" name="email"
-                               placeholder="xxxxxx@xx.com">
+                               placeholder="xxxxxx@xx.com" value="${sessionScope.user.email}">
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="inputId" class="col-sm-2 col-md-2 control-label">身份证</label>
                     <div class="col-sm-6 col-md-6">
                         <input type="text" class="form-control" id="inputId" name="ic"
-                               placeholder="身份证">
+                               placeholder="身份证" value="${sessionScope.user.ic}">
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="inputId" class="col-sm-2 col-md-2 control-label">真实姓名</label>
                     <div class="col-sm-6 col-md-6">
                         <input type="text" class="form-control" id="inputRealName" name="realName"
-                               placeholder="真实姓名" onblur="JudgeUserName()">
+                               placeholder="真实姓名" value="${sessionScope.user.realName}" onblur="JudgeUserName()">
                     </div>
                 </div>
 
@@ -81,7 +81,7 @@
                     <label for="man" class="col-sm-2 col-md-2 control-label">性别</label>
                     <div class="col-sm-6 col-md-6">
                         <label class="radio-inline">
-                            <input type="radio" id="man" value="option1" name="gender"> male
+                            <input type="radio" id="man" value="option1" name="gender" checked="checked"> male
                         </label>
                         <label class="radio-inline">
                             <input type="radio" id="woman" value="option2" name="gender"> female
@@ -92,13 +92,15 @@
                 <div class="form-group">
                     <label for="InputAddress" class="col-sm-2 col-md-2 control-label">地址</label>
                     <div class="col-sm-6 col-md-6">
-                        <input type="text" class="form-control" id="inputAddress" name="zone"/>
+                        <input type="text" class="form-control" value="${sessionScope.user.zone}" id="inputAddress"
+                               name="zone"/>
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="inputInformation" class="col-sm-2 col-md-2 control-label">个人简介</label>
                     <div class="col-sm-6 col-md-6">
-                        <input type="text" class="form-control" name="intro" id="inputInformation"/>
+                        <input type="text" class="form-control" name="intro" value="${sessionScope.user.intro}"
+                               id="inputInformation"/>
                     </div>
                 </div>
                 <div class="form-group">

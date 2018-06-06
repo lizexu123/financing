@@ -4,6 +4,7 @@ import com.financing.entity.Comment;
 import com.financing.entity.Project;
 import com.financing.entity.User;
 import com.financing.service.CommentService;
+import com.financing.service.ProjectService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -26,6 +27,8 @@ public class CommentController {
 
     @Autowired
     private CommentService commentService;
+    @Autowired
+    private ProjectService projectService;
 
     private static final int SUCCESS_CODE = 1;
     private static final int FAIL_CODE = 0;
@@ -43,8 +46,10 @@ public class CommentController {
         String projectId = request.getParameter("project");
         String toUserId = request.getParameter("to_user");
         String content = request.getParameter("content");
+        System.out.println("projectId = " + projectId);
+//        Project project = new Project();
+        Project project = projectService.getProject(projectId);
 
-        Project project = new Project();
         project.setId(projectId);
         User toUser = new User();
         toUser.setId(toUserId);
@@ -54,8 +59,11 @@ public class CommentController {
         comment.setCreateTime(new Date());
         comment.setContent(content);
         comment.setProject(project);
-        comment.setToUser(toUser);
+        if (toUserId != null) {
+            comment.setToUser(toUser);
+        }
 
+        System.out.println("comment = " + comment);
         commentService.addComment(comment);
 
         Map<String,Object> result = new HashMap<String,Object>();
