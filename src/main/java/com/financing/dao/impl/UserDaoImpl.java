@@ -46,7 +46,7 @@ public class UserDaoImpl implements UserDao{
     @Override
     public User queryById(String id) throws Exception {
         Session session = sessionFactory.getCurrentSession();
-        User user = (User) session.load(User.class,id);
+        User user = (User) session.get(User.class,id);
         return user;
     }
 

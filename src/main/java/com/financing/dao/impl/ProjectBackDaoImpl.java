@@ -46,7 +46,7 @@ public class ProjectBackDaoImpl implements ProjectBackDao {
     @Override
     public ProjectBack queryById(int id) {
         Session session = sessionFactory.getCurrentSession();
-        ProjectBack projectBack = (ProjectBack) session.load(ProjectBack.class,id);
+        ProjectBack projectBack = (ProjectBack) session.get(ProjectBack.class,id);
         return projectBack;
     }
 

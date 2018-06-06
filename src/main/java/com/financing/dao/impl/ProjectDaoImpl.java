@@ -42,7 +42,7 @@ public class ProjectDaoImpl implements ProjectDao {
     @Override
     public Project queryById(String id) throws Exception {
         Session session = sessionFactory.getCurrentSession();
-        Project project = (Project) session.load(Project.class,id);
+        Project project = (Project) session.get(Project.class,id);
         return project;
 
     }

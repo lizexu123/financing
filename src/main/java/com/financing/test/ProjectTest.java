@@ -114,4 +114,9 @@ public class ProjectTest {
         List<Order> orders = orderService.getOrderListByPStatus((byte) 2);
     }
 
+    @Test
+    public void testProject(){
+        Project project = projectService.getProject("PJ96589566");
+        System.out.println(project);
+    }
 }

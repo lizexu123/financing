@@ -89,6 +89,7 @@ public class OrderController {
      * @return
      */
     @RequestMapping(value = "/doGetOrder",method = RequestMethod.GET)
+    @ResponseBody
     public Map<String,Object> doGetOrder(HttpSession session){
         User user = (User) session.getAttribute("user");
         List<Order> orders = orderService.getOrderListByUser(user);
