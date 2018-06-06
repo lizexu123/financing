@@ -26,8 +26,6 @@ body {
 
 .callbacks_container {
     position: absolute;
-    margin-top: 104px;
-    /*     z-index: 2; */
     width: 100%;
 }
 
@@ -97,19 +95,19 @@ body {
 .banner1 {
     background: url(../image/bnr.jpg) no-repeat 0px 0px;
     background-size: cover;
-    min-height: 585px;
+    min-height: 715px;
 }
 
 .banner2 {
     background: url(../image/bnr2.jpg) no-repeat 0px 0px;
     background-size: cover;
-    min-height: 585px;
+    min-height: 715px;
 }
 
 .banner3 {
     background: url(../image/bnr3.jpg) no-repeat 0px 0px;
     background-size: cover;
-    min-height: 585px;
+    min-height: 715px;
 }
 
 .rslides {
@@ -174,12 +172,12 @@ body {
 /* <<< About Section >>> */
 .aboutProject {
     position: relative;
-    padding-top: 550px;
+    padding-top: 600px;
     width: 100%;
 }
 
 .aboutProject .Center {
-    padding-top: 30px;
+    padding-top: 60px;
     max-width: 920px;
     margin: auto;
     overflow: hidden;
@@ -195,8 +193,8 @@ body {
 }
 
 .showMember {
-    margin-top: 138px;
-    height: 620px;
+    margin-top: 100px;
+    height: 670px;
     background: rgba(0, 0, 0, 0.1);
 }
 
@@ -346,22 +344,21 @@ body {
 }
 
 .firstBackground {
-    background: url(../image/roll1.jpg) no-repeat center 0px fixed;
+    background: url(../image/BRG3.jpg) no-repeat center 0px fixed;
     background-size: cover;
 }
 
 .secondBackground {
-    background: url(../image/roll3.jpg) no-repeat center 0px fixed;
+    background: url(../image/RBG4.jpg) no-repeat center 0px fixed;
     background-size: cover;
 }
 
 .typeOfProject {
-    padding-top: 20px;
+    padding-top: 40px;
     background: rgba(0, 0, 0, 0.1);
     width: max-content;
     font-family: 'Lato', sans-serif;
 }
-
 .typeOfProject ul {
     text-align: center;
 }

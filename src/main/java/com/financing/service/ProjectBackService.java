@@ -13,5 +13,5 @@ public interface ProjectBackService {
     List<ProjectBack> getBackList(Project project);
     void updateBack(ProjectBack projectBack);
     ProjectBack getBack(int id);
-    void updateActual(ProjectBack projectBack);
+    void updateActual(ProjectBack projectBack,int action);//修改参与回报实际人数
 }

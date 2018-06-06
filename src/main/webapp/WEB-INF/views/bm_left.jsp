@@ -29,13 +29,7 @@
                 </ul>
             </li>
             <li><a href="${ctp}/admin/order"><span>Order</span></a></li>
-            <li class="menu-list"><a href="javascript:void(0);"><span>Data Analysis</span></a>
-                <ul class="sub-menu-list">
-                    <li><a href="">Sign In</a> </li>
-                    <li><a href="">Sign Up</a></li>
-                    <li><a href="">Blank Page</a></li>
-                </ul>
-            </li>
+            <li><a href="${ctp}/admin/dataAnalysis"><span>Data Analysis</span></a></li>
         </ul>
         <!--sidebar nav end-->
     </div>

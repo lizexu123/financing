@@ -24,35 +24,26 @@ public class CategoryDaoImpl implements CategoryDao {
 
     @Override
     public List<Category> queryAll() throws Exception {
-        Session session = sessionFactory.openSession();
-        Transaction tx = session.getTransaction();
-        tx.begin();
+        Session session = sessionFactory.getCurrentSession();
         Query query = session.createQuery("from Category ");
         List<Category> list = query.list();
-        tx.commit();
         return list;
     }
 
     @Override
     public List<Map<String, Object>> queryStatistic() {
-        Session session = sessionFactory.openSession();
-        Transaction tx = session.getTransaction();
-        tx.begin();
+        Session session = sessionFactory.getCurrentSession();
         Query query = session.createQuery("SELECT c.id,c.name,COUNT(p.id) AS COUNT " +
                 "FROM Project p right join p.category c " +
                 "GROUP BY c.id");
         List<Map<String,Object>> list = query.list();
-        tx.commit();
         return list;
     }
 
     @Override
     public void insert(Category category) {
-        Session session = sessionFactory.openSession();
-        Transaction tx = session.getTransaction();
-        tx.begin();
+        Session session = sessionFactory.getCurrentSession();
         session.save(category);
-        tx.commit();
         System.out.println(category.getName());
     }
 }

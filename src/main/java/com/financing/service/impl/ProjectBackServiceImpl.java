@@ -40,7 +40,9 @@ public class ProjectBackServiceImpl implements ProjectBackService {
     }
 
     @Override
-    public void updateActual(ProjectBack projectBack) {
-        projectBackDao.updateActual(projectBack);
+    public void updateActual(ProjectBack projectBack,int action) {
+        //action = 1 实际参与回报人数+1
+        //action = -1 实际参与回报人数-1
+        projectBackDao.updateActual(projectBack,action);
     }
 }

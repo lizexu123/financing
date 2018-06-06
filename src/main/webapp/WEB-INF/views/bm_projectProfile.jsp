@@ -24,7 +24,7 @@
     <jsp:include page="bm_header.jsp"/>
     <div id="page-wrapper">
         <div class="page-wrapper-inner">
-            <h3 style="font-size: 2em;color: #999;margin: 0 0 0.5em 1em;">Project profile</h3>
+            <h3 style="font-size: 2em;color: #292929;margin: 0 0 0.5em 1em;">Project profile</h3>
             <div class="project-profile"  style="margin-top: 30px;">
                 <div class="panel-head">
                     <h2>Project List</h2>

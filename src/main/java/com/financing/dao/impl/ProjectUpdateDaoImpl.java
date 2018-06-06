@@ -26,7 +26,6 @@ public class ProjectUpdateDaoImpl implements ProjectUpdateDao {
         Session session = sessionFactory.openSession();
         Transaction tx = session.getTransaction();
         tx.begin();
-        System.out.println("projectUpdate = " + projectUpdate.getId());
         session.save(projectUpdate);
         tx.commit();
         System.out.println("///"+projectUpdate);

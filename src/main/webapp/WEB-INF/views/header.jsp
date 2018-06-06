@@ -17,10 +17,10 @@
     </div>
     <div class="top-nav">
         <ul class="memenu skyblue">
-            <li id="Home" class="active"><a href="${ctp}/index">Home</a></li>
-            <li id="Hot" class="grid"><a href="${ctp}/doShowHotProject">Hot</a></li>
-            <li id="New" class="grid"><a href="${ctp}/doShowNewProject">New</a></li>
-            <li id="All" class="grid"><a href="${ctp}/doProjectAll">All</a>
+            <li id="Home" class="active"><a onclick="clickChangeBar()" href="${ctp}/index">Home</a></li>
+            <li id="Hot" class="grid"><a onclick="clickChangeBar()" href="${ctp}/doShowHotProject">Hot</a></li>
+            <li id="New" class="grid"><a onclick="clickChangeBar()" href="${ctp}/doShowNewProject">New</a></li>
+            <li id="All" class="grid"><a onclick="clickChangeBar()" href="${ctp}/doProjectAll">All</a>
                 <div class="mepanel">
                     <div class="row">
                         <div class="col1 me-one">
@@ -106,7 +106,17 @@
                     window.location.href = '${ctp}/doProjectByKey-' + $.trim($input.val());
                 }
             );
-        });
+
+            function clickChangeBar() {
+                $('.top-nav>ul>li').removeClass("active").addClass("grid");
+                this.addClass("active");
+                window.location.href = this.href;
+            }
+        }
+    );
+</script>
+<script type="text/javascript">
+
 </script>
 </body>
 </html>

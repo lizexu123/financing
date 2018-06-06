@@ -24,7 +24,7 @@
     <jsp:include page="bm_header.jsp"/>
     <div id="page-wrapper">
         <div class="page-wrapper-inner">
-            <h3 style="font-size: 2em;color: #999;margin: 0 0 0.5em 1em;">Order profile</h3>
+            <h3 style="font-size: 2em;color: #292929;margin: 0 0 0.5em 1em;">Order profile</h3>
             <div class="order-profile"  style="margin-top: 30px;">
                 <div class="panel-head">
                     <h2>Order List</h2>
@@ -43,6 +43,15 @@
                             <th>POST</th>
                             <th>ADDRESS</th>
                             <th>CREATE</th>
+                            <th class="dropdown">
+                                <a href="javascript:void(0);" onclick="submenu(this)">STATUS</a>
+                                <ul class="dropdown-action" style="left: 0;">
+                                    <li> <a href="javascript:void(0);" onclick="getOrders()">ALL</a> </li>
+                                    <li> <a href="javascript:void(0);" onclick="getOrdersByStatus(0)">SUBMITTED</a> </li>
+                                    <li> <a href="javascript:void(0);" onclick="getOrdersByStatus(-1)">WITHDRAWN</a> </li>
+                                    <li> <a href="javascript:void(0);" onclick="getOrdersByStatus(-2)">REFUND</a> </li>
+                                </ul>
+                            </th>
                         </tr>
                         </thead>
                         <tbody id="orders">
@@ -90,7 +99,75 @@
                                 "<td>" + data[i].address.zone+'-'+data[i].address.detail + "</td>" +
                                 "<td>" + data[i].createTime + "</td>"
 
+                            switch (data[i].status){
+                                case 0:
+                                    str+="<td> submitted </td>";
+                                    break;
+                                case -1:
+                                    str+="<td> withdrawn</td>";
+                                    break;
+                                case -2:
+                                    str+="<td> refund </td>";
+                                    break;
+                            }
+
+                            str+="</tr>";
+
                             $("#orders").append(str);
+                        }
+                    }
+                } else if(flag == 0){
+                    alert("error");
+                }
+            })
+        })
+    }
+
+    function getOrdersByStatus(status) {
+        $.ajax({
+            type:'GET',
+            async : true,
+            url : '${ctp}/doGetOrderList',
+            dataType : 'json',
+            data:null,
+            success:(function(result){
+                var flag = parseInt(result.flag);
+                var data = result.data;
+
+                if(flag == 1) {
+                    $("#orders").empty();
+                    if (data.length > 0) {
+                        for (var i = 0; i < data.length; i++) {
+                            if (data[i].status==status) {
+                                var str = "";
+                                str += "<tr>" +
+                                    "<th scope=\"row\">" + (i + 1) + "</th>" +
+                                    "<td>" + data[i].id + "</td>" +
+                                    "<td>" + data[i].user.id + "</td>" +
+                                    "<td>" + data[i].project.id + "</td>" +
+                                    "<td>" + data[i].amount + "</td>" +
+                                    "<td>" + data[i].projectBack.content + "</td>" +
+                                    "<td>" + (data[i].compensation == 1 ? 'N' : 'Y') + "</td>" +
+                                    "<td>" + (data[i].post == 1 ? 'Y' : 'N' ) + "</td>" +
+                                    "<td>" + data[i].address.zone + '-' + data[i].address.detail + "</td>" +
+                                    "<td>" + data[i].createTime + "</td>"
+
+                                switch (data[i].status) {
+                                    case 0:
+                                        str += "<td> submitted </td>";
+                                        break;
+                                    case -1:
+                                        str += "<td> withdrawn</td>";
+                                        break;
+                                    case -2:
+                                        str += "<td> refund </td>";
+                                        break;
+                                }
+
+                                str += "</tr>";
+
+                                $("#orders").append(str);
+                            }
                         }
                     }
                 } else if(flag == 0){

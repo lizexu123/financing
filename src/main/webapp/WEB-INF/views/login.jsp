@@ -100,31 +100,7 @@
         </div>
     </div>
 </div>
-
-<%--<div id="LoginPart">--%>
-<%--<h2>登录</h2>--%>
-<%--<form action="${ctp}/doLogin" method="post">--%>
-<%--account:<input name="account" type="text">--%>
-<%--password:<input name="password" type="password">--%>
-<%--<input type="submit" value="提交">--%>
-<%--</form>--%>
-<%--</div>--%>
-
-<%--<div id="Register">--%>
-<%--<h2>注册</h2>--%>
-<%--<form action="${ctp}/doRegister" method="post">--%>
-<%--account:<input name="mobile" type="text">--%>
-<%--password:<input name="password" type="password">--%>
-<%--<input type="submit" value="提交">--%>
-<%--</form>--%>
-<%--</div>--%>
-
-
-<div class="footer-link">
-    <p>Copyright © 2018 Fund-Raising
-    <p>Designer :&ensp;Penny&ensp;Wendy&ensp;CoolLi</p>
-    <p><a rel="nofollow" href="#" target="_parent">NIIT Project</a></p>
-</div>
+<jsp:include page="footer.jsp"/>
 <script type="text/javascript" src="${ctp}/js/Login&Register.js"></script>
 </body>
 </html>

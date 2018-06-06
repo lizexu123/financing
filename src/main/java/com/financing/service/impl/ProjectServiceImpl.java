@@ -2,16 +2,19 @@ package com.financing.service.impl;
 
 import com.financing.dao.ProjectDao;
 import com.financing.entity.Category;
+import com.financing.entity.Page;
 import com.financing.entity.Project;
 import com.financing.entity.User;
 import com.financing.service.ProjectService;
 import com.financing.utils.WebServiceUtil;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
+import org.apache.commons.collections.map.HashedMap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -51,8 +54,8 @@ public class ProjectServiceImpl implements ProjectService {
         String result =null;
         String url ="http://op.juhe.cn/onebox/exchange/currency";//请求接口地址
         Map params = new HashMap();//请求参数
-        params.put("from",from);//身份证号码
-        params.put("to",to);//返回数据格式：json或xml,默认json
+        params.put("from",from);
+        params.put("to",to);
         params.put("key",appKey);//你申请的key
 
         try {
@@ -165,8 +168,31 @@ public class ProjectServiceImpl implements ProjectService {
     }
 
     @Override
-    public void updateSupport(Project project, BigDecimal amount) {
-        projectDao.updateSupport(project,amount);
+    public void updateSupport(Project project, BigDecimal amount,int action) {
+        //action = 1 融资支持数+1，已筹金额+amount
+        //action = -1 融资支持数-1，已筹金额-amount
+        projectDao.updateSupport(project,amount,action);
+    }
+
+    @Override
+    public List<Project> getFinancingStatisticTop() {
+        List<Project> statistic = projectDao.queryFinancingStaticTop();
+        return statistic;
+    }
+
+    @Override
+    public List<Map<String, Object>> getProjectStatistic() {
+        return projectDao.queryProjectStatistic();
+    }
+
+    @Override
+    public int getProjectAllCont() {
+        return projectDao.queryAll().size();
+    }
+
+    @Override
+    public List<Project> findByPage(Page page) {
+        return projectDao.queryAllByLimit(page.getBeginIndex(), page.getEveryPage());
     }
 
 

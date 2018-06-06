@@ -33,24 +33,29 @@ public class UserController {
 
 
     /**
-     * test
+     * 获取当前用户信息
+     * @param session
      * @return
      */
-    @RequestMapping(value = "/doTest")
+    @RequestMapping(value = "/doUserInfo")
     @ResponseBody
-    public Map<String,Object> test(){
+    public Map<String,Object> doUserInfo(HttpSession session){
         Map<String,Object> result = new HashMap<String, Object>();
-        User user = new User();
-        user.setUsername("Penny");
-        user.setPassword("123456");
-        user.setEmail("1183346011@qq.com");
-        result.put("flag",SUCCESS_CODE);
-        result.put("msg","test");
-        result.put("data",user);
+        User user = (User) session.getAttribute("user");
+        if (user!=null){
+            user =userService.getUser(user.getMobile());
+            session.setAttribute("user",user);
+            result.put("flag",SUCCESS_CODE);
+            result.put("msg","update session success");
+            result.put("data",user);
+            return result;
+        }else{
+            result.put("flag",SUCCESS_CODE);
+            result.put("msg","timeout login");
+            return result;
+        }
 
-        return result;
     }
-
 
     /**
      * 用户登录操作

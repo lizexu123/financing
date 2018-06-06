@@ -1,13 +1,11 @@
 package com.financing.controller;
 
-import com.financing.entity.Category;
-import com.financing.entity.Project;
-import com.financing.entity.ProjectBack;
-import com.financing.entity.User;
+import com.financing.entity.*;
 import com.financing.service.ProjectBackService;
 import com.financing.service.ProjectService;
 import com.financing.utils.DateUtil;
 import com.financing.utils.FileUploadUtil;
+import com.financing.utils.PageUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -134,7 +132,7 @@ public class ProjectController {
         result.put("msg","NEW");
         result.put("data",projects);
         map.addAllAttributes(result);
-        return "project_show";
+        return "project_show2";
     }
 
     /**
@@ -150,7 +148,7 @@ public class ProjectController {
         result.put("msg","HOT");
         result.put("data",projects);
         map.addAllAttributes(result);
-        return "project_show";
+        return "project_show2";
     }
 
     /**
@@ -267,7 +265,7 @@ public class ProjectController {
         result.put("msg","success");
         result.put("data",projects);
         map.addAllAttributes(result);
-        return "project_show";
+        return "project_show2";
     }
 
 
@@ -278,13 +276,24 @@ public class ProjectController {
      * @return
      */
     @RequestMapping(value = "/doProjectAll",method = RequestMethod.GET)
-    public String doProjectAll(ModelMap map){
-        List<Project> projects = projectService.getProjectList();
-        Map<String,Object> result = new HashMap<String,Object>();
-        result.put("flag",SUCCESS_CODE);
-        result.put("msg","success");
-        result.put("data",projects);
-        map.addAllAttributes(result);
+    public String doProjectAll(ModelMap map,HttpServletRequest request){
+        int everyPage = 5;//每页记录数
+        int totalCount = projectService.getProjectAllCont();//获取总记录数
+        //点击链接重新获取当前页
+        String scurrentPage = request.getParameter("currentPage");
+        int currentPage = 1; //当前页，默认1
+        if (scurrentPage == null) {
+            currentPage = 1;//从第一页开始访问
+        } else {
+            currentPage = Integer.parseInt(scurrentPage);
+        }
+        //分页信息
+        Page page = PageUtil.createPage(everyPage, totalCount, currentPage);
+        //分页数据信息
+        List<Project> list = projectService.findByPage(page);
+
+        map.addAttribute("page",page);
+        map.addAttribute("list",list);
         return "project_show";
     }
 
@@ -302,7 +311,7 @@ public class ProjectController {
         result.put("msg","success");
         result.put("data",projects);
         map.addAllAttributes(result);
-        return "project_show";
+        return "project_show2";
     }
 
 

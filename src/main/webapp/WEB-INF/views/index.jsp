@@ -53,7 +53,6 @@
         $('#showNP').onloadstart(
             showTopFiveOfNH('doNewProjectTop')
         );
-
         // 展示前五条最热最新记录
         function showTopFiveOfNH(url) {
             $.ajax({

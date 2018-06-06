@@ -24,7 +24,7 @@
     <jsp:include page="bm_header.jsp"/>
     <div id="page-wrapper">
         <div class="page-wrapper-inner">
-            <h3 style="font-size: 2em;color: #999;margin: 0 0 0.5em 1em;">Project Category</h3>
+            <h3 style="font-size: 2em;color: #292929;margin: 0 0 0.5em 1em;">Project Category</h3>
             <div class="category-profile"  style="margin-top: 30px;">
                 <div style="height: 60px">
                     <div class="category-add">
