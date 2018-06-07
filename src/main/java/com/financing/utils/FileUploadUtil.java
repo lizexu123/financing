@@ -34,6 +34,8 @@ public class FileUploadUtil {
                     fileRealPath = "/financing-uploadfile/image";
                     fileName = "cover_"+fileId+".jpg";
                     filePath = "/upload/image/"+fileName;
+                    System.out.println("filePath = " + filePath);
+                    System.out.println("fileRealPath = " + fileRealPath);
                 }else if (type.equals("video/mp4")){
 //                    fileRealPath = servletContext.getRealPath("/res/video_upload");
                     fileRealPath = "/financing-uploadfile/video";

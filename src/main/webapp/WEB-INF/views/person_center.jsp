@@ -21,6 +21,7 @@
         <div class="personal_info fix">
             <div class="personal_info_left l">
                 <div class="head_portrait l">
+                    <a href="index">index</a>
                     <img src="${sessionScope.user.avatar}" alt="">
                 </div>
                 <div class="nickname l">

@@ -108,15 +108,7 @@ public class MainController {
     public String personCenter() {
         return "person_center";
     }
-//    /**
-//     * 个人中心页
-//     *
-//     * @return
-//     */
-//    @RequestMapping(value = "/personCenter1")
-//    public String personCenter() {
-//        return "person_center1";
-//    }
+
 
 
     /**
@@ -221,6 +213,14 @@ public class MainController {
     @RequestMapping(value = "/personCenter/personComment")
     public String personComment() {
         return "person_comment";
+    }
+
+    /*
+    y用户更新页
+     */
+    @RequestMapping(value = "personUpdate")
+    public String personUpdate() {
+        return "person_projectUpdate";
     }
 
     /**

@@ -2,7 +2,6 @@ function modify() {
     var user = {};
     user.userName = document.getElementById("inputUserName").value;
     user.email = document.getElementById("inputEmail").value;
-    user.mobile = document.getElementById("inputPhoneNumber").value;
     user.zone = document.getElementById("inputAddress").value;
     user.intro = document.getElementById("inputInformation").value;
     var aa = /^[a-zA-Z0-9]{6,12}$/;
@@ -33,22 +32,6 @@ function modify() {
 
     } else {
         layer.msg('地址不能为空');
-        return false;
-    }
-    if (user.ic) {
-
-    } else {
-        layer.msg('身份证不能为空');
-        return false;
-    }
-    if (!bb.test(user.ic)) {
-        layer.msg('身份证只能是18位');
-        return false;
-    }
-    if (user.realName) {
-
-    } else {
-        layer.msg('真实姓名不能为空');
         return false;
     }
 

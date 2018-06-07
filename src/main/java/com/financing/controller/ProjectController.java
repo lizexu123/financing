@@ -339,7 +339,7 @@ public class ProjectController {
      * @param pid
      * @return
      */
-    @RequestMapping(value = "/doProjectInfo-{pid}")
+    @RequestMapping(value = "personCenter/doProjectInfo-{pid}")
     public String doProjectInfo(HttpSession session, @PathVariable("pid") String pid,ModelMap map){
         User user = (User) session.getAttribute("user");
         Project project = projectService.getProject(pid);
@@ -349,8 +349,8 @@ public class ProjectController {
         result.put("msg","project detail");
         result.put("data",project);
         map.addAllAttributes(result);
-
-        return "person_projectInfo";
+        System.out.println("result = " + result);
+        return "person_projectUpdate";
     }
 
 

@@ -46,7 +46,7 @@
         <a href="javascript:;" id="searchImg"></a>
     </div>
     <c:choose>
-        <c:when test="${empty currentUser}">
+        <c:when test="${empty sessionScope.user}">
             <%--未登录，提示登录按钮--%>
             <div id="defaultShow">
                 <button id="promptLogin" type="submit" onclick="window.location.href='login'"
@@ -56,7 +56,7 @@
             </div>
         </c:when>
         <c:otherwise>
-            <c:if test="${currentUser.role == 1}">
+            <%--<c:if test="${sessionScope.user.role == 1}">--%>
                 <div class="self-Page">
                     <ul class="memenu skyblue">
                         <li>
@@ -75,9 +75,10 @@
                                 <div class="row">
                                     <div class="col1 me-one">
                                         <ul>
-                                            <li><a href="${ctp}/person_center"><span class="icon_profile"></span>My
+                                            <li><a href="${ctp}/personCenter"><span class="icon_profile"></span>My
                                                 Profile</a></li>
-                                            <li><a href="${ctp}/person_project"><span class="icon_clipboard"></span>My
+                                            <li><a href="${ctp}/personCenter/personInfo"><span
+                                                    class="icon_clipboard"></span>My
                                                 Project</a>
                                             </li>
                                             <li><a href="${ctp}/doLogout"><span class="icon_key"></span>Log Out</a></li>
@@ -88,7 +89,7 @@
                         </li>
                     </ul>
                 </div>
-            </c:if>
+            <%--</c:if>--%>
         </c:otherwise>
     </c:choose>
 </div>

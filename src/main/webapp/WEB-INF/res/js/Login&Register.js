@@ -1677,7 +1677,7 @@ function login() {
         success: function (result) {
             console.log(result);//打印服务端返回的数据(调试用)
             if (result.flag == 1) {
-                window.location.href = "personCenter";
+                window.location.href = "index";
             } else {
                 layer.msg(result.msg);
             }
@@ -1697,7 +1697,7 @@ function login1() {
         success: function (result) {
             console.log(result);//打印服务端返回的数据(调试用)
             if (result.flag == 1) {
-                window.location.href = "personCenter";
+                window.location.href = "index";
             } else {
                 layer.msg(result.msg);
             }

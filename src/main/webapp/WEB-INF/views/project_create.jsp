@@ -36,7 +36,7 @@
                             <p class="_title l">Contact_name</p>
                             <p class="l">
                                 <input type="text" name="contact_name" id="inputContaceName"
-                                       class="form-control" value="${sessionScope.user.realName}" readonly>
+                                       class="form-control">
                             </p>
                             <div style="clear: both"></div>
                         </li>
@@ -45,7 +45,7 @@
                             <p class="_title l">Contact_phone</p>
                             <p class="l">
                                 <input type="text" name="contact_phone" id="inputContact"
-                                       class="form-control" value="${sessionScope.user.mobile}" readonly>
+                                       class="form-control">
                             </p>
                             <div style="clear: both"></div>
                         </li>
@@ -82,6 +82,7 @@
                             </p>
                             <div style="clear: both"></div>
                         </li>
+
                         <li class="fix">
                             <p class="_title l">endTime</p>
                             <p class="l">
@@ -123,20 +124,20 @@
 <script type="text/javascript">
 
     var ue_param = {//工具栏配置项
-        toolbars : [ [ 'cleardoc', 'selectall', '|', 'undo', 'redo', '|',
+        toolbars: [['cleardoc', 'selectall', '|', 'undo', 'redo', '|',
             'bold', 'italic', 'underline', 'strikethrough', 'fontsize',
             'forecolor', 'fontfamily', 'link', '|', 'justifyleft',
             'justifycenter', 'justifyright', '|', 'horizontal',
-            'pasteplain', '|', '|', 'removeformat', '|', 'charts','|','simpleupload' ]
+            'pasteplain', '|', '|', 'removeformat', '|', 'charts', '|', 'simpleupload']
 
         ],
-        autoHeightEnabled : false,
-        autoFloatEnabled : false,
-        elementPathEnabled : false,
-        relativePath : true,
-        pasteplain : true,
-        saveInterval : 60 * 60 * 24,
-        wordCount : false,
+        autoHeightEnabled: false,
+        autoFloatEnabled: false,
+        elementPathEnabled: false,
+        relativePath: true,
+        pasteplain: true,
+        saveInterval: 60 * 60 * 24,
+        wordCount: false,
 
     }
     var ue1 = UE.getEditor('dpeditor', ue_param);

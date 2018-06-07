@@ -7,7 +7,10 @@ import com.financing.service.ProjectService;
 import com.financing.utils.DateUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import java.math.BigDecimal;
@@ -47,7 +50,7 @@ public class ProjectBackController {
         int post = Integer.parseInt(request.getParameter("post"));
         int allow = Integer.parseInt(request.getParameter("allow"));
         Date backDate = DateUtil.StringToDate(request.getParameter("back_date"));
-
+        System.out.println("projectId = " + projectId);
         Project project = projectService.getProject(projectId);
 
 
@@ -59,7 +62,7 @@ public class ProjectBackController {
         back.setBackDate(backDate);
         back.setContent(content);
         back.setPost(post);
-
+        System.out.println("project = " + project);
         projectBackService.addBack(back);
 
         Map<String,Object> result = new HashMap<String,Object>();
