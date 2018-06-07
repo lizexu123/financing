@@ -108,26 +108,36 @@ public class MainController {
     public String personCenter() {
         return "person_center";
     }
+//    /**
+//     * 个人中心页
+//     *
+//     * @return
+//     */
+//    @RequestMapping(value = "/personCenter1")
+//    public String personCenter() {
+//        return "person_center1";
+//    }
+
 
     /**
      * 个人资料页
      */
-    @RequestMapping(value = "/personInfo")
+    @RequestMapping(value = "/personCenter/personInfo")
     public String personData() {
         return "person_info";
     }
 
 
-    /**
-     * 个人中心-个人资料页
-     *
-     * @return
-     */
-
-    @RequestMapping(value = "/personCenter/personInfo")
-    public String personInfo() {
-        return "person_info";
-    }
+//    /**
+//     * 个人中心-个人资料页
+//     *
+//     * @return
+//     */
+//
+//    @RequestMapping(value = "/personCenter/personInfo")
+//    public String personInfo() {
+//        return "person_info";
+//    }
 
 
     /**
@@ -141,6 +151,8 @@ public class MainController {
     }
 
     /**
+
+     /**
      * 用户项目管理页
      *
      * @return
@@ -222,3 +234,6 @@ public class MainController {
         return "project_Detail";
     }
 }
+/*
+ * 立即支持页
+ */

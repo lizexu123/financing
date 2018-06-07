@@ -6,106 +6,75 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>Insert title here</title>
+    <link rel="stylesheet" href="css/pc.css">
     <script src="${ctp}/js/jquery-1.11.0.min.js" type="text/javascript"></script>
+    <script src="${ctp}/js/layer.js" type="text/javascript"></script>
     <link href="${ctp}/css/style.css" rel="stylesheet">
 
 </head>
 <body>
-<div class="row">
-    <div class="col-sm-1 col-md-1"></div>
-    <div class="col-sm-5 col-md-5 detail-x">
-
-            <table class="table table-striped" id="tbody" style="width:1250px">
-
-            </table>
-
+<div class="wrap">
+    <jsp:include page="person_left.jsp"/>
+    <ul class="ul_left_nav">
+        <li class="active">
+            <a href="personCenter">
+                <i class="left_nav_icon dib">
+                    <img class="icon_img" src="image/personal_icon04.png" alt="">
+                </i>
+                <span class="left_nav_name dib">Person Center</span>
+            </a>
+        </li>
+        <li>
+            <a href="personInfo">
+                <i class="left_nav_icon dib">
+                    <img class="icon_img" src="image/personal_icon09.png" alt="">
+                </i>
+                <span class="left_nav_name dib">Person Info</span>
+            </a>
+        </li>
+        <li>
+            <a href="personCenter/projectCreate">
+                <i class="left_nav_icon dib">
+                    <img class="icon_img" src="image/personal_icon08.png" alt="">
+                </i>
+                <span class="left_nav_name dib">Project Publish</span>
+            </a>
+        </li>
+        <li>
+            <a href="personCenter/personProject">
+                <i class="left_nav_icon dib">
+                    <img class="icon_img" src="image/personal_icon07.png" alt="">
+                </i>
+                <span class="left_nav_name dib">My Project</span>
+            </a>
+        </li>
+        <li>
+            <a href="person_order">
+                <i class="left_nav_icon dib">
+                    <img class="icon_img" src="image/personal_icon02.png" alt="">
+                </i>
+                <span class="left_nav_name dib">My Order</span>
+            </a>
+        </li>
+        <li>
+            <a href="person_address.html">
+                <i class="left_nav_icon dib">
+                    <img class="icon_img" src="image/personal_icon06.png" alt="">
+                </i>
+                <span class="left_nav_name dib">My Address</span>
+            </a>
+        </li>
+        <li>
+            <a href="person_comment.html">
+                <i class="left_nav_icon dib">
+                    <img class="icon_img" src="image/personal_icon01.png" alt="">
+                </i>
+                <span class="left_nav_name dib">My Comment</span>
+            </a>
+        </li>
+    </ul>
     </div>
+
 </div>
 </body>
-<script type="text/javascript">
-    function timestampToTime(timestamp) {
-        var date = new Date(timestamp);//时间戳为10位需*1000，时间戳为13位的话不需乘1000
-        Y = date.getFullYear() + '-';
-        M = (date.getMonth()+1 < 10 ? '0'+(date.getMonth()+1) : date.getMonth()+1) + '-';
-        D = date.getDate() + ' ';
-        h = date.getHours() + ':';
-        m = date.getMinutes() + ':';
-        s = date.getSeconds();
-        return Y+M+D+h+m+s;
-    }
-    // //获取项目总数的ajax
-    // $.ajax({//调用ajax后台数据异步方法
-    //     //提交的方式
-    //     type: "get",
-    //     async: false,
-    //     //数据的传送页面：要启动界面的地址/界面的后台的方法
-    //     url: "doProjectByUser",
-    //     // contentType:false,
-    //     //重要的后台的回调函数（很重要）
-    //     success: function (result) {
-    //         if (result.flag == 1) {
-    //             document.getElementById("inputSum").value = result.data;
-    //         } else {
-    //             layer.msg("拿不到数据");
-    //         }
-    //     },
-    // });
-
-    $.ajax({//调用ajax后台数据异步方法
-        //提交的方式
-        type: "get",
-        async: false,
-        //数据的传送页面：要启动界面的地址/界面的后台的方法
-        url: "doProjectByUser",
-        // contentType:false,
-        //重要的后台的回调函数（很重要）
-        success: function (result) {
-            console.log(result.data);
-            if (result.flag == 1) {
-                console.log(result.flag);
-                // var d = eval('(' + result.data+ ')');
-                var d = result.data;
-                $("#tbody").append('<th>标题</th><th>项目种类</th><th>目标金额</th><th>发布时间</th><th>截止时间</th><th>项目团队</th><th>融资目的</th><th>联系人姓名</th><th>咨询电话</th><th>联系电话</th><th>项目更新</th>');
-                for (var i = 0; i < d.length; i++) {
-                    if ($("#tbody tr").length <= d.length) {
-
-                        $("#tbody").append(
-                            "<tr>" +
-                            "<td>" + d[i]["title"] + "</td>" +
-                            "<td>" + d[i]["category"].name + "</td>" +
-                            "<td>" + d[i]["goalAmount"] + "</td>" +
-                            "<td>" + timestampToTime(d[i]["publishTime"])+ "</td>" +
-                            "<td>"+ timestampToTime(d[i]["endTime"])+"</td>" +
-                            "<td>"+d[i]["team"]+"</td>" +
-                            "<td>"+d[i]["purpose"]+"</td>" +
-                            "<td>"+d[i]["contactName"]+"</td>" +
-                            "<td>"+d[i]["hotline"]+"</td>" +
-                            "<td>"+d[i]["contactPhone"]+"</td>" +
-                            "<td><a href='doProjectInfo-" + d[i]["id"] + "'>项目更新</a></td>" +
-                            "</tr>");
-                    } else {
-                        layer.msg("拿不到数据");
-                    }
-
-                }
-            }
-        }
-    });
-    // $.ajax({//调用ajax后台数据异步方法
-    //     //提交的方式
-    //     type: "get",
-    //     async: false,
-    //     //数据的传送页面：要启动界面的地址/界面的后台的方法
-    //     url: "doNewProjectTo",
-    //     // contentType:false,
-    //     //重要的后台的回调函数（很重要）
-    //     success: function (result) {
-    //         if (result.flag == 1) {
-    //         } else {
-    //             layer.msg("拿不到数据");
-    //         }
-    //     },
-    // });
-
-</script>
 </html>

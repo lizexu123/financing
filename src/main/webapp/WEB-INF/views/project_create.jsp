@@ -1,133 +1,126 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-         pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <c:set var="ctp" value="${pageContext.request.contextPath}"/>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>发起项目</title>
-    <link href="${ctp}/css/bstp.css" rel="stylesheet">
-    <link href="${ctp}/css/style.css" rel="stylesheet">
-    <script src="${ctp}/js/jquery-1.11.0.min.js" type="text/javascript"></script>
-    <%--<script src="${cp}/js/bstp.min.js" type="text/javascript"></script>--%>
-    <script src="${ctp}/js/layer.js" type="text/javascript"></script>
-    <script src="${ctp}/js/projectCreate.js" type="text/javascript"></script>
+    <title>发布项目</title>
+    <link rel="stylesheet" href="${ctp}/css/pc.css">
+    <script type="text/javascript" src="${ctp}/js/jquery-1.11.0.min.js"></script>
     <script type="text/javascript" charset="utf-8"
             src="${ctp}/ueditor/ueditor.config.js"></script>
     <script type="text/javascript" charset="utf-8"
             src="${ctp}/ueditor/ueditor.all.js"></script>
     <script type="text/javascript" charset="utf-8"
             src="${ctp}/ueditor/lang/zh-cn/zh-cn.js"></script>
-
-
-
-
+    <script src="${ctp}/js/layer.js" type="text/javascript"></script>
 </head>
-<body>
-<!-- 中间内容 -->
-<div class="container-fluid" style="width:1000px;">
-    <div class="row">
-        <div class="col-sm-1 col-md-1"></div>
-        <div class="col-sm-10 col-md-10">
-            <h1>项目发布</h1>
-            <hr/>
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-sm-1 col-md-1"></div>
-        <div class="col-sm-5 col-md-5 detail-x">
-            <form action="/doCreateProject" id="formCreate" enctype="multipart/form-data">
-                <table class="table table-striped">
-                <tr>
-                    <th>项目标题</th>
-                    <td><input type="text" name="title" id="inputTitle" class="form-control"></td>
-                </tr>
-                <tr>
-                    <th>用户id</th>
-                    <td><input type="text" name="user_id" id="inputUserId" class="form-control"
-                               value="${sessionScope.user.id}"></td>
-                </tr>
-                    <tr>
-                        <th>项目种类id</th>
-                        <td><input type="text" name="category_id" id="inputCatagoryId" class="form-control"></td>
-                    </tr>
-
-
-                <tr>
-                    <th>目标金额</th>
-                    <td><input type="money" name="goal_amount" id="inputGoalAmount" class="form-control"></td>
-                </tr>
-                <tr>
-                    <th>发布时间</th>
-                    <td><input type="date" name="publish_time" id="inputPublishTime" class="form-control"></td>
-                </tr>
-                <tr>
-                    <th>截止时间</th>
-                    <td><input type="date" name="end_time" id="inputEndTime" class="form-control"></td>
-                </tr>
-                <tr>
-                    <th>项目团队</th>
-                    <td><input type="text" name="team" id="inputTeam" class="form-control"></td>
-                </tr>
-                <tr>
-                    <th>融资目的</th>
-                    <td><input type="text" name="purpose" id="inputPurpose" class="form-control"></td>
-                </tr>
-                <tr>
-                    <th>联系人姓名</th>
-                    <td><input type="text" name="contact_name" id="inputContaceName"
-                               class="form-control" value="${sessionScope.user.realName}"></td>
-                </tr>
-                <tr>
-                    <th>咨询电话</th>
-                    <td><input type="text" name="hotline" id="inputhotline"
-                               class="form-control"></td>
-                </tr>
-                    <tr>
-                        <th>status</th>
-                        <td><input type="text" name="status" id="inputStatus"
-                                   class="form-control" value="0" readonly></td>
-                    </tr>
-                <tr>
-                    <th>联系人电话</th>
-                    <td><input type="text" name="contact_phone" id="inputContact"
-                               class="form-control" value="${sessionScope.user.mobile}"></td>
-                </tr>
-                    <tr>
-                        <th>封面</th>
-                        <td><input type="file" name="coverUpload" id="inputCover"
-                                   class="form-control" ></td>
-                    </tr>
-
-            </table>
-
-                <div id="ueditor" name="detail"  type="text/plain">
-                    <%--<iframe src="ueditor/index.html"--%>
-                            <%--name="ifd"--%>
-
-                            <%--onload="this.height=ifd.document.body.scrollHeight"--%>
-
-                            <%--width="100%" scrolling="no"--%>
-
-                            <%--frameborder="0"/>--%>
-
+<body class="personal">
+<div class="wrap">
+    <jsp:include page="person_left.jsp"/>
+    <div class="r right_content">
+        <div class="common minheight800">
+            <form action="/doCreateProject" id="createForm" enctype="multipart/form-data">
+                <div class="common_title fix">
+                    <span class="l">Personal Information:${sessionScope.user.id} 欢迎您！</span>
+                    <a href="#" class="complete r"></a>
                 </div>
-                <div class="col-sm-2 col-md-2 col-lg-2"></div>
-                <button class="btn btn-danger btn-lg col-sm-4 col-md-4 col-lg-4"
-                       id="nextPage"    type="button"  onclick="fabu()">确定发布
-                    </button>
+                <div class="user_info fix">
+                    <ul class="user_info_ul">
+                        <li class="fix">
+                            <p class="_title l">title</p>
+                            <p class="l">
+                                <input type="text" name="title" id="inputTitle" class="form-control">
+                            </p>
+                            <div style="clear: both"></div>
+                        <li class="fix">
+                            <p class="_title l">Contact_name</p>
+                            <p class="l">
+                                <input type="text" name="contact_name" id="inputContaceName"
+                                       class="form-control" value="${sessionScope.user.realName}" readonly>
+                            </p>
+                            <div style="clear: both"></div>
+                        </li>
+                        <div style="clear: both"></div>
+                        <li class="fix">
+                            <p class="_title l">Contact_phone</p>
+                            <p class="l">
+                                <input type="text" name="contact_phone" id="inputContact"
+                                       class="form-control" value="${sessionScope.user.mobile}" readonly>
+                            </p>
+                            <div style="clear: both"></div>
+                        </li>
+                        <li class="fix">
+                            <p class="_title l">category</p>
+                            <p class="l">
+                                ：<select id="category" name="category_id"></select>
+                            </p>
+                            <div style="clear: both"></div>
+                        </li>
+                        <li class="fix">
+                            <p class="_title l">hotline</p>
+                            <p class="l">
+                                <input type="text" name="hotline" id="inputhotline"
+                                       class="form-control">
+                            </p>
+                            <div style="clear: both"></div>
+                        </li>
+                        <li class="user_info_img fix">
+                            <p class="_title l">cover</p>
+                            <div class="l _img">
+                                <img src="${ctp}/image/personal_index_img.png" alt="">
+                                <div class="am-form-group am-form-file">
+                                    <input type="file" name="coverUpload" id="inputCover"
+                                           class="form-control">
+                                </div>
+                            </div>
+                            <div style="clear: both"></div>
+                        </li>
+                        <li class="fix">
+                            <p class="_title l">goal_amount</p>
+                            <p class="l">
+                                <input type="number" name="goal_amount" id="inputGoalAmount" class="form-control">
+                            </p>
+                            <div style="clear: both"></div>
+                        </li>
+                        <li class="fix">
+                            <p class="_title l">endTime</p>
+                            <p class="l">
+                                <input type="date" name="end_time" id="inputEndTime" class="form-control"></p>
+                            <div style="clear: both"></div>
+                        </li>
+
+
+                        <li class="fix">
+                            <p class="_title l">team</p>
+                            <p class="l">
+                                <input type="text" name="team" id="inputTeam" class="form-control"></p>
+                            <div style="clear: both"></div>
+                        </li>
+                        <li class="fix">
+                            <p class="_title l">purpose</p>
+                            <p class="l">
+                                <textarea name="purpose" id="inputPurpose"></textarea>
+                            </p>
+                            <div style="clear: both"></div>
+                        </li>
+                    </ul>
+                    项目详情：
+                    <div id="dpeditor" type="text/plain" name="detail"
+                         style="width: 800px; height: 400px;">
+                    </div>
+                    <div class="tc">
+                        <button type="button" class="button" onclick="fabu()">确定发布
+                        </button>
+                    </div>
+                </div>
             </form>
         </div>
     </div>
-
-
 </div>
+
+
 </body>
 <script type="text/javascript">
-    UEDITOR_CONFIG.UEDITOR_HOME_URL = '/financing/ueditor/';
-    var ue = UE.getEditor('ueditor', ue_param);
 
     var ue_param = {//工具栏配置项
         toolbars : [ [ 'cleardoc', 'selectall', '|', 'undo', 'redo', '|',
@@ -146,12 +139,127 @@
         wordCount : false,
 
     }
-    window.onload = function () {
-        var myDate = new Date();
-        if (project.end_time < myDate) {
-            document.getElementById("inputStatus").value = 1;
+    var ue1 = UE.getEditor('dpeditor', ue_param);
+    //    ue1.ready(function() {
+    //        var temp = $('.temp_n1').html();
+    //        ue1.setContent(temp);//回显
+    //    });
+
+    function fabu() {
+        var project = {};
+        project.title = document.getElementById("inputTitle").value;
+        project.goal_amount = document.getElementById("inputGoalAmount").value;
+        project.end_time = document.getElementById("inputEndTime").value;
+        project.team = document.getElementById("inputTeam").value;
+        project.purpose = document.getElementById("inputPurpose").value;
+        project.contact_name = document.getElementById("inputContaceName").value;
+        project.hotline = document.getElementById("inputhotline").value;
+        project.contact_phone = document.getElementById("inputContact").value;
+        if (project.title) {
+
+        } else {
+            layer.msg("项目标题不能为空");
+            return false;
         }
+
+        if (project.goal_amount) {
+
+        } else {
+            layer.msg("目标金额不能为空");
+            return false;
+        }
+        if (project.end_time) {
+
+        } else {
+            layer.msg("结束时间不能为空");
+            return false;
+        }
+        if (project.team) {
+
+        } else {
+            layer.msg("项目团队不能为空");
+            return false;
+        }
+        if (project.purpose) {
+
+        } else {
+            layer.msg("融资目的不能为空");
+            return false;
+        }
+        if (project.contact_name) {
+
+        } else {
+            layer.msg("联系人姓名不能为空");
+            return false;
+        }
+        if (project.hotline) {
+
+        } else {
+            layer.msg("咨询电话不能为空");
+            return false;
+        }
+        if (project.contact_phone) {
+
+        } else {
+            layer.msg("联系人电话不能为空");
+            return false;
+        }
+        window.onload = function () {
+            var myDate = new Date();
+            if (project.end_time < myDate) {
+                document.getElementById("inputStatus").value = 1;
+            }
+        }
+
+        var formData = new FormData($("#createForm")[0]);
+        $.ajax({
+            type: 'POST',
+            async: false,
+            url: '${ctp}/doCreateProject',
+            dataType: 'json',
+            contentType: false,
+            processData: false,
+            data: formData,
+            success: (function (result) {
+                if (result.flag == 1) {
+                    // document.getElementById('nextPage').addEventListener("click",showAtRight('personCenter/personProject'));
+                    // top.location.href = "/personCenter/personProject";
+                    window.location.href = "${ctp}/personCenter";
+                } else {
+                    layer.msg("发布失败");
+                }
+            })
+        })
     }
+
+    $(document).ready(function () {
+        $.ajax({
+            type: 'Get',
+            async: true,
+            url: '${ctp}/doShowCategory',
+            dataType: 'json',
+            data: null,
+            success: (function (result) {
+                var flag = parseInt(result.flag);
+                var msg = result.msg;
+                var data = result.data;
+
+                if (flag == 1) {
+                    if (data.length > 0) {
+                        var drillSelect = document.getElementById("category");
+                        drillSelect.options.length = 0;
+                        $("#category").append("<option value=''>--请选择--</option>");
+                        for (var i = 0; i < data.length; i++) {
+                            $("#category").append("<option value='" + data[i].id + "'>" + data[i].name + "</option>");
+                        }
+                    }
+                }
+                else if (flag == 0) {
+                    alert(msg);
+                }
+            })
+        })
+    })
 
 </script>
 </html>

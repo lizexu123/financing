@@ -50,7 +50,7 @@ public class ProjectController {
 
         String title = request.getParameter("title");
         int categoryId = Integer.parseInt(request.getParameter("category_id"));
-
+        System.out.println("categoryId = " + categoryId);
         System.out.println("user = " + user);
         System.out.println("title = " + title);
         String cover = FileUploadUtil.uploadFile(coverUpload,session);
