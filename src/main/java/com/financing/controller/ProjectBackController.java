@@ -54,13 +54,12 @@ public class ProjectBackController {
             post = 0;
         }
         int allow = Integer.parseInt(request.getParameter("allow"));
-        int compensation = Integer.parseInt(request.getParameter("compensation"));
         Date backDate = DateUtil.StringToDate(request.getParameter("back_date"));
         System.out.println("projectId = " + projectId);
         Project project = projectService.getProject(projectId);
 
         ProjectBack back = new ProjectBack();
-        back.setCompensation(compensation);
+        back.setCompensation(0);
         back.setProject(project);
         back.setAllow(allow);
         back.setAmount(amount);
