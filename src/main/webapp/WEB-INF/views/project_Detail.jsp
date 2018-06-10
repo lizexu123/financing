@@ -7,6 +7,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="utf-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <c:set var="ctp" value="${pageContext.request.contextPath}"/>
 <html>
 <head>
@@ -247,12 +248,12 @@
                     <fmt:formatDate type="date"
                                     value="${project.publishTime}"></fmt:formatDate>
                     <div class="progress" onloadstart="PJPercentage">
-                        <%--${project.goalAmount}-${project.actualAmount}--%>
+
                         <div class="progress-bar progress-bar-primary"></div>
                     </div>
-                    <output class="PJFPercentage"
-                            style="width: 50px;height: 50px;color: palevioletred;">
-                        已经完成：${(data.actualAmount/data.goalAmount)/100}%
+                    <output class="PJFPercent">
+                        <fmt:formatNumber type="percent" minFractionDigits="2"
+                                          value="${data.actualAmount/data.goalAmount}"/> Funded
                     </output>
                     <br>
                     <a href="#">

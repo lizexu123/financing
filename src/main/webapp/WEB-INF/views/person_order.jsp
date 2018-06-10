@@ -17,14 +17,16 @@
     <script src="${ctp}/js/jquery-1.11.0.min.js" type="text/javascript"></script>
     <script src="${ctp}/js/layer.js" type="text/javascript"></script>
     <style type="text/css">
-        #unHandleTable th {
-            padding-right: 25px;
-        }
-
         #unHandleTable {
-            margin-top: 50px;
+            position: relative;
+            margin-top: 100px;
+            left: -50px;
         }
 
+        #or {
+            text-decoration: none;
+            color: #ffba5b;
+        }
     </style>
 </head>
 <body class="personal">
@@ -51,7 +53,7 @@
                     // var d = eval('(' + result.data+ ')');
                     var d = result.data;
                     console.log(d);
-                    $("#unHandleTable").append('<th>id</th><th>address</th><th>status</th><th>create_time</th><th>project_id</th><th>project_back</th><th>post</th><th>operate</th>');
+                    $("#unHandleTable").append('<th>id</th><th>address</th><th>status</th><th>create_time</th><th>project_id</th><th>project_back</th><th>post</th><th>amount</th><th>operate</th>');
                     for (var i = 0; i < d.length; i++) {
                         if ($("#unHandleTable tr").length <= d.length) {
                             if (d[i].status == 0) {
@@ -83,7 +85,8 @@
                                 "<td>" + d[i]["project"].id + "</td>" +
                                 "<td>" + d[i]["projectBack"].compensation + "</td>" +
                                 "<td>" + d[i]["projectBack"].post + "</td>" +
-                                "<td>" + "<input id='or' class=\"button\" type='button' value='submit order'> " + "</td>" +
+                                "<td>" + d[i]["amount"] + "</td>" +
+                                "<td>" + "<a id='or' href='${ctp}/personCenter/personOrder/detail-" + d[i]['id'] + "'>View the details</a> " + "</td>" +
 
                                 "</tr>");
                         } else {
@@ -94,7 +97,8 @@
                 }
             }
         });
-</script>
+
+    </script>
 
 </body>
 </html>

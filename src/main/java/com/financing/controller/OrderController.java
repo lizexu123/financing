@@ -117,6 +117,7 @@ public class OrderController {
         Project project = order.getProject();
         order.setStatus((byte) -1);
         orderService.refundOrder(order);//用户取消订单，退款
+        System.out.println("order = " + order);
         userService.refundBalance(user,order.getAmount());
         projectBackService.updateActual(back,-1);
         projectService.updateSupport(project,order.getAmount(),-1);
@@ -136,7 +137,7 @@ public class OrderController {
      * @param oid
      * @return
      */
-    @RequestMapping(value = "/doOrderDetail-{oid}")
+    @RequestMapping(value = "/doGetOrderDetail-{oid}")
     public String doOrderDetail(ModelMap map, @PathVariable("oid") String oid){
         Order order = orderService.getOrderDetail(oid);
 

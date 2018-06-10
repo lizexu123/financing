@@ -7,17 +7,17 @@
     <title>project_show</title>
     <link rel="stylesheet" href="${ctp}/css/project_show.css" type="text/css"/>
     <script type="text/javascript" src="${ctp}/js/jquery-1.11.0.min.js"></script>
-    <%--<script type="text/javascript">--%>
-    <%--window.onload = function changeBarFocus() {--%>
-    <%--var url = window.location.pathname;--%>
-    <%--$('.top-nav>ul>li').removeClass("active").addClass("grid");--%>
-    <%--if (url.indexOf('hot') > 0) {--%>
-    <%--$('#Hot').addClass("active");--%>
-    <%--} else {--%>
-    <%--$('#New').addClass("active");--%>
-    <%--}--%>
-    <%--}--%>
-    <%--</script>--%>
+    <script type="text/javascript">
+        window.onload = function changeBarFocus() {
+            var url = window.location.pathname;
+            $('.top-nav>ul>li').removeClass("active").addClass("grid");
+            if (url.indexOf('hot') > 0) {
+                $('#Hot').addClass("active");
+            } else {
+                $('#New').addClass("active");
+            }
+        }
+    </script>
 </head>
 <%--用于加载各种搜索结果--%>
 <body>

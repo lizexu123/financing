@@ -86,6 +86,7 @@ public class ProjectController {
         project.setCategory(category);
         project.setCover(cover);
         project.setGoalAmount(goalAmount);
+        project.setActualAmount(BigDecimal.valueOf(0));
         project.setPublishTime(new Date());
         project.setEndTime(endTime);
         project.setTeam(team);
