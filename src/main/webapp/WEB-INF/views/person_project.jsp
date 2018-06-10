@@ -17,26 +17,31 @@
             padding-left: 20px;
         }
 
-        table#tbody {
+        #tbody {
             position: relative;
             top: -350px;
-            left: 250px;
+            left: 150px;
         }
 
         #tbody th {
             padding-right: 10px;
         }
 
+        #tbody td {
+            position: relative;
+            left: 140px;
+        }
+
         #back {
             position: relative;
             top: -300px;
-            left: 100px;
+            left: 200px;
         }
 
         #p {
             position: relative;
-            top: -250px;
-            left: 650px;
+            top: -210px;
+            left: 670px;
         }
 
         a {
@@ -45,14 +50,13 @@
 
         #backs {
             position: relative;
-            top: -240px;
+            top: -200px;
             left: 500px;
         }
 
         #backs th {
             font-size: 20px;
         }
-
         #xu {
             position: relative;
             top: -70px;
@@ -61,25 +65,56 @@
 
         #shi {
             position: relative;
-            top: -80px;
-            left: 400px;
+            top: -70px;
         }
 
+        #addBackBtn {
+            position: relative;
+            left: 20px;
+        }
+
+        #postkind {
+            margin-top: 20px;
+            margin-right: 20px;
+        }
+
+        #backs th {
+            padding-right: 15px;
+        }
+
+        #xu {
+            position: relative;
+            top: -40px;
+            left: 420px;
+        }
+
+        #wusi {
+            position: relative;
+            top: -108px;
+            left: 520px;
+        }
+
+        #shi {
+            position: relative;
+            top: -145px;
+            left: 420px;
+        }
+
+        #youchang {
+            position: relative;
+            top: -155px;
+            left: 520px;
+        }
     </style>
 </head>
 <body class="personal">
+
 <div class="wrap">
     <jsp:include page="person_left.jsp"/>
-    <div class="head_portrait l">
-        <img src="${sessionScope.user.avatar}" alt="">
-    </div>
-    <div class="nickname l" id="top">
-        <span>mobile:${sessionScope.user.mobile}</span><span style="font-size: 14px;color: gray;"><i></i>已认证</span></p>
-    </div>
     <%--<p id="increase"><a href="javascript:void(0)" onclick="addBox()">添加回报</a></p>--%>
 
 
-    <div id="addBackBox">
+    <div id="projectList">
         <form id="addBackForm" action="/doAddBack">
             <table class="table table-striped" id="tbody" style="width:1250px">
 
@@ -87,13 +122,20 @@
 
             <div id="back">
                 amount：<input name="amount" type="number">
-                content：<input name="content">
+                content：
+                <input name="content" id="contentk">
                 allow：<input name="allow" type="number">
                 back_date：<input name="back_date" type="date">
-                compensation：
-                <select name="post">
-                    <option value="0">虚拟回报</option>
-                    <option value="1">实物回报</option>
+                <br>
+                <span id="bb">post:</span>
+                <select name="post" id="postkind">
+                    <option value="0">实物回报</option>
+                    <option value="1">虚拟回报</option>
+                </select>
+                <span>compensation:</span>
+                <select name="compensation">
+                    <option value="0" id="wusi" onclick="cang()">无私回报</option>
+                    <option value="1" onclick="chu()">有偿回报</option>
                 </select>
                 <input type="button" id="addBackBtn" class="button" value="提交">
             </div>
@@ -135,25 +177,14 @@
                 // var d = eval('(' + result.data+ ')');
                 var d = result.data;
                 console.log(d);
-                $("#tbody").append('<th>title</th><th>category</th><th>goalAmount</th><th>actualAmount</th><th>contactName</th><th>contactPhone</th><th>endTime</th><th>hotline</th><th>purpose</th><th>team</th><th>user_phone</th><th>detail</th><th>projectUpdate</th><th>clickback</th><th>getback</th>');
+                $("#tbody").append('<th>id</th><th>projectEditor</th><th>clickback</th><th>getback</th>');
                 for (var i = 0; i < d.length; i++) {
                     if ($("#tbody tr").length <= d.length) {
 
                         $("#tbody").append(
                             "<tr>" +
-                            "<td>" + d[i]["title"] + "</td>" +
-                            "<td>" + d[i]["category"].name + "</td>" +
-                            "<td>" + d[i]["goalAmount"] + "</td>" +
-                            "<td>" + (d[i]["actualAmount"]) + "</td>" +
-                            "<td>" + d[i]["contactName"] + "</td>" +
-                            "<td>" + d[i]["contactPhone"] + "</td>" +
-                            "<td>" + timestampToTime(d[i]["endTime"]) + "</td>" +
-                            "<td>" + d[i]["hotile"] + "</td>" +
-                            "<td>" + d[i]["purpose"] + "</td>" +
-                            "<td>" + d[i]["team"] + "</td>" +
-                            "<td>" + d[i]["user"].mobile + "</td>" +
-                            "<td>" + d[i]["detail"] + "</td>" +
-                            "<td><a href='doProjectInfo-" + d[i]["id"] + "'>projectUpdate</a></td>" +
+                            "<td>" + d[i]["id"] + "</td>" +
+                            "<td><a href='doProjectInfo-" + d[i]["id"] + "'>projectEditor</a></td>" +
                             "<td><input type='radio' name='project' value='" + d[i].id + "'>" +
                             "<td><input type='button' onclick=\"getBacks('" + d[i].id + "')\">" +
                             "</tr>");
@@ -209,13 +240,14 @@
                 console.log(data);
                 if (flag == 1) {
                     $("#backs").empty();
+                    console.log($("#backs"));
                     if (data.length > 0) {
                         $("#backs").append(
-                            '<th>content</th><th>back_date</th><th>amount</th><th>allow</th><th>compensation</th>');
+                            '<th>content</th><th>back_date</th><th>amount</th><th>allow</th><th>post</th><th>compensation</th>');
                         console.log(data.length)
                         for (var i = 0; i < data.length; i++) {
                             (function (e) {
-                                if (data[e].compensation == 0) {
+                                // if (data[e].compensation == 0) {
                                     $("#backs").append(
                                         "<tr>" +
                                         "<td>" + data[i]["content"] + "</td>" +
@@ -233,7 +265,16 @@
                                             $("#backs").append("<p id='shi'>实物回报</p>");
                                             break;
                                     }
+                                switch (data[i].compensation) {
+                                    case 0:
+                                        $("#backs").append("<p id='wusi'>无私回报</p>");
+                                        break;
+                                    case 1:
+                                        $("#backs").append("<p id='youchang'>有偿回报</p>");
+                                        break;
                                 }
+
+                                // }
                             })(i)
                         }
                     }
@@ -244,6 +285,17 @@
         })
     }
 
+    function cang() {
+        document.getElementById("postkind").disabled = "true";
+        document.getElementById("contentk").value = "";
+        document.getElementById("contentk").disabled = "true";
+    }
+
+    function chu() {
+        document.getElementById("postkind").disabled = false;
+        document.getElementById("contentk").value = "";
+        document.getElementById("contentk").disabled = false;
+    }
 
 </script>
 

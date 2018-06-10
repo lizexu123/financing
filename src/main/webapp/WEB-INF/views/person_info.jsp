@@ -19,6 +19,7 @@
 </head>
 
 <body class="personal">
+
 <div class="wrap">
     <jsp:include page="person_left.jsp"/>
     <div class="r right_content">

@@ -15,15 +15,12 @@
     <script src="${ctp}/js/layer.js" type="text/javascript"></script>
 </head>
 <body class="personal">
+
 <div class="wrap">
     <jsp:include page="person_left.jsp"/>
     <div class="r right_content">
         <div class="common minheight800">
             <form action="/doCreateProject" id="createForm" enctype="multipart/form-data">
-                <div class="common_title fix">
-                    <span class="l">Personal Information:${sessionScope.user.id} 欢迎您！</span>
-                    <a href="#" class="complete r"></a>
-                </div>
                 <div class="user_info fix">
                     <ul class="user_info_ul">
                         <li class="fix">
@@ -118,6 +115,8 @@
         </div>
     </div>
 </div>
+</body>
+</html>
 
 
 </body>

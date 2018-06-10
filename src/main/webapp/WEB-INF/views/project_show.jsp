@@ -12,6 +12,12 @@
     <title>project_show</title>
     <link rel="stylesheet" href="${ctp}/css/project_show.css" type="text/css"/>
     <script type="text/javascript" src="${ctp}/js/jquery-1.11.0.min.js"></script>
+    <%--<script type="text/javascript">--%>
+    <%--window.onload = function changeBarFocus() {--%>
+    <%--$('.top-nav>ul>li').removeClass("active").addClass("grid");--%>
+    <%--$('#All').addClass("active");--%>
+    <%--}--%>
+    <%--</script>--%>
 </head>
 <%--用于加载各种搜索结果--%>
 <body>
@@ -116,9 +122,9 @@
                         <li>
                             <div class="eachOne">
                                 <div class="eachOneLeft">
-                                    <a href="#">
+                                    <a href='doProjectDetail-${project.id}'>
                                             <%--list:装载文件路径（绝对路径）--%>
-                                        <object class="showImage" data="image/roll1.jpg"></object>
+                                        <object class="showImage" data="${project.cover}"></object>
                                     </a>
                                 </div>
                                 <div class="eachOneRight">
@@ -182,12 +188,5 @@
 <div class="footer">
     <jsp:include page="footer.jsp"/>
 </div>
-<script type="text/javascript">
-    function clickChangeBar() {
-        $('.top-nav>ul>li').removeClass("active").addClass("grid");
-        this.addClass("active");
-        window.location.href = this.href;
-    }
-</script>
 </body>
 </html>

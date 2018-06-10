@@ -31,13 +31,12 @@
         }
 
         #sdzc {
-            color: #fff;
-            background-color: #286090;
+            color: white;
+            background-color: #50abf2;
             border-color: #204d74;
-            width: 100%;
             padding: 10px 16px;
             font-size: 18px;
-            cursor: pointer;
+            margin-left: 34%;
         }
 
         #clearfix {
@@ -74,49 +73,15 @@
         }
 
         #zhong {
-            height: 600px;
+            height: 400px;
         }
 
-        #xmid {
-            position: relative;
-            top: -100px;
-            left: 100px;
-        }
+
 
         .th {
             position: relative;
             left: -200px;
             top: -100px;
-        }
-
-        #pd {
-            margin-left: 10px;
-            position: relative;
-            top: -100px;
-            left: 90px;
-        }
-
-        #pd1 {
-            position: relative;
-            top: -70px;
-            left: -170px;
-        }
-
-        #content1 {
-            position: relative;
-            top: -70px;
-            left: -160px;
-        }
-
-        #gengxin1 {
-            position: relative;
-            top: -20px;
-            left: 110px;
-            cursor: pointer;
-            color: #fff;
-            background-color: #d9534f;
-            border-color: #d43f3a;
-            padding: 10px 16px;
         }
 
         #update th {
@@ -133,23 +98,9 @@
 
         #update tr td {
             position: relative;
-            top: -80px;
-        }
-
-        .proj1 {
-            position: relative;
-            top: 30px;
-            font-size: 20px;
-            padding-right: 30px;
-        }
-
-        .proj2 {
-            position: relative;
-            top: 40px;
-            /* left: -420px; */
-            font-size: 20px;
+            top: -250px;
+            padding-right: 25px;
             font-weight: bold;
-            padding-right: 20px
         }
 
         #xiangqing {
@@ -166,28 +117,29 @@
 
         #xiangqing1 {
             position: relative;
-            top: -200px;
+            left: -800px;
         }
 
-        .cmt {
+        #xiangqing1 tr td {
+            font-weight: bold;
+            padding-bottom: 10px;
+        }
+
+        #cmt {
             font-size: 25px;
             position: relative;
-            /* left: -1180px; */
-            left: -450px;
-            top: -230px;
+            left: 120px;
         }
 
-        .cmt1 {
+        #content2 {
             position: relative;
-            left: -400px;
-            top: -227px;
+            left: 150px;
         }
 
         #pinglun {
             position: relative;
-            top: -120px;
-            left: 1300px;
-            /* left: -200px; */
+            left: -480px;
+            top: 90px;
             cursor: pointer;
             color: #fff;
             background-color: #d9534f;
@@ -202,17 +154,59 @@
 
         #plItemCountBox tr td {
             font-size: 20px;
-            font-weight: bold;
             padding-top: 10px;
         }
 
-        #comment1 {
-            position: relative;
-            left: 800px
-        }
 
         .radio {
             margin-left: 10px;
+        }
+
+        .xq {
+            position: relative;
+            top: -445px;
+            left: 750px;
+            padding-bottom: 12px;
+            font-weight: bold;
+        }
+
+        #dl {
+            position: relative;
+            top: -450px;
+            left: 740px;
+        }
+
+        #footer {
+            position: relative;
+            width: 100%;
+            height: 70px;
+            color: white;
+            font-size: 17px;
+            text-align: center;
+            line-height: 25px;
+            background: rgba(0, 0, 0, 0.1);
+            top: 610px;
+        }
+
+        .PJTitle {
+            color: black;
+        }
+
+        .PJCategory {
+            font-size: 25px;
+            font-weight: bold;
+            color: black;
+        }
+
+        .eachOne a {
+            text-decoration: none;
+            color: black;
+            font-family: fantasy;
+        }
+
+        .PJPublishTime {
+            color: black;
+
         }
 
     </style>
@@ -227,19 +221,19 @@
             <%--begin="0" end="4"--%>
             <div class="eachOne">
                 <div class="eachOneLeft">
-                    <img class="showImage" src="${ctp}/image/roll3.jpg">
+                    <object class="showImage" data="${data.cover}"></object>
                     <%--图片必须用绝对路径输出--%>
                 </div>
                 <div class="eachOneRight">
                     <a href="#">
-                        <output class="PJTitle">项目名称：<span id="title"> ${data.title}</span></output>
+                        <output class="PJTitle">Title：<span id="title"> ${data.title}</span></output>
                     </a><br>
                     <a href="#">
-                        <output class="PJCategory">支持数：<span id="shengyu"> </span></output>
+                        <output class="PJCategory">Support：<span id="shengyu">${data.supportCount} </span></output>
 
                     </a><br>
                     <a href="#">
-                        <output class="PJCategory">已经筹款：<span id=""> </span></output>
+                        <output class="PJCategory">ActualAmount：<span id="">${data.actualAmount}</span></output>
                     </a><br>
 
                     <a href="#">
@@ -258,7 +252,7 @@
                     </div>
                     <output class="PJFPercentage"
                             style="width: 50px;height: 50px;color: palevioletred;">
-                        已经完成：${(project.actualAmount/project.goalAmount)/100}%
+                        已经完成：${(data.actualAmount/data.goalAmount)/100}%
                     </output>
                     <br>
                     <a href="#">
@@ -266,7 +260,7 @@
                     </a><br>
                     <br>
                     <a href="#">
-                        <button type="button" id="sdzc">立即支持</button>
+                        <a href='${ctp}/browse/support-${data.id}' id="sdzc" id="sdzc">support</a>
                     </a><br>
                 </div>
             </div>
@@ -283,26 +277,43 @@
             <div id="xiangqing">
                 <table id="xiangqing1">
                     <tr>
-                        <th class="proj1">category</th>
-                        <th class="proj1">goal_amount</th>
-                        <th class="proj1">publish_time</th>
-                        <th class="proj1">end_time</th>
-                        <th class="proj1">team</th>
-                        <th class="proj1">purpose</th>
-                        <th class="proj1">contacct_name</th>
-                        <th class="proj1">hotline</th>
-                        <th class="proj1">contact_phone</th>
+                        <td>title</td>
                     </tr>
                     <tr>
-                        <td class="proj2">${data.category.id}</td>
-                        <td class="proj2">${data.goalAmount}</td>
-                        <td class="proj2">${data.publishTime}</td>
-                        <td class="proj2">${data.endTime}</td>
-                        <td class="proj2">${data.team}</td>
-                        <td class="proj2">${data.purpose}</td>
-                        <td class="proj2">${data.contactName}</td>
-                        <td class="proj2">${data.hotline}</td>
-                        <td class="proj2">${data.contactPhone}</td>
+                        <td>categoryName</td>
+                    </tr>
+                    <tr>
+                        <td>goalAmount</td>
+                    </tr>
+                    <tr>
+                        <td>actualAmount</td>
+                    </tr>
+                    <tr>
+                        <td>contactName</td>
+                    </tr>
+                    <tr>
+                        <td>contactPhone</td>
+                    </tr>
+                    <tr>
+                        <td>publishTime</td>
+                    </tr>
+                    <tr>
+                        <td>endTime</td>
+                    </tr>
+                    <tr>
+                        <td>hotline</td>
+                    </tr>
+                    <tr>
+                        <td>purpose</td>
+                    </tr>
+                    <tr>
+                        <td>team</td>
+                    </tr>
+                    <tr>
+                        <td>user.mobile</td>
+                    </tr>
+                    <tr>
+                        <td>detail</td>
                     </tr>
 
                     <%--<tr>--%>
@@ -313,6 +324,26 @@
                     <%--<td class="proj2">${data.title}</td>--%>
                     <%--</tr>--%>
                 </table>
+                <p class="xq">${data.title}</p>
+                <p class="xq">${data.category.name}</p>
+                <p class="xq">${data.goalAmount}</p>
+
+                <c:if test="${not empty data.actualAmount}">
+                    <p class="xq">${data.actualAmount}</p>
+                </c:if>
+                <c:if test="${empty data.actualAmount}">
+                    <p class="xq">0</p>
+                </c:if>
+                <p class="xq">${data.contactName}</p>
+                <p class="xq">${data.contactPhone}</p>
+                <p class="xq">${data.publishTime}</p>
+                <p class="xq">${data.endTime}</p>
+                <p class="xq">${data.hotline}</p>
+                <p class="xq">${data.purpose}</p>
+                <p class="xq">${data.team}</p>
+                <p class="xq">${sessionScope.user.mobile}</p>
+                <div id="dl"> ${data.detail}</div>
+
 
             </div>
 
@@ -326,25 +357,26 @@
                     <input type="text" class="cmt1" name="project" value="${data.id}" style="display: none"/>
                     <div>
                         <table id="plItemCountBox">
-
+                            <tr>
+                                <th id="cmt">content:</th>
+                                <td><input type="text" class="cmt1" name="content" id="content2"/></td>
+                            </tr>
+                            <tr>
+                                </td><input type="button" id="pinglun" value="comment" onclick="pingluna()"/></td>
+                            </tr>
                         </table>
                     </div>
-                    <table id="comment1">
-                        <tr>
-                            <th class="cmt">content:</th>
-                            <td><input type="text" class="cmt1" name="content" id="content2"/></td>
-                        </tr>
 
-
-                        <tr>
-                            <input type="button" id="pinglun" value="立即评论" onclick="pingluna()"/>
-                        </tr>
-                    </table>
                 </form>
             </div>
 
         </div>
-        <jsp:include page="footer.jsp"/>
+        <div id="footer">
+            <p>Copyright ©2018 Made By -All rights reserved.</p>
+            <p>Designer : Penny Wendy CoolLi</p>
+            <a>版权所有 CPW</a>
+            <br/>
+        </div>
         <script type="text/javascript">
             function PJPercentage() {
                 var a = ${project.actualAmount/project.goalAmount};
@@ -383,7 +415,8 @@
                 type: "get",
                 async: false,
                 //数据的传送页面：要启动界面的地址/界面的后台的方法
-                url: "doGetUpdate-${data.id}",
+                url: "${ctp}/doGetUpdate-${data.id}",
+
                 // contentType:false,
                 //重要的后台的回调函数（很重要）
                 success: function (result) {
@@ -392,12 +425,10 @@
                         console.log(result.flag);
                         // var d = eval('(' + result.data+ ')');
                         var d = result.data;
-                        $("#update").append('<th id="jia">project_id</th><th>update_time</th><th>update_content</th>');
                         for (var i = 0; i < d.length; i++) {
                             if ($("#update tr").length <= d.length) {
                                 $("#update").append(
                                     "<tr>" +
-                                    "<td>" + d[i]["project"].id + "</td>" +
                                     "<td>" + d[i].updateTime + "</td>" +
                                     "<td>" + d[i].updateContent + "</td>" +
                                     "</tr>");
@@ -427,7 +458,7 @@
                     //几个参数需要注意一下
                     type: "POST",//方法类型
                     dataType: "json",//预期服务器返回的数据类型
-                    url: "doAddComment",//url
+                    url: "${ctp}/doAddComment",//url
                     data: $('#commen').serialize(),
                     success: function (result) {
                         console.log(result);//打印服务端返回的数据(调试用)
@@ -447,7 +478,7 @@
                 type: "get",
                 async: false,
                 //数据的传送页面：要启动界面的地址/界面的后台的方法
-                url: "doGetComment-${data.id}",
+                url: "${ctp}/doGetComment-${data.id}",
                 // contentType:false,
                 //重要的后台的回调函数（很重要）
                 success: function (result) {
@@ -467,13 +498,14 @@
 
                                 $("#plItemCountBox").append(
                                     "<tr>" +
-                                    "<td>评论id: " + d[i].id + "</td>" +
+                                    "<td>id: " + d[i].id + "</td>" +
                                     "</tr>"
                                     + "<tr>" +
-                                    "<td>用户id: " + d[i].fromUser.mobile + "</td>" +
+                                    "<td>From: " + d[i].fromUser.mobile + "</td>" +
                                     "</tr>"
                                     + "<tr>" +
-                                    "<td>content: " + d[i].content + "<input class='radio' type='radio' value='"
+                                    "<td>Content: " + d[i].content +
+                                    "<input class='radio' type='radio' value='"
                                     + d[i].fromUser.id + "' name='to_user'> </td>" +
                                     "</tr>"
                                     + "<tr>" +
@@ -482,7 +514,7 @@
                                     "</tr>"
 
                                     + "<tr>" +
-                                    "<td>createTime: " + d[i].createTime + "</td>" +
+                                    "<td>CreateTime: " + d[i].createTime + "</td>" +
                                     "</tr>"
                                 );
 

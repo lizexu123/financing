@@ -9,6 +9,18 @@ import javax.persistence.*;
 @Entity
 @Table(name = "Address")
 public class Address {
+    @Override
+    public String toString() {
+        return "Address{" +
+                "id=" + id +
+                ", user=" + user +
+                ", recipient='" + recipient + '\'' +
+                ", zone='" + zone + '\'' +
+                ", postcode='" + postcode + '\'' +
+                ", detail='" + detail + '\'' +
+                ", phone='" + phone + '\'' +
+                '}';
+    }
 
     @Id
     @GeneratedValue

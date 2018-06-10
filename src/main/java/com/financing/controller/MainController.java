@@ -110,7 +110,6 @@ public class MainController {
     }
 
 
-
     /**
      * 个人资料页
      */
@@ -143,8 +142,7 @@ public class MainController {
     }
 
     /**
-
-     /**
+     * /**
      * 用户项目管理页
      *
      * @return
@@ -216,11 +214,11 @@ public class MainController {
     }
 
     /*
-    y用户更新页
+    y用户编辑页
      */
-    @RequestMapping(value = "personUpdate")
+    @RequestMapping(value = "/personCenter/personEditor")
     public String personUpdate() {
-        return "person_projectUpdate";
+        return "person_editor";
     }
 
     /**
@@ -229,11 +227,20 @@ public class MainController {
      * @param pid
      * @return
      */
-    @RequestMapping(value = "/ProjectDetail")
+    @RequestMapping(value = "/browse/detail-{pid}")
     public String projectDetail(@PathVariable("pid") String pid) {
-        return "project_Detail";
+        return "forward:/doProjectDetail-" + pid;
+    }
+
+    /**
+     * 立即支持页面
+     *
+     * @param pid
+     * @return
+     */
+    @RequestMapping(value = "/browse/support-{pid}")
+    public String projectSupport(@PathVariable("pid") String pid) {
+        return "forward:/doProjectSupport-" + pid;
     }
 }
-/*
- * 立即支持页
- */
+

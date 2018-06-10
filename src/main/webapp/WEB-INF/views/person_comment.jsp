@@ -5,70 +5,146 @@
   Time: 0:19
   To change this template use File | Settings | File Templates.
 --%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<c:set var="ctp" value="${pageContext.request.contextPath}"/>
 <html>
 <head>
     <title>用户评论页</title>
+    <link rel="stylesheet" href="${ctp}/css/pc.css">
+    <script src="${ctp}/js/jquery-1.11.0.min.js" type="text/javascript"></script>
+    <style type="text/css">
+        #customer {
+            position: relative;
+            top: 150px;
+            left: -120px;
+        }
+
+        #getO {
+            position: relative;
+            top: 100px;
+            left: -50px;
+        }
+
+        #customerI th {
+            padding-right: 30px;
+        }
+
+        #getI {
+            position: relative;
+            top: 150px;
+            left: 230px;
+        }
+
+        #customerI {
+            position: relative;
+            top: 200px;
+            left: 170px;
+        }
+    </style>
 </head>
-<body>
-<div class="container-fluid">
-    <h1 class="title center">修改个人信息</h1>
-    <br/>
-    <form id="formk" action="/doAddComment" method="post">
-        <div class="col-sm-offset-2 col-md-offest-2">
-            <!-- 表单输入 -->
-            <div class="form-horizontal">
-                <div class="form-group">
-                    <label for="inputContent" class="col-sm-2 col-md-2 control-label">content</label>
-                    <div class="col-sm-6 col-md-6">
-                        <input type="text" name="content" id="inputContent" class="form-control">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="inputCreateTime" class="col-sm-2 col-md-2 control-label">createTime</label>
-                    <div class="col-sm-6 col-md-6">
-                        <input type="date" name="createTime" class="form-control" id="inputCreateTime">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="inputPassword" class="col-sm-2 col-md-2 control-label">from_user_id</label>
-                    <div class="col-sm-6 col-md-6">
-                        <input type="text" class="form-control" id="inputPassword" name="user"
-                               value="${sessionScope.user.id}"/>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="col-sm-2 col-md-2 control-label">project_id</label>
-                    <div class="col-sm-6 col-md-6">
-                        <input type="text" class="form-control" name="project" id="pp" value="${data.id}">
-                    </div>
-                </div>
-                <c:forEach varStatus="PJ" var="project" items="${data}" step="1">
-                    <div class="form-group">
-                        <label for="inputId" class="col-sm-2 col-md-2 control-label">to_user_id</label>
-                        <div class="col-sm-6 col-md-6">
-                            <input type="text" class="form-control" id="inputId" name="to_user"
-                                   value="${sessionScope.user[1].id}">
-                        </div>
-                    </div>
+<body class="personal">
 
-                </c:forEach>
+<div class="wrap">
+    <jsp:include page="person_left.jsp"/>
+    <div class="head_portrait l">
+        <img src="${sessionScope.user.avatar}" alt="">
+    </div>
+    <div class="nickname l">
+        <p>
+            username
+            <span style="font-size: 14px;color: gray;">
+                            <i>
+                            <c:if test="${sessionScope.user.status==1}">Certified</c:if>
+                            <c:if test="${sessionScope.user.status==0}">Uncertified</c:if>
+                            <c:if test="${sessionScope.user.status==-1}">Blacklist User</c:if>
+                            </i>
+                        </span>
+        </p>
+        <span>mobile &nbsp; : &nbsp; ${sessionScope.user.mobile}</span>
+    </div>
+    <h3 id="getO">GetOwnerComment</h3>
+    <table id="customer">
 
-                <div class="form-group">
-                    <div class="col-sm-offset-2 col-sm-6">
-                        <button class="btn btn-lg btn-primary btn-block" type="button" onclick="modify()">确认修改</button>
-                    </div>
-                </div>
-            </div>
-            <br/>
-        </div>
-    </form>
+    </table>
+    <h3 id="getI">GetReceiveComment</h3>
+    <table id="customerI">
+
+    </table>
+
 </div>
 <script>
-    var d = result.data;
-    for (var i = 0; i < d.length; i++) {
-        var v1 = d[i].id;
-    }
+    $.ajax({//调用ajax后台数据异步方法
+        //提交的方式
+        type: "get",
+        async: false,
+        //数据的传送页面：要启动界面的地址/界面的后台的方法
+        url: "${ctp}/doGetOwnerComment",
+        // contentType:false,
+        //重要的后台的回调函数（很重要）
+        success: function (result) {
+            console.log(result.data);
+            if (result.flag == 1) {
+                console.log(result.flag);
+                // var d = eval('(' + result.data+ ')');
+                var d = result.data;
+                console.log(d);
+                $("#customer").append('<th>content</th><th>createTime</th><th>from_user_id</th><th>to_user_id</th>');
+                for (var i = 0; i < d.length; i++) {
+                    if ($("#customer tr").length <= d.length) {
+                        if (d[i].toUser == null) {
+                            d[i].toUser = new Object();
+                            d[i].toUser.id = "";
+                        }
+                        $("#customer").append(
+                            "<tr>" +
+                            "<td>" + d[i]["content"] + "</td>" +
+                            "<td>" + d[i]["createTime"] + "</td>" +
+                            "<td>" + d[i].fromUser.id + "</td>" +
+                            "<td>" + d[i].toUser.id + "</td>" +
+                            +"</tr>");
+
+                    } else {
+                        layer.msg("拿不到数据");
+                    }
+
+                }
+            }
+        }
+    });
+    $.ajax({//调用ajax后台数据异步方法
+        //提交的方式
+        type: "get",
+        async: false,
+        //数据的传送页面：要启动界面的地址/界面的后台的方法
+        url: "${ctp}/doGetReceiveComment",
+        // contentType:false,
+        //重要的后台的回调函数（很重要）
+        success: function (result) {
+            console.log(result.data);
+            if (result.flag == 1) {
+                console.log(result.flag);
+                // var d = eval('(' + result.data+ ')');
+                var d = result.data;
+                console.log(d);
+                $("#customerI").append('<th>content</th><th>createTime</th><th>from_user_id</th>');
+                for (var i = 0; i < d.length; i++) {
+                    if ($("#customerI tr").length <= d.length) {
+                        $("#customerI").append(
+                            "<tr>" +
+                            "<td>" + d[i]["content"] + "</td>" +
+                            "<td>" + d[i]["createTime"] + "</td>" +
+                            "<td>" + d[i].fromUser.id + "</td>" +
+                            +"</tr>");
+
+                    } else {
+                        layer.msg("拿不到数据");
+                    }
+
+                }
+            }
+        }
+    });
 </script>
 
 </body>

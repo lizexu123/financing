@@ -1632,6 +1632,7 @@ particlesJS('particles-js',
     }
 );
 
+
 $(window).load(function () {
     $('body').addClass('loaded');
     // $(document).ready(function () {
@@ -1672,12 +1673,12 @@ function login() {
         //几个参数需要注意一下
         type: "POST",//方法类型
         dataType: "json",//预期服务器返回的数据类型
-        url: "doRegister",//url
+        url: "/doRegister",//url
         data: $('#f1').serialize(),
         success: function (result) {
             console.log(result);//打印服务端返回的数据(调试用)
             if (result.flag == 1) {
-                window.location.href = "index";
+                window.location.href = "personCenter";
             } else {
                 layer.msg(result.msg);
             }
@@ -1692,7 +1693,8 @@ function login1() {
         //几个参数需要注意一下
         type: "POST",//方法类型
         dataType: "json",//预期服务器返回的数据类型
-        url: "doLogin",//url
+        url: "/financing/doLogin",//url
+        // url: "/FundingW/doLogin",//url
         data: $('#f2').serialize(),
         success: function (result) {
             console.log(result);//打印服务端返回的数据(调试用)

@@ -8,77 +8,165 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>Insert title here</title>
-    <link href="${ctp}/css/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="${ctp}/css/pc.css">
     <script src="${ctp}/js/jquery-1.11.0.min.js" type="text/javascript"></script>
     <script src="${ctp}/js/layer.js" type="text/javascript"></script>
-    <script src="${cp}/js/personAddress.js" type="text/javascript"></script>
+    <style type="text/css ">
+        #aad {
+            width: 150px;
+            height: 38px;
+            line-height: 38px;
+            font-size: 14px;
+            background-color: #ff9e19;
+            color: #fff;
+            border: none;
+            border-radius: 3px;
+            transition: all 0.2s;
+            outline: none;
+            position: relative;
+            left: -220px;
+            cursor: pointer;
+        }
+    </style>
 </head>
-<body>
-<div class="container-fluid">
-    <h1 class="title center">添加收货地址</h1>
-    <br/>
-    <form id="formAddress" action="/doAddAddress" method="post"
-          enctype="multipart/form-data">
-        <div class="col-sm-offset-2 col-md-offest-2">
-            <!-- 表单输入 -->
-            <div class="form-horizontal">
-                <div class="form-group">
-                    <label for="inputAddressId" class="col-sm-2 col-md-2 control-label">收货地址id</label>
-                    <div class="col-sm-6 col-md-6">
-                        <input type="text" name="id" id="inputAddressId" class="form-control" >
+
+<body class="personal">
+
+<div class="wrap">
+    <jsp:include page="person_left.jsp"/>
+    <div class="r right_content">
+        <div class="common minheight800">
+            <form action="/doAddAddress" id="formAddress" enctype="multipart/form-data">
+                <div class="user_info fix">
+                    <ul class="user_info_ul">
+                        <li class="fix">
+                            <p class="_title l">user_id</p>
+                            <p class="l">
+                                <input type="text" name="userId" class="form-control" id="inputUserId"
+                                       value="${sessionScope.user.id}" readonly>
+                            </p>
+                            <div style="clear: both"></div>
+                        <li class="fix">
+                            <p class="_title l">recipient</p>
+                            <p class="l">
+                                <input type="text" class="form-control" id="inputRepcipient" name="recipient"
+                                       value="${sessionScope.user.realName}" readonly/>
+                            </p>
+                            <div style="clear: both"></div>
+                        </li>
+                        <div style="clear: both"></div>
+                        <li class="fix">
+                            <p class="_title l">zone</p>
+                            <p class="l">
+                                <input type="text" class="form-control" id="inputZone" name="zone">
+                            </p>
+                            <div style="clear: both"></div>
+                        </li>
+                        <li class="fix">
+                            <p class="_title l">postcode</p>
+                            <p class="l">
+                                <input type="text" class="form-control" id="inputPostCode" name="postcode">
+                            </p>
+                            <div style="clear: both"></div>
+                        </li>
+                        <li class="fix">
+                            <p class="_title l">detail</p>
+                            <p class="l">
+                                <input type="" id="inputTextarea" cols="30" rows="10" name="detail"
+                                       class="form-control">
+                            </p>
+                            <div style="clear: both"></div>
+                        </li>
+                        <li class="user_info_img fix">
+                            <p class="_title l">phone</p>
+                            <div class="l _img">
+                                <div class="am-form-group am-form-file">
+                                    <input type="text" class="form-control" name="phone" id="inputPhone"
+                                           value="${sessionScope.user.mobile}" readonly/>
+                                </div>
+                            </div>
+                            <div style="clear: both"></div>
+                        </li>
+                    </ul>
+                    <div class="tc">
+                        <input type="button" class="button" onclick="dizhi()" id="aad" value="Add the address">
+                        </input>
                     </div>
                 </div>
-                <div class="form-group">
-                    <label for="inputUserId" class="col-sm-2 col-md-2 control-label">用户名id</label>
-                    <div class="col-sm-6 col-md-6">
-                        <input type="text" name="userId" class="form-control" id="inputUserId"
-                              value="${sessionScope.user.id}"  readonly>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="inputRepcipient" class="col-sm-2 col-md-2 control-label">repcipient</label>
-                    <div class="col-sm-6 col-md-6">
-                        <input type="text" class="form-control" id="inputRepcipient" name="recipient"
-                               value="${sessionScope.user.realName}" readonly />
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="inputZone" class="col-sm-2 col-md-2 control-label">地址</label>
-                    <div class="col-sm-6 col-md-6">
-                        <input type="text" class="form-control" id="inputZone" name="zone">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="inputPostCode" class="col-sm-2 col-md-2 control-label">postcode</label>
-                    <div class="col-sm-6 col-md-6">
-                        <input type="text" class="form-control" id="inputPostCode" name="postcode">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="inputTextarea" class="col-sm-2 col-md-2 control-label">detail</label>
-                    <div class="col-sm-6 col-md-6">
-                        <input type="" id="inputTextarea" cols="30" rows="10" name="detail"
-                               class="form-control"></textarea>"
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="inputPhone" class="col-sm-2 col-md-2 control-label">电话号码</label>
-                    <div class="col-sm-6 col-md-6">
-                        <input type="text" class="form-control" name="phone" id="inputPhone"
-                        value="${sessionScope.user.mobile}" readonly />
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="col-sm-offset-2 col-sm-6">
-                        <button class="btn btn-lg btn-primary btn-block" type="button" onclick="dizhi()">添加地址</button>
-                    </div>
-                </div>
-            </div>
-            <br/>
+            </form>
         </div>
-    </form>
-
-
+    </div>
 </div>
 </body>
+<script>
+    function dizhi() {
+        var address = {};
+        address.userId = document.getElementById("inputUserId").value;
+        address.zone = document.getElementById("inputZone").value;
+        address.postcode = document.getElementById("inputPostCode").value;
+        address.detail = document.getElementById("inputTextarea").value;
+        address.phone = document.getElementById("inputPhone").value;
+        var bb = /^[0-9]{6}$/;
+
+
+        if (address.userId) {
+
+        } else {
+            layer.msg('用户Id不能为空');
+            return false;
+        }
+
+        if (address.detail) {
+
+        } else {
+            layer.msg('描述不能为空');
+            return false;
+        }
+        if (address.postcode) {
+
+        } else {
+            layer.msg('邮政编码不能为空');
+            return false;
+        }
+        if (!bb.test(address.postcode)) {
+            layer.msg('邮政编码只能是6位数字');
+            return false;
+        }
+
+        if (address.zone) {
+
+        } else {
+            layer.msg('地址不能为空');
+            return false;
+        }
+        if (address.phone) {
+
+        } else {
+            layer.msg('电话号码不能为空');
+            return false;
+        }
+
+        console.log(address);
+        var formData = new FormData($("#formAddress")[0]);
+        console.log(formData);
+        $.ajax({
+            type: 'POST',
+            async: false,
+            url: '${ctp}/doAddAddress',
+            dataType: 'json',
+            contentType: false,
+            processData: false,
+            data: formData,
+            success: (function (result) {
+                if (result.flag == 1) {
+                    layer.msg("修改成功");
+                } else {
+                    layer.msg("修改失败");
+                }
+            })
+        })
+    }
+
+
+</script>
 </html>

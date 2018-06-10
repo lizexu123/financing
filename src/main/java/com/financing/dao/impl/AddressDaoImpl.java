@@ -6,7 +6,6 @@ import com.financing.entity.User;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -53,7 +52,8 @@ public class AddressDaoImpl implements AddressDao {
     @Override
     public List<Address> queryByUser(User user) {
         Session session = sessionFactory.getCurrentSession();
-        Query query = session.createQuery("from Address where user = ?");
+        Query query = session.createQuery("from Address where user = :user");
+        query.setParameter("user", user);
         List<Address> addresses = query.list();
 
         return addresses;

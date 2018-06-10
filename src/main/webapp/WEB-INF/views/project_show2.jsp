@@ -1,4 +1,4 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="utf-8" isELIgnored="false" %>
+﻿<%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="utf-8" isELIgnored="false" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <c:set var="ctp" value="${pageContext.request.contextPath}"/>
@@ -7,20 +7,23 @@
     <title>project_show</title>
     <link rel="stylesheet" href="${ctp}/css/project_show.css" type="text/css"/>
     <script type="text/javascript" src="${ctp}/js/jquery-1.11.0.min.js"></script>
-    <script type="text/javascript">
-        function clickChangeBar() {
-            $('.top-nav>ul>li').removeClass("active").addClass("grid");
-            this.addClass("active");
-            window.location.href = this.href;
-        }
-    </script>
+    <%--<script type="text/javascript">--%>
+    <%--window.onload = function changeBarFocus() {--%>
+    <%--var url = window.location.pathname;--%>
+    <%--$('.top-nav>ul>li').removeClass("active").addClass("grid");--%>
+    <%--if (url.indexOf('hot') > 0) {--%>
+    <%--$('#Hot').addClass("active");--%>
+    <%--} else {--%>
+    <%--$('#New').addClass("active");--%>
+    <%--}--%>
+    <%--}--%>
+    <%--</script>--%>
 </head>
 <%--用于加载各种搜索结果--%>
 <body>
 <jsp:include page="header.jsp"/>
 <div class="ContainEverything">
     <div class="AllSearchResults">
-
         <c:choose>
             <c:when test="${empty data}">
                 <div class="alert alert-danger alert-dismissable">
@@ -44,9 +47,9 @@
                         <li>
                             <div class="eachOne">
                                 <div class="eachOneLeft">
-                                    <a href="#">
+                                    <a href='${ctp}/browse/detail-${project.id}'>
                                             <%--list:装载文件路径（绝对路径）--%>
-                                        <object class="showImage" data="${ctp}/image/roll1.jpg"></object>
+                                        <object class="showImage" data="${project.cover}"></object>
                                     </a>
                                 </div>
                                 <div class="eachOneRight">

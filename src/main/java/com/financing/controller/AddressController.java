@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpSession;
@@ -41,9 +40,8 @@ public class AddressController {
      */
     @RequestMapping(value = "/doAddAddress",method = RequestMethod.POST)
     @ResponseBody
-    public Map<String,Object> doAddAddress(@RequestParam String recipient, @RequestParam String zone, @RequestParam String postcode, @RequestParam String detail, @RequestParam String phone, HttpSession session){
+    public Map<String, Object> doAddAddress(String recipient, String zone, String postcode, String detail, String phone, HttpSession session) {
         User user = (User) session.getAttribute("user");
-
         Address address = new Address();
         address.setUser(user);
         address.setRecipient(recipient);
@@ -51,12 +49,13 @@ public class AddressController {
         address.setZone(zone);
         address.setDetail(detail);
         address.setPhone(phone);
-
+        System.out.println("address = " + address);
         addressService.addAddress(address);
         Map<String,Object> result = new HashMap<String,Object>();
         result.put("flag",SUCCESS_CODE);
         result.put("msg","success");
         result.put("data",null);
+        System.out.println("result = " + result);
         return result;
     }
 

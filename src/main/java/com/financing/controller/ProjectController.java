@@ -350,7 +350,7 @@ public class ProjectController {
         result.put("data",project);
         map.addAllAttributes(result);
         System.out.println("result = " + result);
-        return "person_projectUpdate";
+        return "person_editor";
     }
 
 
@@ -371,6 +371,25 @@ public class ProjectController {
         map.addAllAttributes(result);
 
         return "project_Detail";
+    }
+
+    /**
+     * 立即支持页面
+     *
+     * @param pid
+     * @param map
+     * @return
+     */
+    @RequestMapping(value = "/doProjectSupport-{pid}")
+    public String doProjectSupport(@PathVariable("pid") String pid, ModelMap map) {
+        Project project = projectService.getProject(pid);
+        Map<String, Object> result = new HashMap<String, Object>();
+        result.put("flag", SUCCESS_CODE);
+        result.put("msg", "project support");
+        result.put("data", project);
+        map.addAllAttributes(result);
+
+        return "project_support";
     }
 
 }

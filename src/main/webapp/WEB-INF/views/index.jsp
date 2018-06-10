@@ -37,12 +37,6 @@
             }
         );
         $(document).ready(function () {
-            $('ul.nav > li').click(function () {
-                $('ul.nav > li').removeClass('active');
-                $(this).addClass('active');
-            });
-        });
-        $(document).ready(function () {
             $('ul.top > li').click(function () {
                 $('ul.top > li').removeClass('currentLi');
                 $(this).addClass('currentLi');

@@ -47,15 +47,20 @@ public class ProjectBackController {
         String projectId  = request.getParameter("project");
         BigDecimal amount = BigDecimal.valueOf(Double.valueOf(request.getParameter("amount")));
         String content = request.getParameter("content");
-        int post = Integer.parseInt(request.getParameter("post"));
+        int post = 0;
+        try {
+            post = Integer.parseInt(request.getParameter("post"));
+        } catch (NumberFormatException e) {
+            post = 0;
+        }
         int allow = Integer.parseInt(request.getParameter("allow"));
+        int compensation = Integer.parseInt(request.getParameter("compensation"));
         Date backDate = DateUtil.StringToDate(request.getParameter("back_date"));
         System.out.println("projectId = " + projectId);
         Project project = projectService.getProject(projectId);
 
-
         ProjectBack back = new ProjectBack();
-        back.setCompensation(0);
+        back.setCompensation(compensation);
         back.setProject(project);
         back.setAllow(allow);
         back.setAmount(amount);

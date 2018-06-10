@@ -17,21 +17,21 @@
     </div>
     <div class="top-nav">
         <ul class="memenu skyblue">
-            <li id="Home" class="active"><a onclick="clickChangeBar()" href="${ctp}/index">Home</a></li>
-            <li id="Hot" class="grid"><a onclick="clickChangeBar()" href="${ctp}/doShowHotProject">Hot</a></li>
-            <li id="New" class="grid"><a onclick="clickChangeBar()" href="${ctp}/doShowNewProject">New</a></li>
-            <li id="All" class="grid"><a onclick="clickChangeBar()" href="${ctp}/doProjectAll">All</a>
+            <li id="Home" class="active"><a href="${ctp}/index">Home</a></li>
+            <li id="Hot" class="grid"><a href="${ctp}/browse/hot">Hot</a></li>
+            <li id="New" class="grid"><a href="${ctp}/browse/new">New</a></li>
+            <li id="All" class="grid"><a href="${ctp}/browse/all">All</a>
                 <div class="mepanel">
                     <div class="row">
                         <div class="col1 me-one">
                             <h4>Type</h4>
                             <ul>
-                                <li><a href="${ctp}/doProjectByCID-1">Agriculture</a></li>
-                                <li><a href="${ctp}/doProjectByCID-2">Publish</a></li>
-                                <li><a href="${ctp}/doProjectByCID-3">Entertainment</a></li>
-                                <li><a href="${ctp}/doProjectByCID-4">Technology</a></li>
-                                <li><a href="${ctp}/doProjectByCID-5">Public Welfare</a></li>
-                                <li><a href="${ctp}/doProjectByCID-6">Other</a></li>
+                                <li><a href="${ctp}/browse/sort-1">Agriculture</a></li>
+                                <li><a href="${ctp}/browse/sort-2">Publish</a></li>
+                                <li><a href="${ctp}/browse/sort-3">Entertainment</a></li>
+                                <li><a href="${ctp}/browse/sort-4">Technology</a></li>
+                                <li><a href="${ctp}/browse/sort-5">Public Welfare</a></li>
+                                <li><a href="${ctp}/browse/sort-6">Other</a></li>
                             </ul>
                         </div>
                     </div>
@@ -77,7 +77,7 @@
                                         <ul>
                                             <li><a href="${ctp}/personCenter"><span class="icon_profile"></span>My
                                                 Profile</a></li>
-                                            <li><a href="${ctp}/personCenter/personInfo"><span
+                                            <li><a href="${ctp}/personCenter/personProject"><span
                                                     class="icon_clipboard"></span>My
                                                 Project</a>
                                             </li>
@@ -104,15 +104,22 @@
             //搜索框实现，并删除字符串开始和末尾的空格
             $('#searchImg').click(function () {
                     var $input = $('#searchByKeyWord');
-                    window.location.href = '${ctp}/doProjectByKey-' + $.trim($input.val());
+                window.location.href = '${ctp}/browse/search-' + $.trim($input.val());
                 }
             );
-
-            function clickChangeBar() {
+            window.onload = function changeBarFocus() {
+                var url = window.location.pathname;
                 $('.top-nav>ul>li').removeClass("active").addClass("grid");
-                this.addClass("active");
-                window.location.href = this.href;
-            }
+                if (url.indexOf('hot') > 0) {
+                    $('#Hot').addClass("active");
+                } else if (url.indexOf('new') > 0) {
+                    $('#New').addClass("active");
+                } else if (url.indexOf('index') > 0) {
+                    $('#Home').addClass("active");
+                } else {
+                    $('#All').addClass("active");
+                }
+            };
         }
     );
 </script>
